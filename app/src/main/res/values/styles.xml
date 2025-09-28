@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Apple-inspired Bottom Navigation Style -->
+    <style name="AppleBottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@drawable/nav_background</item>
+        <item name="android:elevation">@dimen/nav_elevation</item>
+        <item name="itemIconTint">@color/nav_item_selector</item>
+        <item name="itemTextColor">@color/nav_item_selector</item>
+        <item name="itemIconSize">@dimen/nav_icon_size</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="android:paddingTop">@dimen/nav_item_padding</item>
+        <item name="android:paddingBottom">@dimen/nav_item_padding</item>
+        <item name="android:paddingStart">@dimen/nav_item_padding</item>
+        <item name="android:paddingEnd">@dimen/nav_item_padding</item>
+    </style>
+    
+    <!-- Tablet version with larger spacing -->
+    <style name="AppleBottomNavigation.Tablet" parent="AppleBottomNavigation">
+        <item name="android:elevation">@dimen/nav_elevation_tablet</item>
+        <item name="itemIconSize">@dimen/nav_icon_size_tablet</item>
+        <item name="android:paddingTop">@dimen/nav_item_padding_tablet</item>
+        <item name="android:paddingBottom">@dimen/nav_item_padding_tablet</item>
+        <item name="android:paddingStart">@dimen/nav_item_padding_tablet</item>
+        <item name="android:paddingEnd">@dimen/nav_item_padding_tablet</item>
+    </style>
+    
+    <!-- Apple-inspired container style -->
+    <style name="AppleNavContainer">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_marginStart">@dimen/nav_margin_horizontal</item>
+        <item name="android:layout_marginEnd">@dimen/nav_margin_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/nav_margin_bottom</item>
+    </style>
+    
+    <!-- Tablet container style -->
+    <style name="AppleNavContainer.Tablet">
+        <item name="android:layout_marginStart">@dimen/nav_margin_horizontal_tablet</item>
+        <item name="android:layout_marginEnd">@dimen/nav_margin_horizontal_tablet</item>
+        <item name="android:layout_marginBottom">@dimen/nav_margin_bottom_tablet</item>
+    </style>
+    
+    <!-- Apple-inspired active indicator style -->
+    <style name="AppleNavItemIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/nav_item_selected_bg</item>
+        <item name="android:width">48dp</item>
+        <item name="android:height">32dp</item>
+        <item name="shapeAppearance">@style/AppleNavIndicatorShape</item>
+    </style>
+    
+    <!-- Rounded indicator shape -->
+    <style name="AppleNavIndicatorShape" parent="ShapeAppearance.Material3.Corner.Full">
+        <item name="cornerSize">16dp</item>
+    </style>
+    
+</resources>

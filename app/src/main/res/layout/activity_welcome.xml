@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/apple_bg_secondary"
+    android:gravity="center"
+    android:padding="@dimen/apple_padding_large">
+
+    <!-- Logo/Icon Area -->
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="@dimen/apple_spacing_xlarge"
+        android:src="@drawable/ic_dashboard"
+        android:tint="@color/apple_primary"
+        android:background="@drawable/apple_logo_background"
+        android:padding="@dimen/apple_padding_medium" />
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EV Charging ERP"
+        android:textSize="@dimen/apple_text_size_large"
+        android:textStyle="bold"
+        android:textColor="@color/apple_text_primary"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/apple_spacing_medium" />
+
+    <!-- Subtitle -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Management System"
+        android:textSize="@dimen/apple_text_size_medium"
+        android:textColor="@color/apple_text_secondary"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/apple_spacing_xxlarge" />
+
+    <!-- Login Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/apple_button_height"
+        android:text="Get Started"
+        android:textSize="@dimen/apple_text_size_normal"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/apple_button_radius"
+        app:backgroundTint="@color/apple_primary"
+        android:textColor="@color/white"
+        app:rippleColor="@color/apple_ash_light" />
+
+</LinearLayout>

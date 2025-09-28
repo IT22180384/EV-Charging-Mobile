@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/apple_bg_secondary"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/apple_padding_large"
+        android:gravity="center">
+
+        <!-- Top Spacing -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/apple_spacing_xxlarge" />
+
+        <!-- Logo/Icon -->
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="@dimen/apple_spacing_xlarge"
+            android:src="@drawable/ic_home"
+            android:tint="@color/apple_primary"
+            android:background="@drawable/apple_logo_background"
+            android:padding="@dimen/apple_padding_medium" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome Back"
+            android:textSize="@dimen/apple_text_size_large"
+            android:textStyle="bold"
+            android:textColor="@color/apple_text_primary"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/apple_spacing_small" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in to your account"
+            android:textSize="@dimen/apple_text_size_normal"
+            android:textColor="@color/apple_text_secondary"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/apple_spacing_xlarge" />
+
+        <!-- Login Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/login_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/apple_spacing_large"
+            app:cardCornerRadius="@dimen/apple_card_radius"
+            app:cardElevation="@dimen/apple_card_elevation"
+            app:cardBackgroundColor="@color/apple_card_bg"
+            app:strokeColor="@color/apple_card_border"
+            app:strokeWidth="0.5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/apple_padding_large">
+
+                <!-- Email/NIC Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/apple_spacing_medium"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusTopStart="@dimen/apple_input_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/apple_input_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/apple_input_radius"
+                    app:boxCornerRadiusBottomEnd="@dimen/apple_input_radius"
+                    app:boxStrokeColor="@color/apple_input_border"
+                    app:hintTextColor="@color/apple_text_secondary"
+                    app:startIconDrawable="@drawable/ic_email"
+                    app:startIconTint="@color/apple_text_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/apple_input_height"
+                        android:hint="Email or NIC"
+                        android:inputType="textEmailAddress"
+                        android:textSize="@dimen/apple_text_size_normal"
+                        android:textColor="@color/apple_text_primary"
+                        android:background="@android:color/transparent" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Password Field -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/apple_spacing_large"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusTopStart="@dimen/apple_input_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/apple_input_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/apple_input_radius"
+                    app:boxCornerRadiusBottomEnd="@dimen/apple_input_radius"
+                    app:boxStrokeColor="@color/apple_input_border"
+                    app:hintTextColor="@color/apple_text_secondary"
+                    app:startIconDrawable="@drawable/ic_password"
+                    app:startIconTint="@color/apple_text_secondary"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/apple_text_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/apple_input_height"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/apple_text_size_normal"
+                        android:textColor="@color/apple_text_primary"
+                        android:background="@android:color/transparent" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Login Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/apple_button_height"
+                    android:text="Login"
+                    android:textSize="@dimen/apple_text_size_normal"
+                    android:textStyle="bold"
+                    app:cornerRadius="@dimen/apple_button_radius"
+                    app:backgroundTint="@color/apple_primary"
+                    android:textColor="@color/white"
+                    app:rippleColor="@color/apple_ash_light" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Sign Up Link -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account? "
+                android:textSize="@dimen/apple_text_size_small"
+                android:textColor="@color/apple_text_secondary" />
+
+            <TextView
+                android:id="@+id/tv_signup_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textSize="@dimen/apple_text_size_small"
+                android:textStyle="bold"
+                android:textColor="@color/apple_primary"
+                android:background="?attr/selectableItemBackground"
+                android:padding="@dimen/apple_padding_small" />
+
+        </LinearLayout>
+
+        <!-- Bottom Spacing -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/apple_spacing_xlarge" />
+
+    </LinearLayout>
+
+</ScrollView>

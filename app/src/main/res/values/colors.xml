@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Apple-inspired color palette -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Apple-inspired grays -->
+    <color name="apple_ash_light">#F2F2F7</color>
+    <color name="apple_ash_medium">#E5E5EA</color>
+    <color name="apple_ash_dark">#D1D1D6</color>
+    <color name="apple_gray_light">#C7C7CC</color>
+    <color name="apple_gray_medium">#AEAEB2</color>
+    <color name="apple_gray_dark">#8E8E93</color>
+    
+    <!-- Navigation colors -->
+    <color name="nav_background">#FFFFFF</color>
+    <color name="nav_item_active">#007AFF</color>
+    <color name="nav_item_inactive">#8E8E93</color>
+    <color name="nav_item_selected_bg">#F2F2F7</color>
+    
+    <!-- Shadow colors -->
+    <color name="shadow_light">#1A000000</color>
+    <color name="shadow_medium">#33000000</color>
+    
+    <!-- Apple-inspired UI colors -->
+    <color name="apple_primary">#007AFF</color>
+    <color name="apple_secondary">#5856D6</color>
+    <color name="apple_success">#34C759</color>
+    <color name="apple_warning">#FF9500</color>
+    <color name="apple_error">#FF3B30</color>
+    
+    <!-- Background colors -->
+    <color name="apple_bg_primary">#FFFFFF</color>
+    <color name="apple_bg_secondary">#F2F2F7</color>
+    <color name="apple_bg_tertiary">#FFFFFF</color>
+    
+    <!-- Text colors -->
+    <color name="apple_text_primary">#000000</color>
+    <color name="apple_text_secondary">#8E8E93</color>
+    <color name="apple_text_tertiary">#C7C7CC</color>
+    
+    <!-- Card colors -->
+    <color name="apple_card_bg">#FFFFFF</color>
+    <color name="apple_card_border">#E5E5EA</color>
+    
+    <!-- Input field colors -->
+    <color name="apple_input_bg">#F2F2F7</color>
+    <color name="apple_input_border">#C7C7CC</color>
+    <color name="apple_input_focus">#007AFF</color>
 </resources>
