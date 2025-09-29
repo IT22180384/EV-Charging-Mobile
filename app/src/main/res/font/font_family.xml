@@ -1,68 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- SF Pro Light -->
+    <!-- SF Pro Display Regular -->
     <font
-        android:font="@font/sf_pro_light"
-        android:fontStyle="normal"
-        android:fontWeight="300" />
-    
-    <!-- SF Pro Regular -->
-    <font
-        android:font="@font/sf_pro_regular"
+        android:font="@font/sfprodisplayregular"
         android:fontStyle="normal"
         android:fontWeight="400" />
     
-    <!-- SF Pro Medium -->
+    <!-- SF Pro Display Medium -->
     <font
-        android:font="@font/sf_pro_medium"
+        android:font="@font/sfprodisplaymedium"
         android:fontStyle="normal"
         android:fontWeight="500" />
     
-    <!-- SF Pro Semibold -->
+    <!-- SF Pro Display Bold -->
     <font
-        android:font="@font/sf_pro_semibold"
-        android:fontStyle="normal"
-        android:fontWeight="600" />
-    
-    <!-- SF Pro Bold -->
-    <font
-        android:font="@font/sf_pro_bold"
+        android:font="@font/sfprodisplaybold"
         android:fontStyle="normal"
         android:fontWeight="700" />
     
-    <!-- SF Pro Heavy -->
+    <!-- SF Pro Display Light Italic -->
     <font
-        android:font="@font/sf_pro_heavy"
-        android:fontStyle="normal"
+        android:font="@font/sfprodisplaylightitalic"
+        android:fontStyle="italic"
+        android:fontWeight="300" />
+    
+    <!-- SF Pro Display Semibold Italic -->
+    <font
+        android:font="@font/sfprodisplaysemibolditalic"
+        android:fontStyle="italic"
+        android:fontWeight="600" />
+    
+    <!-- SF Pro Display Heavy Italic -->
+    <font
+        android:font="@font/sfprodisplayheavyitalic"
+        android:fontStyle="italic"
         android:fontWeight="800" />
     
-    <!-- SF Pro Light Italic -->
+    <!-- SF Pro Display Black Italic -->
     <font
-        android:font="@font/sf_pro_light_italic"
+        android:font="@font/sfprodisplayblackitalic"
         android:fontStyle="italic"
-        android:fontWeight="300" />
+        android:fontWeight="900" />
     
-    <!-- SF Pro Regular Italic -->
+    <!-- SF Pro Display Thin Italic -->
     <font
-        android:font="@font/sf_pro_regular_italic"
+        android:font="@font/sfprodisplaythinitalic"
         android:fontStyle="italic"
-        android:fontWeight="400" />
+        android:fontWeight="100" />
     
-    <!-- SF Pro Medium Italic -->
+    <!-- SF Pro Display Ultralight Italic -->
     <font
-        android:font="@font/sf_pro_medium_italic"
+        android:font="@font/sfprodisplayultralightitalic"
         android:fontStyle="italic"
-        android:fontWeight="500" />
-    
-    <!-- SF Pro Semibold Italic -->
-    <font
-        android:font="@font/sf_pro_semibold_italic"
-        android:fontStyle="italic"
-        android:fontWeight="600" />
-    
-    <!-- SF Pro Bold Italic -->
-    <font
-        android:font="@font/sf_pro_bold_italic"
-        android:fontStyle="italic"
-        android:fontWeight="700" />
+        android:fontWeight="200" />
 </font-family>
