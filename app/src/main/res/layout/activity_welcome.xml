@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"
         android:text="EV Charging ERP"
         android:textSize="@dimen/apple_text_size_large"
-        android:textStyle="bold"
         android:textColor="@color/apple_text_primary"
         android:gravity="center"
-        android:layout_marginBottom="@dimen/apple_spacing_medium" />
+        android:layout_marginBottom="@dimen/apple_spacing_medium"
+        style="@style/Heading1" />
 
     <!-- Subtitle -->
     <TextView
@@ -37,7 +37,8 @@
         android:textSize="@dimen/apple_text_size_medium"
         android:textColor="@color/apple_text_secondary"
         android:gravity="center"
-        android:layout_marginBottom="@dimen/apple_spacing_xxlarge" />
+        android:layout_marginBottom="@dimen/apple_spacing_xxlarge"
+        style="@style/BodyText" />
 
     <!-- Login Button -->
     <com.google.android.material.button.MaterialButton
@@ -46,10 +47,10 @@
         android:layout_height="@dimen/apple_button_height"
         android:text="Get Started"
         android:textSize="@dimen/apple_text_size_normal"
-        android:textStyle="bold"
         app:cornerRadius="@dimen/apple_button_radius"
         app:backgroundTint="@color/apple_primary"
         android:textColor="@color/white"
-        app:rippleColor="@color/apple_ash_light" />
+        app:rippleColor="@color/apple_ash_light"
+        style="@style/ButtonText" />
 
 </LinearLayout>

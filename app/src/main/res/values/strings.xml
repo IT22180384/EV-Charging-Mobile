@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">EV Charging Mobile</string>
+    
+    <!-- Welcome Screen -->
+    <string name="welcome_title">EV Charging ERP</string>
+    <string name="welcome_subtitle">Management System</string>
+    <string name="get_started">Get Started</string>
+    
+    <!-- Login Screen -->
+    <string name="login_title">Welcome Back</string>
+    <string name="login_subtitle">Sign in to your account</string>
+    <string name="email_or_nic_hint">Email or NIC</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="no_account">Don\'t have an account? </string>
+    <string name="sign_up_link">Sign Up</string>
+    
+    <!-- Sign Up Screen -->
+    <string name="signup_title">Create Account</string>
+    <string name="signup_subtitle">Join the EV Charging ERP System</string>
+    <string name="full_name_hint">Full Name</string>
+    <string name="email_hint">Email Address</string>
+    <string name="nic_hint">NIC Number</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="create_account_button">Create Account</string>
+    <string name="have_account">Already have an account? </string>
+    <string name="login_link">Login</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_bookings">Bookings</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_settings">Settings</string>
 </resources>

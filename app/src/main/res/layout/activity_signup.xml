@@ -33,21 +33,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create Account"
-            android:textSize="@dimen/apple_text_size_large"
-            android:textStyle="bold"
             android:textColor="@color/apple_text_primary"
             android:gravity="center"
-            android:layout_marginBottom="@dimen/apple_spacing_small" />
+            android:layout_marginBottom="@dimen/apple_spacing_small"
+            style="@style/Heading1" />
 
         <!-- Subtitle -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Join the EV Charging ERP System"
-            android:textSize="@dimen/apple_text_size_normal"
             android:textColor="@color/apple_text_secondary"
             android:gravity="center"
-            android:layout_marginBottom="@dimen/apple_spacing_large" />
+            android:layout_marginBottom="@dimen/apple_spacing_large"
+            style="@style/BodyText" />
 
         <!-- Sign Up Card -->
         <com.google.android.material.card.MaterialCardView
@@ -212,12 +211,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/apple_button_height"
                     android:text="Create Account"
-                    android:textSize="@dimen/apple_text_size_normal"
-                    android:textStyle="bold"
                     app:cornerRadius="@dimen/apple_button_radius"
                     app:backgroundTint="@color/apple_primary"
                     android:textColor="@color/white"
-                    app:rippleColor="@color/apple_ash_light" />
+                    app:rippleColor="@color/apple_ash_light"
+                    style="@style/ButtonText" />
 
             </LinearLayout>
 
@@ -234,19 +232,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account? "
-                android:textSize="@dimen/apple_text_size_small"
-                android:textColor="@color/apple_text_secondary" />
+                android:textColor="@color/apple_text_secondary"
+                style="@style/CaptionText" />
 
             <TextView
                 android:id="@+id/tv_login_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Login"
-                android:textSize="@dimen/apple_text_size_small"
-                android:textStyle="bold"
                 android:textColor="@color/apple_primary"
                 android:background="?attr/selectableItemBackground"
-                android:padding="@dimen/apple_padding_small" />
+                android:padding="@dimen/apple_padding_small"
+                style="@style/LinkText" />
 
         </LinearLayout>
 
