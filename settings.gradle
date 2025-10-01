@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "EV Charging Mobile"
 include ':app'
+include ':auth'
