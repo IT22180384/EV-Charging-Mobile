@@ -23,11 +23,6 @@ public class BookingsActivity extends BaseActivity {
     }
     
     @Override
-    protected String getActivityTitle() {
-        return "My Bookings";
-    }
-    
-    @Override
     protected void setSelectedNavigationItem() {
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(R.id.nav_bookings);

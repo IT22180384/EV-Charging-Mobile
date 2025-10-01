@@ -23,11 +23,6 @@ public class MainActivity extends BaseActivity {
     }
     
     @Override
-    protected String getActivityTitle() {
-        return "Home";
-    }
-    
-    @Override
     protected void setSelectedNavigationItem() {
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(R.id.nav_home);

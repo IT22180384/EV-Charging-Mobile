@@ -27,6 +27,14 @@ color nav_item_active
 color nav_item_inactive
 color nav_item_selected_bg
 color nav_item_selector
+color shade_ash_dark
+color shade_ash_extra_light
+color shade_ash_light
+color shade_ash_medium
+color shade_black_primary
+color shade_black_soft
+color shade_graphite
+color shade_white_primary
 color shadow_light
 color shadow_medium
 color white

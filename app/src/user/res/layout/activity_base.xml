@@ -6,21 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/apple_ash_light">
 
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
-        android:elevation="4dp"
-        app:titleTextColor="@color/black" />
-
     <!-- Main content area -->
     <FrameLayout
         android:id="@+id/content_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginBottom="88dp" />
 
     <!-- Apple-inspired Bottom Navigation -->

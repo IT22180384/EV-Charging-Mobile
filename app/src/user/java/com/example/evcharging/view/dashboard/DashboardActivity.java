@@ -23,11 +23,6 @@ public class DashboardActivity extends BaseActivity {
     }
     
     @Override
-    protected String getActivityTitle() {
-        return "Dashboard";
-    }
-    
-    @Override
     protected void setSelectedNavigationItem() {
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(R.id.nav_dashboard);

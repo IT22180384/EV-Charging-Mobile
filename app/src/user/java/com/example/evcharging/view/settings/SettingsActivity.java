@@ -23,11 +23,6 @@ public class SettingsActivity extends BaseActivity {
     }
     
     @Override
-    protected String getActivityTitle() {
-        return "Settings";
-    }
-    
-    @Override
     protected void setSelectedNavigationItem() {
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(R.id.nav_settings);
