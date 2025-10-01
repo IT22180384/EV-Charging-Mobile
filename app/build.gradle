@@ -22,6 +22,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    
+    flavorDimensions "app_type"
+    productFlavors {
+        user {
+            dimension "app_type"
+            applicationIdSuffix ".user"
+            versionNameSuffix "-user"
+        }
+        operator {
+            dimension "app_type"
+            applicationIdSuffix ".operator"
+            versionNameSuffix "-operator"
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -29,7 +43,7 @@ android {
 }
 
 dependencies {
-
+    implementation project(":auth")
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
@@ -47,4 +61,18 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+}
+
+tasks.register("assembleDebugUnitTest") {
+    dependsOn(
+        "assembleOperatorDebugUnitTest",
+        "assembleUserDebugUnitTest"
+    )
+}
+
+tasks.register("assembleDebugAndroidTest") {
+    dependsOn(
+        "assembleOperatorDebugAndroidTest",
+        "assembleUserDebugAndroidTest"
+    )
 }
