@@ -23,11 +23,6 @@ public class ProfileActivity extends BaseActivity {
     }
     
     @Override
-    protected String getActivityTitle() {
-        return "Profile";
-    }
-    
-    @Override
     protected void setSelectedNavigationItem() {
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(R.id.nav_profile);

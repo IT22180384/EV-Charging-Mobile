@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- User flavor accent overrides -->
+    <color name="apple_primary">@color/white</color>
+    <color name="apple_secondary">#1E88E5</color>
+    <color name="apple_success">#43A047</color>
+    <color name="apple_warning">#FB8C00</color>
+    <color name="apple_error">#D32F2F</color>
+</resources>

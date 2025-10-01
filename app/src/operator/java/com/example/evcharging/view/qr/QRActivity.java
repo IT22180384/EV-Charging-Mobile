@@ -23,11 +23,6 @@ public class QRActivity extends OperatorBaseActivity {
     }
     
     @Override
-    protected String getActivityTitle() {
-        return "QR Scanner";
-    }
-    
-    @Override
     protected void setSelectedNavigationItem() {
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(R.id.nav_qr);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Operator flavor accent overrides -->
+    <color name="apple_primary">@color/white</color>
+    <color name="apple_secondary">#0A74DA</color>
+    <color name="apple_success">#388E3C</color>
+    <color name="apple_warning">#F57C00</color>
+    <color name="apple_error">#C62828</color>
+</resources>

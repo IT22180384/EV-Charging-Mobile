@@ -26,6 +26,14 @@ int color nav_item_active 0x0
 int color nav_item_inactive 0x0
 int color nav_item_selected_bg 0x0
 int color nav_item_selector 0x0
+int color shade_ash_dark 0x0
+int color shade_ash_extra_light 0x0
+int color shade_ash_light 0x0
+int color shade_ash_medium 0x0
+int color shade_black_primary 0x0
+int color shade_black_soft 0x0
+int color shade_graphite 0x0
+int color shade_white_primary 0x0
 int color shadow_light 0x0
 int color shadow_medium 0x0
 int color white 0x0

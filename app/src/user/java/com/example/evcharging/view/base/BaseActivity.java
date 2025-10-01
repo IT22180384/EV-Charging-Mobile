@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.evcharging.R;
 import com.example.evcharging.view.bookings.BookingsActivity;
@@ -18,15 +17,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     
     protected BottomNavigationView bottomNavigation;
-    protected Toolbar toolbar;
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResource());
-        
-        // Setup toolbar
-        setupToolbar();
         
         // Setup bottom navigation
         setupBottomNavigation();
@@ -42,22 +36,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     }
     
     protected abstract int getLayoutResource();
-    
-    protected abstract String getActivityTitle();
-    
-    private void setupToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setTitle(getActivityTitle());
-                // Only show back button if not MainActivity
-                if (!(this instanceof MainActivity)) {
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                }
-            }
-        }
-    }
     
     private void setupBottomNavigation() {
         bottomNavigation = findViewById(R.id.bottom_navigation);

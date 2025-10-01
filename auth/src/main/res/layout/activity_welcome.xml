@@ -14,7 +14,7 @@
         android:layout_height="120dp"
         android:layout_marginBottom="@dimen/apple_spacing_xlarge"
         android:src="@drawable/ic_dashboard"
-        android:tint="@color/apple_primary"
+        android:tint="@color/apple_secondary"
         android:background="@drawable/apple_logo_background"
         android:padding="@dimen/apple_padding_medium" />
 
@@ -48,7 +48,7 @@
         android:text="Get Started"
         android:textSize="@dimen/apple_text_size_normal"
         app:cornerRadius="@dimen/apple_button_radius"
-        app:backgroundTint="@color/apple_primary"
+        app:backgroundTint="@color/apple_secondary"
         android:textColor="@color/white"
         app:rippleColor="@color/apple_ash_light"
         style="@style/ButtonText" />

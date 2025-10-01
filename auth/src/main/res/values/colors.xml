@@ -1,50 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Apple-inspired color palette -->
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    
-    <!-- Apple-inspired grays -->
-    <color name="apple_ash_light">#F2F2F7</color>
-    <color name="apple_ash_medium">#E5E5EA</color>
-    <color name="apple_ash_dark">#D1D1D6</color>
-    <color name="apple_gray_light">#C7C7CC</color>
-    <color name="apple_gray_medium">#AEAEB2</color>
-    <color name="apple_gray_dark">#8E8E93</color>
-    
+    <!-- Core neutral palette -->
+    <color name="shade_white_primary">#FFFFFFFF</color>
+    <color name="shade_black_primary">#FF000000</color>
+    <color name="shade_black_soft">#FF1F1F23</color>
+    <color name="shade_graphite">#6F6F75</color>
+    <color name="shade_ash_extra_light">#F4F4F6</color>
+    <color name="shade_ash_light">#E6E6EA</color>
+    <color name="shade_ash_medium">#CFCFD4</color>
+    <color name="shade_ash_dark">#A6A6AD</color>
+
+    <!-- Legacy aliases retained for existing layout references -->
+    <color name="white">@color/shade_white_primary</color>
+    <color name="black">@color/shade_black_primary</color>
+    <color name="apple_ash_light">@color/shade_ash_extra_light</color>
+    <color name="apple_ash_medium">@color/shade_ash_light</color>
+    <color name="apple_ash_dark">@color/shade_ash_medium</color>
+    <color name="apple_gray_light">@color/shade_ash_medium</color>
+    <color name="apple_gray_medium">@color/shade_ash_dark</color>
+    <color name="apple_gray_dark">@color/shade_graphite</color>
+
+    <!-- Brand accents -->
+    <color name="apple_primary">@color/white</color>
+    <color name="apple_secondary">#1E88E5</color>
+    <color name="apple_success">#4CAF50</color>
+    <color name="apple_warning">#FB8C00</color>
+    <color name="apple_error">#E53935</color>
+
     <!-- Navigation colors -->
-    <color name="nav_background">#FFFFFF</color>
-    <color name="nav_item_active">#007AFF</color>
-    <color name="nav_item_inactive">#8E8E93</color>
-    <color name="nav_item_selected_bg">#F2F2F7</color>
-    
+    <color name="nav_background">@color/white</color>
+    <color name="nav_item_active">@color/apple_secondary</color>
+    <color name="nav_item_inactive">@color/apple_gray_dark</color>
+    <color name="nav_item_selected_bg">@color/apple_ash_light</color>
+
     <!-- Shadow colors -->
-    <color name="shadow_light">#1A000000</color>
-    <color name="shadow_medium">#33000000</color>
-    
-    <!-- Apple-inspired UI colors -->
-    <color name="apple_primary">#007AFF</color>
-    <color name="apple_secondary">#5856D6</color>
-    <color name="apple_success">#34C759</color>
-    <color name="apple_warning">#FF9500</color>
-    <color name="apple_error">#FF3B30</color>
-    
-    <!-- Background colors -->
-    <color name="apple_bg_primary">#FFFFFF</color>
-    <color name="apple_bg_secondary">#F2F2F7</color>
-    <color name="apple_bg_tertiary">#FFFFFF</color>
-    
+    <color name="shadow_light">#14000000</color>
+    <color name="shadow_medium">#29000000</color>
+
+    <!-- Background surfaces -->
+    <color name="apple_bg_primary">@color/white</color>
+    <color name="apple_bg_secondary">@color/apple_ash_light</color>
+    <color name="apple_bg_tertiary">@color/apple_ash_medium</color>
+
     <!-- Text colors -->
-    <color name="apple_text_primary">#000000</color>
-    <color name="apple_text_secondary">#8E8E93</color>
-    <color name="apple_text_tertiary">#C7C7CC</color>
-    
+    <color name="apple_text_primary">@color/black</color>
+    <color name="apple_text_secondary">@color/apple_gray_dark</color>
+    <color name="apple_text_tertiary">@color/apple_gray_medium</color>
+
     <!-- Card colors -->
-    <color name="apple_card_bg">#FFFFFF</color>
-    <color name="apple_card_border">#E5E5EA</color>
-    
+    <color name="apple_card_bg">@color/white</color>
+    <color name="apple_card_border">@color/apple_ash_medium</color>
+
     <!-- Input field colors -->
-    <color name="apple_input_bg">#F2F2F7</color>
-    <color name="apple_input_border">#C7C7CC</color>
-    <color name="apple_input_focus">#007AFF</color>
+    <color name="apple_input_bg">@color/apple_ash_light</color>
+    <color name="apple_input_border">@color/apple_gray_medium</color>
+    <color name="apple_input_focus">@color/apple_secondary</color>
 </resources>

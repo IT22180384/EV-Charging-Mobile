@@ -189,7 +189,7 @@
     </style>
     
     <style name="LinkText" parent="TextMedium.Medium">
-        <item name="android:textColor">@color/apple_primary</item>
+        <item name="android:textColor">@color/apple_secondary</item>
     </style>
     
 </resources>
