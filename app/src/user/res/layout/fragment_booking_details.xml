@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/apple_primary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Booking Status -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:id="@+id/booking_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CONFIRMED"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/apple_success"
+                    android:background="@drawable/bg_status_success"
+                    android:padding="8dp"/>
+
+            </LinearLayout>
+
+            <!-- Booking ID -->
+            <TextView
+                android:id="@+id/booking_id_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Booking ID: #12345"
+                android:textSize="14sp"
+                android:textColor="@color/apple_text_secondary"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Station Details Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Station Details"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/apple_gray_dark"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:id="@+id/station_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Station Name"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/apple_text_primary"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/station_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Station Address"
+                        android:textSize="14sp"
+                        android:textColor="@color/apple_text_secondary"
+                        android:layout_marginBottom="8dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/get_directions_btn"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Get Directions"
+                        android:textAllCaps="false"
+                        android:textColor="@color/apple_secondary"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/apple_secondary"
+                        app:cornerRadius="18dp"
+                        app:icon="@drawable/ic_directions"
+                        app:iconTint="@color/apple_secondary"
+                        app:iconSize="16dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Booking Time Details Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Booking Time"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/apple_gray_dark"
+                        android:layout_marginBottom="12dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Date:"
+                            android:textSize="14sp"
+                            android:textColor="@color/apple_text_secondary"/>
+
+                        <TextView
+                            android:id="@+id/booking_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nov 15, 2025"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/apple_text_primary"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Start Time:"
+                            android:textSize="14sp"
+                            android:textColor="@color/apple_text_secondary"/>
+
+                        <TextView
+                            android:id="@+id/start_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2:00 PM"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/apple_text_primary"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="End Time:"
+                            android:textSize="14sp"
+                            android:textColor="@color/apple_text_secondary"/>
+
+                        <TextView
+                            android:id="@+id/end_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4:00 PM"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/apple_text_primary"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Duration:"
+                            android:textSize="14sp"
+                            android:textColor="@color/apple_text_secondary"/>
+
+                        <TextView
+                            android:id="@+id/booking_duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2 hours"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/apple_text_primary"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Vehicle Details Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vehicle Details"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/apple_gray_dark"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:id="@+id/vehicle_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tesla Model 3 - ABC123"
+                        android:textSize="14sp"
+                        android:textColor="@color/apple_text_primary"/>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/modify_booking_btn"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Modify Booking"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/apple_secondary"
+                    android:layout_marginBottom="12dp"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_edit"
+                    app:iconTint="@color/white" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancel_booking_btn"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Cancel Booking"
+                    android:textAllCaps="false"
+                    android:textColor="@color/apple_error"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:strokeColor="@color/apple_error"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_cancel"
+                    app:iconTint="@color/apple_error"
+                    android:layout_marginBottom="12dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/contact_support_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Contact Support"
+                    android:textAllCaps="false"
+                    android:textColor="@color/apple_text_secondary"
+                    android:textSize="14sp"
+                    app:icon="@drawable/ic_support"
+                    app:iconTint="@color/apple_text_secondary" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

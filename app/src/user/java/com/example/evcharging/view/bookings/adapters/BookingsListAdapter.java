@@ -11,15 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.evcharging.databinding.ItemBookingCardBinding;
 import com.example.evcharging.model.Booking;
+import com.example.evcharging.view.bookings.BookingActionListener;
 
 import java.util.List;
 
 public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapter.BookingViewHolder> {
 
     private final List<Booking> bookings;
+    private final BookingActionListener listener;
 
-    public BookingsListAdapter(@NonNull List<Booking> bookings) {
+    public BookingsListAdapter(@NonNull List<Booking> bookings, BookingActionListener listener) {
         this.bookings = bookings;
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,7 +35,7 @@ public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull BookingViewHolder holder, int position) {
-        holder.bind(bookings.get(position));
+        holder.bind(bookings.get(position), listener);
     }
 
     @Override
@@ -49,7 +52,7 @@ public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapte
             this.binding = binding;
         }
 
-        void bind(Booking booking) {
+        void bind(Booking booking, BookingActionListener listener) {
             binding.textStatus.setText(booking.getStatusLabel());
             binding.textBookingId.setText(booking.getBookingId());
             binding.textTitle.setText(booking.getTitle());
@@ -68,6 +71,13 @@ public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapte
                 DrawableCompat.setTint(dotBackground, color);
                 binding.viewStatusDot.setBackground(dotBackground);
             }
+
+            // Set click listener to navigate to booking details
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.navigateToBookingDetails();
+                }
+            });
         }
     }
 }

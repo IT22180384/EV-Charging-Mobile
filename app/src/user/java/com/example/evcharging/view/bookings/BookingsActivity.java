@@ -13,9 +13,12 @@ import com.example.evcharging.R;
 import com.example.evcharging.databinding.ActivityBookingsBinding;
 import com.example.evcharging.view.base.BaseActivity;
 import com.example.evcharging.view.bookings.adapters.BookingsPagerAdapter;
+import com.example.evcharging.view.bookings.fragments.BookingDetailsFragment;
 import com.example.evcharging.view.bookings.fragments.BookingStepOneFragment;
 import com.example.evcharging.view.bookings.fragments.BookingStepTwoFragment;
 import com.example.evcharging.view.bookings.fragments.BookingStepThreeFragment;
+import com.example.evcharging.view.bookings.fragments.CancelBookingFragment;
+import com.example.evcharging.view.bookings.fragments.ModifyBookingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -212,6 +215,31 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
     public void cancelBooking() {
         // Handle booking cancellation
         exitBookingFlow();
+    }
+
+    @Override
+    public void onBookingCancelled(String bookingId) {
+
+    }
+
+    @Override
+    public void onBookingModified(String bookingId) {
+
+    }
+
+    @Override
+    public void navigateToModifyBooking() {
+        showBookingFragment(ModifyBookingFragment.newInstance());
+    }
+
+    @Override
+    public void navigateToCancelBooking() {
+        showBookingFragment(CancelBookingFragment.newInstance());
+    }
+
+    @Override
+    public void navigateToBookingDetails() {
+        showBookingFragment(BookingDetailsFragment.newInstance());
     }
 
     @Override
