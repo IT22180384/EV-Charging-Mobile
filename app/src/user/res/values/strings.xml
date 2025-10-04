@@ -5,13 +5,33 @@
 
     <!-- Reservation Flow -->
     <string name="new_reservation">New Reservation</string>
-    <string name="step_station">1 Station</string>
-    <string name="step_date_time">2 Date &amp; Time</string>
-    <string name="step_summary">3 Summary</string>
+    <string name="step_station">Station</string>
+    <string name="step_date_time">Date &amp; Time</string>
+    <string name="step_summary">Summary</string>
     <string name="select_station">Select Station</string>
     <string name="choose_station">Choose your preferred charging station</string>
     <string name="list_view">List</string>
     <string name="map_view">Map</string>
     <string name="search_hint">Search stations...</string>
     <string name="btn_next">Next</string>
+
+    <!-- Step Two - Date and Time -->
+    <string name="select_date_time">Select Date &amp; Time</string>
+    <string name="choose_date_time">Choose your preferred date and time for charging</string>
+    <string name="selected_station">Selected Station</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="choose_time">Choose Time</string>
+    <string name="btn_back">Back</string>
+
+    <!-- Step Three - Summary -->
+    <string name="reservation_summary">Reservation Summary</string>
+    <string name="review_details">Please review your reservation details</string>
+    <string name="charging_station">Charging Station</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="estimated_cost">Estimated Cost</string>
+    <string name="btn_confirm_reservation">Confirm Reservation</string>
+    <string name="terms_conditions_note">By confirming, you agree to our terms and conditions. Cancellation policy applies.</string>
 </resources>
