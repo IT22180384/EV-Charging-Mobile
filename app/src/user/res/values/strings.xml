@@ -2,4 +2,16 @@
 <resources>
     <string name="label_bookings_upcoming">Upcoming</string>
     <string name="label_bookings_history">History</string>
+
+    <!-- Reservation Flow -->
+    <string name="new_reservation">New Reservation</string>
+    <string name="step_station">1 Station</string>
+    <string name="step_date_time">2 Date &amp; Time</string>
+    <string name="step_summary">3 Summary</string>
+    <string name="select_station">Select Station</string>
+    <string name="choose_station">Choose your preferred charging station</string>
+    <string name="list_view">List</string>
+    <string name="map_view">Map</string>
+    <string name="search_hint">Search stations...</string>
+    <string name="btn_next">Next</string>
 </resources>

@@ -6,14 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/apple_ash_light">
 
-    <!-- Main content area -->
     <FrameLayout
         android:id="@+id/content_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="88dp" />
+        android:layout_height="match_parent" />
 
-    <!-- Apple-inspired Bottom Navigation -->
     <include
         android:id="@+id/bottom_navigation_container"
         layout="@layout/bottom_navigation_container"

@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/apple_bg_secondary">
+    android:background="@color/apple_bg_secondary"
+    tools:context=".view.bookings.BookingsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_container"
@@ -69,18 +71,19 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:background="@color/apple_bg_primary"
+        android:background="@drawable/bg_white_12"
         android:elevation="0dp"
         android:padding="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_container"
         app:tabIndicator="@drawable/bg_tab_indicator"
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorGravity="center"
         app:tabRippleColor="@color/apple_ash_light"
         app:tabSelectedTextColor="@color/apple_secondary"
-        app:tabTextColor="@color/apple_text_secondary"
-        app:layout_constraintTop_toBottomOf="@id/header_container"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:tabTextColor="@color/apple_text_secondary" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/bookings_view_pager"

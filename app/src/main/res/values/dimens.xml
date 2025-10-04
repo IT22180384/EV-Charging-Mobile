@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Navigation dimensions -->
+    <dimen name="nav_height">72dp</dimen>
+    <dimen name="nav_height_tablet">80dp</dimen>
+    <dimen name="nav_item_padding">12dp</dimen>
+    <dimen name="nav_item_padding_tablet">16dp</dimen>
+    <dimen name="nav_icon_size">24dp</dimen>
+    <dimen name="nav_icon_size_tablet">28dp</dimen>
+    <dimen name="nav_text_size">12sp</dimen>
+    <dimen name="nav_text_size_tablet">14sp</dimen>
+
+    <!-- Corner radius -->
+    <dimen name="nav_corner_radius">16dp</dimen>
+    <dimen name="nav_corner_radius_tablet">20dp</dimen>
+
+    <!-- Shadows -->
+    <dimen name="nav_elevation">8dp</dimen>
+    <dimen name="nav_elevation_tablet">12dp</dimen>
+
+    <!-- Margins -->
+    <dimen name="nav_margin_horizontal">16dp</dimen>
+    <dimen name="nav_margin_horizontal_tablet">24dp</dimen>
+    <dimen name="nav_margin_bottom">16dp</dimen>
+    <dimen name="nav_margin_bottom_tablet">24dp</dimen>
+
+    <!-- Apple-inspired UI dimensions -->
+    <dimen name="apple_padding_small">8dp</dimen>
+    <dimen name="apple_padding_medium">16dp</dimen>
+    <dimen name="apple_padding_large">24dp</dimen>
+    <dimen name="apple_padding_xlarge">32dp</dimen>
+
+    <!-- Card dimensions -->
+    <dimen name="apple_card_radius">16dp</dimen>
+    <dimen name="apple_card_radius_large">20dp</dimen>
+    <dimen name="apple_card_elevation">4dp</dimen>
+    <dimen name="apple_card_margin">16dp</dimen>
+
+    <!-- Button dimensions -->
+    <dimen name="apple_button_height">48dp</dimen>
+    <dimen name="apple_button_radius">12dp</dimen>
+    <dimen name="apple_button_padding">16dp</dimen>
+
+    <!-- Input field dimensions -->
+    <dimen name="apple_input_height">48dp</dimen>
+    <dimen name="apple_input_radius">12dp</dimen>
+    <dimen name="apple_input_padding">16dp</dimen>
+
+    <!-- Typography -->
+    <dimen name="apple_text_size_large">24sp</dimen>
+    <dimen name="apple_text_size_medium">18sp</dimen>
+    <dimen name="apple_text_size_normal">16sp</dimen>
+    <dimen name="apple_text_size_small">14sp</dimen>
+    <dimen name="apple_text_size_xsmall">12sp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="apple_spacing_xsmall">4dp</dimen>
+    <dimen name="apple_spacing_small">8dp</dimen>
+    <dimen name="apple_spacing_medium">16dp</dimen>
+    <dimen name="apple_spacing_large">24dp</dimen>
+    <dimen name="apple_spacing_xlarge">32dp</dimen>
+    <dimen name="apple_spacing_xxlarge">48dp</dimen>
+</resources>
