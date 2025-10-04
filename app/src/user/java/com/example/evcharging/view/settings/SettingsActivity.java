@@ -1,37 +1,35 @@
 package com.example.evcharging.view.settings;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
 import com.example.evcharging.R;
+import com.example.evcharging.databinding.ActivitySettingsBinding;
 import com.example.evcharging.view.base.BaseActivity;
 
 public class SettingsActivity extends BaseActivity {
+    private ActivitySettingsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        // Load the settings content into the content container
         loadSettingsContent();
+        showNavMenu(); // Show navigation for this activity
     }
-    
-    @Override
-    protected int getLayoutResource() {
-        return R.layout.activity_base;
+
+    private void loadSettingsContent() {
+        // Load settings content into the base activity's content container
+        FrameLayout contentContainer = findViewById(R.id.content_container);
+        if (contentContainer != null) {
+            binding = ActivitySettingsBinding.inflate(getLayoutInflater());
+            contentContainer.addView(binding.getRoot());
+        }
     }
-    
+
     @Override
     protected void setSelectedNavigationItem() {
         if (bottomNavigation != null) {
             bottomNavigation.setSelectedItemId(R.id.nav_settings);
         }
-    }
-    
-    private void loadSettingsContent() {
-        // Inflate the settings layout into the content container
-        FrameLayout contentContainer = findViewById(R.id.content_container);
-        LayoutInflater.from(this).inflate(R.layout.activity_settings, contentContainer, true);
     }
 }
