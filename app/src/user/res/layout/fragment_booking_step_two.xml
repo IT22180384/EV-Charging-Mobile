@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/apple_primary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"/>
+
+    <!-- Step Indicator -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp">
+
+        <!-- Step 1 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step_station"
+            android:textColor="@color/apple_gray_medium"
+            android:padding="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step_date_time"
+            android:textStyle="bold"
+            android:textColor="@color/apple_secondary"
+            android:padding="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step_summary"
+            android:textColor="@color/apple_gray_medium"
+            android:padding="8dp"/>
+    </LinearLayout>
+
+    <!-- Select Date and Time Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_date_time"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/apple_gray_dark"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="4dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_date_time"
+        android:textSize="14sp"
+        android:textColor="@color/apple_gray_medium"
+        android:paddingStart="16dp"
+        android:paddingBottom="16dp"/>
+
+    <!-- Selected Station -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card"
+        android:layout_margin="16dp"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selected_station"
+            android:textSize="12sp"
+            android:textColor="@color/apple_gray_medium"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/selectedStationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/apple_gray_dark"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <!-- Date Selection -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_date"
+            android:textSize="14sp"
+            android:textColor="@color/apple_gray_dark"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/selectDateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_date"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/apple_gray_light"
+            android:textColor="@color/apple_gray_dark"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/bg_button_outlined"
+            android:padding="12dp"/>
+
+        <TextView
+            android:id="@+id/selectedDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/apple_secondary"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <!-- Time Selection -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select_time"
+            android:textSize="14sp"
+            android:textColor="@color/apple_gray_dark"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/selectTimeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_time"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/apple_gray_light"
+            android:textColor="@color/apple_gray_dark"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/bg_button_outlined"
+            android:padding="12dp"/>
+
+        <TextView
+            android:id="@+id/selectedTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/apple_secondary"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- Navigation Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="16dp">
+
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_back"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/apple_secondary"
+            android:backgroundTint="@color/apple_gray_light"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/bg_button_outlined"/>
+
+        <Button
+            android:id="@+id/nextBtn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_next"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:enabled="false"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/apple_primary"
+            android:backgroundTint="@color/apple_secondary"/>
+    </LinearLayout>
+</LinearLayout>
