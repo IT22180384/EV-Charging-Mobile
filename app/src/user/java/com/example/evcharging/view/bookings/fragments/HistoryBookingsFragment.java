@@ -1,5 +1,6 @@
 package com.example.evcharging.view.bookings.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.evcharging.R;
 import com.example.evcharging.databinding.FragmentBookingsListBinding;
 import com.example.evcharging.model.Booking;
+import com.example.evcharging.view.bookings.BookingActionListener;
 import com.example.evcharging.view.bookings.adapters.BookingsListAdapter;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.List;
 
 public class HistoryBookingsFragment extends Fragment {
     private FragmentBookingsListBinding binding;
+    private BookingActionListener listener;
 
     @Nullable
     @Override
@@ -30,7 +33,17 @@ public class HistoryBookingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.recyclerBookings.setAdapter(new BookingsListAdapter(createHistoryBookings()));
+        binding.recyclerBookings.setAdapter(new BookingsListAdapter(createHistoryBookings(), listener));
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof BookingActionListener) {
+            listener = (BookingActionListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement BookingActionListener");
+        }
     }
 
     private List<Booking> createHistoryBookings() {

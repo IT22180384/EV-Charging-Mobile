@@ -7,4 +7,10 @@ public interface BookingActionListener {
     void goBackToStepTwo(String stationId, String stationName);
     void completeBooking();
     void cancelBooking();
+
+    void onBookingCancelled(String bookingId);
+    void onBookingModified(String bookingId);
+    void navigateToModifyBooking();
+    void navigateToCancelBooking();
+    void navigateToBookingDetails();
 }

@@ -1,5 +1,6 @@
 package com.example.evcharging.view.bookings.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.evcharging.databinding.FragmentBookingsListBinding;
 import com.example.evcharging.model.Booking;
+import com.example.evcharging.view.bookings.BookingActionListener;
 import com.example.evcharging.view.bookings.adapters.BookingsListAdapter;
 
 import java.util.ArrayList;
@@ -18,6 +20,15 @@ import java.util.List;
 
 public class UpcomingBookingsFragment extends Fragment {
     private FragmentBookingsListBinding binding;
+    private BookingActionListener listener;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof BookingActionListener) {
+            listener = (BookingActionListener) context;
+        }
+    }
 
     @Nullable
     @Override
@@ -29,7 +40,7 @@ public class UpcomingBookingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.recyclerBookings.setAdapter(new BookingsListAdapter(createUpcomingBookings()));
+        binding.recyclerBookings.setAdapter(new BookingsListAdapter(createUpcomingBookings(), listener));
     }
 
     private List<Booking> createUpcomingBookings() {
