@@ -99,6 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/search_hint"
+        android:textColorHint="@color/black"
         android:padding="12dp"
         android:background="@drawable/bg_search"
         android:layout_margin="16dp"/>
@@ -119,7 +120,6 @@
         android:text="@string/btn_next"
         android:textAllCaps="false"
         android:textStyle="bold"
-        android:enabled="false"
         android:layout_margin="16dp"
         android:textColor="@color/apple_primary"
         android:backgroundTint="@color/apple_secondary" />

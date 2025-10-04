@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
@@ -18,10 +19,16 @@ import com.example.evcharging.view.bookings.fragments.BookingStepThreeFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-public class BookingsActivity extends BaseActivity implements View.OnClickListener {
+public class BookingsActivity extends BaseActivity implements BookingActionListener, View.OnClickListener {
     private ActivityBookingsBinding binding;
     private boolean isShowingNewBooking = false;
     private int currentStep = 1;
+    private OnBackPressedCallback backPressedCallback;
+
+    private String currentStationId = "";
+    private String currentStationName = "";
+    private String currentDate = "";
+    private String currentTime = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +36,67 @@ public class BookingsActivity extends BaseActivity implements View.OnClickListen
         loadBookingsContent();
         showNavMenu(); // Show navigation for this activity
         initViews();
+        setupBackPressedCallback();
     }
     
+    private void setupBackPressedCallback() {
+        backPressedCallback = new OnBackPressedCallback(false) {
+            @Override
+            public void handleOnBackPressed() {
+                handleBackNavigation();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, backPressedCallback);
+    }
+
+    private void handleBackNavigation() {
+        if (isShowingNewBooking) {
+            if (currentStep > 1) {
+                navigateBackToPreviousStep();
+            } else {
+                exitBookingFlow();
+            }
+        }
+    }
+
+    private void navigateBackToPreviousStep() {
+        switch (currentStep) {
+            case 2:
+                goBackToStepOne();
+                break;
+            case 3:
+                goBackToStepTwo(currentStationId, currentStationName);
+                break;
+        }
+    }
+
+    private void exitBookingFlow() {
+        showNavMenu();
+
+        if (binding != null) {
+            binding.getRoot().setVisibility(View.VISIBLE);
+        }
+
+        FrameLayout contentContainer = findViewById(R.id.content_container);
+        if (contentContainer != null) {
+            contentContainer.removeAllViews();
+            contentContainer.addView(binding.getRoot());
+        }
+
+        isShowingNewBooking = false;
+        currentStep = 1;
+        backPressedCallback.setEnabled(false);
+
+        clearBookingData();
+    }
+
+    private void clearBookingData() {
+        currentStationId = "";
+        currentStationName = "";
+        currentDate = "";
+        currentTime = "";
+    }
+
     @Override
     protected void setSelectedNavigationItem() {
         if (bottomNavigation != null) {
@@ -91,61 +157,68 @@ public class BookingsActivity extends BaseActivity implements View.OnClickListen
         showBookingFragment(new BookingStepOneFragment());
 
         isShowingNewBooking = true;
+        backPressedCallback.setEnabled(true);
     }
 
     private void showBookingFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_container, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
-    }
-
-    public void goToStepTwo(String selectedStationId, String selectedStationName) {
-        currentStep = 2;
-        BookingStepTwoFragment fragment = BookingStepTwoFragment.newInstance(selectedStationId, selectedStationName);
-        showBookingFragment(fragment);
-    }
-
-    public void goToStepThree(String stationId, String stationName, String date, String time) {
-        currentStep = 3;
-        BookingStepThreeFragment fragment = BookingStepThreeFragment.newInstance(stationId, stationName, date, time);
-        showBookingFragment(fragment);
     }
 
     public void goBackToStepOne() {
         currentStep = 1;
+        clearBookingData();
         showBookingFragment(new BookingStepOneFragment());
     }
 
-    public void goBackToStepTwo(String stationId, String stationName) {
+    @Override
+    public void navigateToStepTwo(String stationId, String stationName) {
         currentStep = 2;
+        currentStationId = stationId;
+        currentStationName = stationName;
         BookingStepTwoFragment fragment = BookingStepTwoFragment.newInstance(stationId, stationName);
         showBookingFragment(fragment);
     }
 
     @Override
-    public void onBackPressed() {
-        if (isShowingNewBooking) {
-            if (currentStep > 1) {
-                currentStep--;
-                // Handle back navigation between booking steps
-                super.onBackPressed();
-            } else {
-                // Show the navigation menu back
-                showNavMenu();
+    public void navigateToStepThree(String stationId, String stationName, String date, String time) {
+        currentStep = 3;
+        currentStationId = stationId;
+        currentStationName = stationName;
+        currentDate = date;
+        currentTime = time;
+        BookingStepThreeFragment fragment = BookingStepThreeFragment.newInstance(stationId, stationName, date, time);
+        showBookingFragment(fragment);
+    }
 
-                // Show the bookings content back
-                if (binding != null) {
-                    binding.getRoot().setVisibility(View.VISIBLE);
-                }
+    public void goBackToStepTwo(String stationId, String stationName) {
+        currentStep = 2;
+        currentStationId = stationId;
+        currentStationName = stationName;
+        // Clear step 3 data
+        currentDate = "";
+        currentTime = "";
+        BookingStepTwoFragment fragment = BookingStepTwoFragment.newInstance(stationId, stationName);
+        showBookingFragment(fragment);
+    }
 
-                // Remove the fragment
-                getSupportFragmentManager().popBackStack();
+    public void completeBooking() {
+        // Handle booking completion
+        exitBookingFlow();
+    }
 
-                isShowingNewBooking = false;
-                currentStep = 1;
-            }
-        } else {
-            super.onBackPressed();
+    public void cancelBooking() {
+        // Handle booking cancellation
+        exitBookingFlow();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (backPressedCallback != null) {
+            backPressedCallback.remove();
         }
+        super.onDestroy();
     }
 }
