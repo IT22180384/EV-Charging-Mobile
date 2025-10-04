@@ -1,16 +1,19 @@
 package com.example.evcharging.view.bookings.fragments;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.evcharging.R;
-import com.example.evcharging.view.bookings.BookingsActivity;
+import com.example.evcharging.databinding.FragmentBookingStepTwoBinding;
+import com.example.evcharging.view.bookings.BookingActionListener;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -19,19 +22,12 @@ public class BookingStepTwoFragment extends Fragment {
     private static final String ARG_STATION_ID = "station_id";
     private static final String ARG_STATION_NAME = "station_name";
 
+    private FragmentBookingStepTwoBinding binding;
+    private BookingActionListener listener;
     private String stationId;
     private String stationName;
     private String selectedDate;
     private String selectedTime;
-
-    private TextView selectedStationText;
-    private Button selectDateBtn;
-    private Button selectTimeBtn;
-    private TextView selectedDateText;
-    private TextView selectedTimeText;
-    private Button nextBtn;
-    private Button backBtn;
-
     private Calendar calendar = Calendar.getInstance();
 
     public static BookingStepTwoFragment newInstance(String stationId, String stationName) {
@@ -53,99 +49,101 @@ public class BookingStepTwoFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_booking_step_two, container, false);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof BookingActionListener) {
+            listener = (BookingActionListener) context;
+        } else {
+            throw new RuntimeException("Hosting activity must implement BookingActionListener");
+        }
+    }
 
-        initializeViews(view);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentBookingStepTwoBinding.inflate(inflater, container, false);
+
+        initializeViews();
         setupListeners();
         updateUI();
 
-        return view;
+        return binding.getRoot();
     }
 
-    private void initializeViews(View view) {
-        selectedStationText = view.findViewById(R.id.selectedStationText);
-        selectDateBtn = view.findViewById(R.id.selectDateBtn);
-        selectTimeBtn = view.findViewById(R.id.selectTimeBtn);
-        selectedDateText = view.findViewById(R.id.selectedDateText);
-        selectedTimeText = view.findViewById(R.id.selectedTimeText);
-        nextBtn = view.findViewById(R.id.nextBtn);
-        backBtn = view.findViewById(R.id.backBtn);
-
-        nextBtn.setEnabled(false);
+    private void initializeViews() {
+        binding.nextBtn.setEnabled(false);
     }
 
     private void setupListeners() {
-        selectDateBtn.setOnClickListener(v -> showDatePicker());
-        selectTimeBtn.setOnClickListener(v -> showTimePicker());
+        binding.selectDateBtn.setOnClickListener(v -> showDatePicker());
+        binding.selectTimeBtn.setOnClickListener(v -> showTimePicker());
 
-        nextBtn.setOnClickListener(v -> {
-            if (selectedDate != null && selectedTime != null && getActivity() instanceof BookingsActivity) {
-                ((BookingsActivity) getActivity()).goToStepThree(stationId, stationName, selectedDate, selectedTime);
+        binding.nextBtn.setOnClickListener(v -> {
+            if (selectedDate != null && selectedTime != null) {
+                listener.navigateToStepThree(stationId, stationName, selectedDate, selectedTime);
             }
         });
 
-        backBtn.setOnClickListener(v -> {
-            if (getActivity() instanceof BookingsActivity) {
-                ((BookingsActivity) getActivity()).goBackToStepOne();
-            }
+        binding.backBtn.setOnClickListener(v -> {
+            listener.goBackToStepOne();
         });
     }
 
     private void showDatePicker() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-            getContext(),
-            (view, year, month, dayOfMonth) -> {
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build();
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
-                selectedDate = dateFormat.format(calendar.getTime());
-                selectedDateText.setText(selectedDate);
-                selectedDateText.setVisibility(View.VISIBLE);
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            calendar.setTimeInMillis(selection);
 
-                checkIfCanProceed();
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        );
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+            selectedDate = dateFormat.format(calendar.getTime());
+            binding.selectedDateText.setText(selectedDate);
+            binding.selectedDateText.setVisibility(View.VISIBLE);
 
-        // Set minimum date to today
-        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
-        datePickerDialog.show();
+            checkIfCanProceed();
+        });
+
+        datePicker.show(getParentFragmentManager(), "MATERIAL_DATE_PICKER");
     }
 
     private void showTimePicker() {
-        TimePickerDialog timePickerDialog = new TimePickerDialog(
-            getContext(),
-            (view, hourOfDay, minute) -> {
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                calendar.set(Calendar.MINUTE, minute);
+        MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
+                .setTitleText("Select time")
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .setHour(calendar.get(Calendar.HOUR_OF_DAY))
+                .setMinute(calendar.get(Calendar.MINUTE))
+                .build();
 
-                SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-                selectedTime = timeFormat.format(calendar.getTime());
-                selectedTimeText.setText(selectedTime);
-                selectedTimeText.setVisibility(View.VISIBLE);
+        timePicker.addOnPositiveButtonClickListener(v -> {
+            calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour());
+            calendar.set(Calendar.MINUTE, timePicker.getMinute());
 
-                checkIfCanProceed();
-            },
-            calendar.get(Calendar.HOUR_OF_DAY),
-            calendar.get(Calendar.MINUTE),
-            false
-        );
+            SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+            selectedTime = timeFormat.format(calendar.getTime());
+            binding.selectedTimeText.setText(selectedTime);
+            binding.selectedTimeText.setVisibility(View.VISIBLE);
 
-        timePickerDialog.show();
+            checkIfCanProceed();
+        });
+
+        timePicker.show(getParentFragmentManager(), "MATERIAL_TIME_PICKER");
     }
 
     private void updateUI() {
         if (stationName != null) {
-            selectedStationText.setText(stationName);
+            binding.selectedStationText.setText(stationName);
         }
     }
 
     private void checkIfCanProceed() {
-        nextBtn.setEnabled(selectedDate != null && selectedTime != null);
+        binding.nextBtn.setEnabled(selectedDate != null && selectedTime != null);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

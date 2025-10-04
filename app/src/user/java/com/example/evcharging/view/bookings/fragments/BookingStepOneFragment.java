@@ -1,74 +1,72 @@
 package com.example.evcharging.view.bookings.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.example.evcharging.R;
-import com.example.evcharging.view.bookings.BookingsActivity;
+import com.example.evcharging.databinding.FragmentBookingStepOneBinding;
+import com.example.evcharging.view.bookings.BookingActionListener;
 
 public class BookingStepOneFragment extends Fragment {
-    private RecyclerView stationRecycler;
-    private EditText searchStations;
-    private Button nextBtn;
-    private Button listViewBtn;
-    private Button mapViewBtn;
+    private FragmentBookingStepOneBinding binding;
+    private BookingActionListener listener;
     private String selectedStationId;
     private String selectedStationName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_booking_step_one, container, false);
+        binding = FragmentBookingStepOneBinding.inflate(inflater, container, false);
 
-        initializeViews(view);
+        initializeViews();
         setupListeners();
 
-        return view;
+        return binding.getRoot();
     }
 
-    private void initializeViews(View view) {
-        stationRecycler = view.findViewById(R.id.stationRecycler);
-        searchStations = view.findViewById(R.id.searchStations);
-        nextBtn = view.findViewById(R.id.nextBtn);
-        listViewBtn = view.findViewById(R.id.listViewBtn);
-        mapViewBtn = view.findViewById(R.id.mapViewBtn);
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof BookingActionListener) {
+            listener = (BookingActionListener) context;
+        } else {
+            throw new RuntimeException("Hosting activity must implement BookingActionListener");
+        }
+    }
 
+    private void initializeViews() {
         // Setup RecyclerView
-        stationRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.stationRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Set initial state
-        nextBtn.setEnabled(false);
-        listViewBtn.setTextColor(getResources().getColor(R.color.apple_secondary));
-        mapViewBtn.setTextColor(getResources().getColor(R.color.apple_gray_dark));
+        binding.listViewBtn.setTextColor(getResources().getColor(R.color.apple_secondary));
+        binding.mapViewBtn.setTextColor(getResources().getColor(R.color.apple_gray_dark));
     }
 
     private void setupListeners() {
-        nextBtn.setOnClickListener(v -> {
-            if (selectedStationId != null && getActivity() instanceof BookingsActivity) {
-                ((BookingsActivity) getActivity()).goToStepTwo(selectedStationId, selectedStationName);
-            }
+        binding.nextBtn.setOnClickListener(v -> {
+            listener.navigateToStepTwo(selectedStationId, selectedStationName);
         });
 
-        listViewBtn.setOnClickListener(v -> {
-            listViewBtn.setTextColor(getResources().getColor(R.color.apple_secondary));
-            mapViewBtn.setTextColor(getResources().getColor(R.color.apple_gray_dark));
+        binding.listViewBtn.setOnClickListener(v -> {
+            binding.listViewBtn.setTextColor(getResources().getColor(R.color.apple_secondary));
+            binding.mapViewBtn.setTextColor(getResources().getColor(R.color.apple_gray_dark));
             // Show list view
         });
 
-        mapViewBtn.setOnClickListener(v -> {
-            mapViewBtn.setTextColor(getResources().getColor(R.color.apple_secondary));
-            listViewBtn.setTextColor(getResources().getColor(R.color.apple_gray_dark));
+        binding.mapViewBtn.setOnClickListener(v -> {
+            binding.mapViewBtn.setTextColor(getResources().getColor(R.color.apple_secondary));
+            binding.listViewBtn.setTextColor(getResources().getColor(R.color.apple_gray_dark));
             // Show map view
         });
 
-        searchStations.addTextChangedListener(new TextWatcher() {
+        binding.searchStations.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -85,6 +83,12 @@ public class BookingStepOneFragment extends Fragment {
     public void onStationSelected(String stationId, String stationName) {
         this.selectedStationId = stationId;
         this.selectedStationName = stationName;
-        nextBtn.setEnabled(true);
+        binding.nextBtn.setEnabled(true);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

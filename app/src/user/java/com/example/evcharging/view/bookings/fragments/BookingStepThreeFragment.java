@@ -1,16 +1,16 @@
 package com.example.evcharging.view.bookings.fragments;
 
-import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import com.example.evcharging.R;
-import com.example.evcharging.view.bookings.BookingsActivity;
+
+import com.example.evcharging.databinding.FragmentBookingStepThreeBinding;
+import com.example.evcharging.view.bookings.BookingActionListener;
 
 public class BookingStepThreeFragment extends Fragment {
     private static final String ARG_STATION_ID = "station_id";
@@ -18,17 +18,12 @@ public class BookingStepThreeFragment extends Fragment {
     private static final String ARG_DATE = "date";
     private static final String ARG_TIME = "time";
 
+    private FragmentBookingStepThreeBinding binding;
+    private BookingActionListener listener;
     private String stationId;
     private String stationName;
     private String selectedDate;
     private String selectedTime;
-
-    private TextView summaryStationText;
-    private TextView summaryDateText;
-    private TextView summaryTimeText;
-    private TextView estimatedCostText;
-    private Button confirmBtn;
-    private Button backBtn;
 
     public static BookingStepThreeFragment newInstance(String stationId, String stationName, String date, String time) {
         BookingStepThreeFragment fragment = new BookingStepThreeFragment();
@@ -53,60 +48,62 @@ public class BookingStepThreeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_booking_step_three, container, false);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof BookingActionListener) {
+            listener = (BookingActionListener) context;
+        } else {
+            throw new RuntimeException("Hosting activity must implement BookingActionListener");
+        }
+    }
 
-        initializeViews(view);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentBookingStepThreeBinding.inflate(inflater, container, false);
+
         setupListeners();
         updateSummary();
 
-        return view;
-    }
-
-    private void initializeViews(View view) {
-        summaryStationText = view.findViewById(R.id.summaryStationText);
-        summaryDateText = view.findViewById(R.id.summaryDateText);
-        summaryTimeText = view.findViewById(R.id.summaryTimeText);
-        estimatedCostText = view.findViewById(R.id.estimatedCostText);
-        confirmBtn = view.findViewById(R.id.confirmBtn);
-        backBtn = view.findViewById(R.id.backBtn);
+        return binding.getRoot();
     }
 
     private void setupListeners() {
-        confirmBtn.setOnClickListener(v -> {
+        binding.confirmBtn.setOnClickListener(v -> {
             // Here you would typically make an API call to confirm the booking
             showConfirmationDialog();
         });
 
-        backBtn.setOnClickListener(v -> {
-            if (getActivity() instanceof BookingsActivity) {
-                ((BookingsActivity) getActivity()).goBackToStepTwo(stationId, stationName);
-            }
+        binding.backBtn.setOnClickListener(v -> {
+            listener.goBackToStepTwo(stationId, stationName);
         });
     }
 
     private void updateSummary() {
         if (stationName != null) {
-            summaryStationText.setText(stationName);
+            binding.summaryStationText.setText(stationName);
         }
         if (selectedDate != null) {
-            summaryDateText.setText(selectedDate);
+            binding.summaryDateText.setText(selectedDate);
         }
         if (selectedTime != null) {
-            summaryTimeText.setText(selectedTime);
+            binding.summaryTimeText.setText(selectedTime);
         }
 
         // Calculate estimated cost (this would typically come from an API)
-        estimatedCostText.setText("$15.00 - $25.00");
+        binding.estimatedCostText.setText("$15.00 - $25.00");
     }
 
     private void showConfirmationDialog() {
         // Show confirmation and finish the booking process
         Toast.makeText(getContext(), "Booking confirmed!", Toast.LENGTH_LONG).show();
 
-        // In a real app, you would navigate to a confirmation screen or back to the main activity
-        if (getActivity() != null) {
-            getActivity().finish();
-        }
+        // Use the listener to complete the booking
+        listener.completeBooking();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }
