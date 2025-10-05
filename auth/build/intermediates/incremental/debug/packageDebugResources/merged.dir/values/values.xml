@@ -144,9 +144,7 @@
         <item name="android:height">32dp</item>
         <item name="shapeAppearance">@style/AppleNavIndicatorShape</item>
     </style>
-    <style name="Base.Theme.EVChargingMobile" parent="Theme.Material3.DayNight.NoActionBar">
-        
-        
+    <style name="Base.Theme.EVChargingMobile" parent="Theme.Material3.DayNight.NoActionBar">\
     </style>
     <style name="BaseText">
         <item name="android:fontFamily">@font/font_family</item>
@@ -247,5 +245,8 @@
     <style name="TextSemibold.Small">
         <item name="android:textSize">14sp</item>
     </style>
-    <style name="Theme.EVChargingMobile" parent="Base.Theme.EVChargingMobile"/>
+    <style name="Theme.EVChargingMobile" parent="Base.Theme.EVChargingMobile">
+        <item name="android:fontFamily">@font/sfprodisplaymedium</item>
+        <item name="fontFamily">@font/sfprodisplaymedium</item>
+    </style>
 </resources>

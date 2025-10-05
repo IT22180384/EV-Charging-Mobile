@@ -29,6 +29,9 @@ public class CancelBookingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCancelBookingBinding.inflate(inflater, container, false);
 
+        // Hide bottom navigation when this fragment is displayed
+        hideBottomNavigation();
+
         initializeViews();
         setupListeners();
 
@@ -55,6 +58,7 @@ public class CancelBookingFragment extends Fragment {
 
     private void setupListeners() {
         binding.btnBack.setOnClickListener(v -> {
+            showBottomNavigation();
             if (getActivity() != null) {
                 getActivity().onBackPressed();
             }
@@ -63,6 +67,7 @@ public class CancelBookingFragment extends Fragment {
         binding.btnCancelBooking.setOnClickListener(v -> confirmCancellation());
 
         binding.btnKeepBooking.setOnClickListener(v -> {
+            showBottomNavigation();
             if (getActivity() != null) {
                 getActivity().onBackPressed();
             }
@@ -102,6 +107,8 @@ public class CancelBookingFragment extends Fragment {
         if (listener != null) {
             listener.onBookingCancelled(bookingId);
         }
+        // Show bottom navigation after cancellation action
+        showBottomNavigation();
     }
 
     public void setBookingId(String bookingId) {
@@ -111,6 +118,26 @@ public class CancelBookingFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        // Show bottom navigation when leaving this fragment
+        showBottomNavigation();
         binding = null;
+    }
+
+    private void hideBottomNavigation() {
+        if (getActivity() != null) {
+            View bottomNav = getActivity().findViewById(com.example.evcharging.R.id.bottom_navigation_container);
+            if (bottomNav != null) {
+                bottomNav.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void showBottomNavigation() {
+        if (getActivity() != null) {
+            View bottomNav = getActivity().findViewById(com.example.evcharging.R.id.bottom_navigation_container);
+            if (bottomNav != null) {
+                bottomNav.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }
