@@ -3,24 +3,24 @@
 3    package="com.example.evcharging.auth.test" >
 4
 5    <uses-sdk
-5-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:5:5-74
+5-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:5:5-74
 6        android:minSdkVersion="24"
-6-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:5:15-41
+6-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:5:15-41
 7        android:targetSdkVersion="36" />
-7-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:5:42-71
+7-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:5:42-71
 8
 9    <instrumentation
-9-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:11:5-15:82
+9-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:11:5-15:82
 10        android:name="android.test.InstrumentationTestRunner"
-10-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:11:22-75
+10-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:11:22-75
 11        android:functionalTest="false"
-11-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:14:22-52
+11-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:14:22-52
 12        android:handleProfiling="false"
-12-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:13:22-53
+12-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:13:22-53
 13        android:label="Tests for com.example.evcharging.auth.test"
-13-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:15:22-80
+13-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:15:22-80
 14        android:targetPackage="com.example.evcharging.auth.test" />
-14-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:12:22-78
+14-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:12:22-78
 15
 16    <permission
 16-->[androidx.core:core:1.13.0] /Users/susadi/.gradle/caches/8.13/transforms/c34223cbca8d50ce32ba76cca701b8cf/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
@@ -34,14 +34,14 @@
 20-->[androidx.core:core:1.13.0] /Users/susadi/.gradle/caches/8.13/transforms/c34223cbca8d50ce32ba76cca701b8cf/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
 21
 22    <application
-22-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:7:5-9:19
+22-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:7:5-9:19
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 23-->[androidx.core:core:1.13.0] /Users/susadi/.gradle/caches/8.13/transforms/c34223cbca8d50ce32ba76cca701b8cf/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
 24        android:debuggable="true"
 25        android:extractNativeLibs="false" >
 26        <uses-library android:name="android.test.runner" />
-26-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:8:9-60
-26-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest3500062829943217372.xml:8:23-57
+26-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:8:9-60
+26-->/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2327854237888298285.xml:8:23-57
 27
 28        <service
 28-->[androidx.room:room-runtime:2.6.1] /Users/susadi/.gradle/caches/8.13/transforms/9ff505d050ac33a121c219bff6f7d286/transformed/room-runtime-2.6.1/AndroidManifest.xml:24:9-28:63
