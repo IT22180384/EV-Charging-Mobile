@@ -55,10 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/apple_spacing_large"
             app:cardCornerRadius="@dimen/apple_card_radius"
-            app:cardElevation="@dimen/apple_card_elevation"
+            app:cardElevation="0dp"
             app:cardBackgroundColor="@color/apple_card_bg"
             app:strokeColor="@color/apple_card_border"
-            app:strokeWidth="0.5dp">
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
