@@ -189,7 +189,7 @@
                             <ImageView
                                 android:layout_width="18dp"
                                 android:layout_height="18dp"
-                                android:src="@drawable/ic_calendar"
+                                android:src="@drawable/rounded_calendar_month_24"
                                 android:contentDescription="@null" />
 
                             <TextView
