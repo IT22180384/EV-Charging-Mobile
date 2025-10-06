@@ -20,7 +20,7 @@
             android:id="@+id/btnBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/baseline_arrow_back_24"
             android:contentDescription="Back" />
 
         <TextView
@@ -93,7 +93,7 @@
                             <ImageView
                                 android:layout_width="18dp"
                                 android:layout_height="18dp"
-                                android:src="@drawable/ic_calendar"
+                                android:src="@drawable/rounded_calendar_month_24"
                                 android:contentDescription="@null" />
 
                             <TextView

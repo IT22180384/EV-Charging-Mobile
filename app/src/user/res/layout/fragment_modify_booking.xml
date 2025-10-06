@@ -20,7 +20,7 @@
             android:id="@+id/btnBack"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/baseline_arrow_back_24"
             android:contentDescription="Back" />
 
         <TextView
@@ -89,7 +89,7 @@
                                 android:layout_width="12dp"
                                 android:layout_height="12dp"
                                 android:layout_marginEnd="8dp"
-                                android:src="@drawable/ic_calendar"
+                                android:src="@drawable/rounded_calendar_month_24"
                                 app:tint="@color/apple_secondary" />
 
                             <TextView
@@ -131,7 +131,7 @@
                             <ImageView
                                 android:layout_width="18dp"
                                 android:layout_height="18dp"
-                                android:src="@drawable/ic_calendar"
+                                android:src="@drawable/rounded_calendar_month_24"
                                 android:contentDescription="@null" />
 
                             <TextView
@@ -209,7 +209,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_calendar"
+                            android:src="@drawable/rounded_calendar_month_24"
                             android:layout_marginEnd="12dp"
                             app:tint="@color/apple_text_secondary" />
 
@@ -237,7 +237,7 @@
                         android:paddingStart="16dp"
                         app:strokeColor="@color/apple_gray_light"
                         app:cornerRadius="16dp"
-                        app:icon="@drawable/ic_calendar"
+                        app:icon="@drawable/rounded_calendar_month_24"
                         app:iconTint="@color/apple_text_secondary"
                         app:iconGravity="start" />
 

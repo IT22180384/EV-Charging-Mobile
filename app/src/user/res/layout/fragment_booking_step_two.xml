@@ -252,7 +252,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_chevron_left"
+                            android:src="@drawable/rounded_arrow_back_ios_24"
                             android:rotation="180"
                             app:tint="@color/apple_gray_medium" />
                     </LinearLayout>
@@ -322,7 +322,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/ic_chevron_left"
+                            android:src="@drawable/rounded_arrow_back_ios_24"
                             android:rotation="180"
                             app:tint="@color/apple_gray_medium" />
                     </LinearLayout>

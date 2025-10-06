@@ -15,4 +15,46 @@
     <color name="black">#000000</color>
     <color name="gray_300">#E0E0E0</color>
     <color name="gray_600">#757575</color>
+
+    <!-- Additional colors for modern UI -->
+    <color name="apple_ash_extra_light">#F8F9FA</color>
+    <color name="apple_divider">#E9ECEF</color>
+    <color name="apple_ripple">#F5F5F5</color>
+    
+    <!-- Semantic colors -->
+    <color name="semantic_info">#17A2B8</color>
+    <color name="semantic_warning_light">#FFF3CD</color>
+    <color name="semantic_success_light">#D4EDDA</color>
+    <color name="semantic_error_light">#F8D7DA</color>
+    
+    <!-- Gradient colors -->
+    <color name="gradient_primary_start">#1E88E5</color>
+    <color name="gradient_primary_end">#1976D2</color>
+    <color name="gradient_success_start">#4CAF50</color>
+    <color name="gradient_success_end">#388E3C</color>
+    
+    <!-- Profile & Settings specific colors -->
+    <color name="profile_header_bg">@color/apple_bg_secondary</color>
+    <color name="profile_avatar_bg">@color/apple_secondary</color>
+    <color name="profile_edit_button_bg">@color/apple_secondary</color>
+    <color name="settings_item_bg">@color/white</color>
+    <color name="settings_section_bg">@color/white</color>
+    <color name="settings_icon_tint">@color/apple_text_secondary</color>
+    <color name="profile_name_text">@color/apple_text_primary</color>
+    <color name="profile_email_text">@color/apple_text_secondary</color>
+    <color name="settings_item_text">@color/apple_text_primary</color>
+    <color name="settings_description_text">@color/apple_text_secondary</color>
+    <color name="logout_text_color">@color/apple_error</color>
+    <color name="delete_account_color">@color/apple_error</color>
+    
+    <!-- Home page specific colors -->
+    <color name="home_stat_pending_bg">#FFF3E0</color>
+    <color name="home_stat_approved_bg">#E8F5E8</color>
+    <color name="home_purple">#9C27B0</color>
+    <color name="home_purple_light">#E1BEE7</color>
+    <color name="home_activity_confirmed">#4CAF50</color>
+    <color name="home_activity_pending">#FF9800</color>
+    <color name="home_map_overlay">#80000000</color>
+    <color name="home_pending_bg">#FF9800</color>
+    <color name="apple_border">#E0E0E0</color>
 </resources>
