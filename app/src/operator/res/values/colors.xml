@@ -6,4 +6,7 @@
     <color name="apple_success">#388E3C</color>
     <color name="apple_warning">#F57C00</color>
     <color name="apple_error">#C62828</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="apple_ash_light">#F5F5F5</color>
 </resources>
