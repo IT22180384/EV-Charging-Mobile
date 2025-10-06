@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.evcharging'
+    namespace = 'com.example.evcharging'
     compileSdk 36
 
     defaultConfig {
@@ -23,7 +23,7 @@ android {
         }
     }
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
     
     flavorDimensions "app_type"
