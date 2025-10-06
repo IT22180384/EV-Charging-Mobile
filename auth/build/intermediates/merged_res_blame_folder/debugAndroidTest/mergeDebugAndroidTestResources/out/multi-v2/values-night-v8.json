@@ -4,18 +4,7 @@
             "outputFile": "com.example.evcharging.auth.test.auth-mergeDebugAndroidTestResources-33:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/packaged_res/debug/packageDebugResources/values-night-v8/values-night-v8.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "5",
-                        "endColumns": "12",
-                        "endOffsets": "174"
-                    }
-                },
-                {
-                    "source": "/Users/susadi/.gradle/caches/8.13/transforms/b360888096be5492cc0e656af1a48e59/transformed/appcompat-1.7.1/res/values-night-v8/values-night-v8.xml",
+                    "source": "/Users/susadi/.gradle/caches/8.13/transforms/50fba2629e7c3bcb7928f0df35bc8a42/transformed/appcompat-1.7.1/res/values-night-v8/values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -32,7 +21,18 @@
                     }
                 },
                 {
-                    "source": "/Users/susadi/.gradle/caches/8.13/transforms/cb96cfbb45767ee58dde8e00788bb4dc/transformed/material-1.10.0/res/values-night-v8/values-night-v8.xml",
+                    "source": "/Users/susadi/EAD/EV-Charging-Mobile/auth/build/intermediates/packaged_res/debug/packageDebugResources/values-night-v8/values-night-v8.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "174"
+                    }
+                },
+                {
+                    "source": "/Users/susadi/.gradle/caches/8.13/transforms/af7e1a1b2104772b9b944cb1092d008b/transformed/material-1.10.0/res/values-night-v8/values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

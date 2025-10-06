@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.evcharging.R;
 import com.example.evcharging.view.bookings.BookingsActivity;
-import com.example.evcharging.view.dashboard.DashboardActivity;
 import com.example.evcharging.view.main.MainActivity;
 import com.example.evcharging.view.profile.ProfileActivity;
 import com.example.evcharging.view.settings.SettingsActivity;
+import com.example.evcharging.view.stations.StationsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -118,8 +118,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     private Class<?> getTargetActivity(int itemId) {
         if (itemId == R.id.nav_home) {
             return MainActivity.class;
-        } else if (itemId == R.id.nav_dashboard) {
-            return DashboardActivity.class;
+        } else if (itemId == R.id.nav_stations) {
+            return StationsActivity.class;
         } else if (itemId == R.id.nav_bookings) {
             return BookingsActivity.class;
         } else if (itemId == R.id.nav_settings) {
