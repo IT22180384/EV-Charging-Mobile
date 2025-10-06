@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modern Material3 Calendar Theme -->
+    <style name="AppCompatCalendarTheme" parent="Theme.Material3.Light.Dialog">
+        <!-- Window properties -->
+        <item name="android:windowBackground">@drawable/picker_bg_rounded</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        
+        <!-- Material3 Colors -->
+        <item name="colorPrimary">#007AFF</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#1D1D1F</item>
+        <item name="colorOutline">#8E8E93</item>
+        <item name="colorSurfaceVariant">#F8F9FA</item>
+        <item name="colorOnSurfaceVariant">#8E8E93</item>
+        
+        <!-- Button styling -->
+        <item name="android:buttonBarStyle">@style/ModernAppleDialogButtonBar</item>
+        <item name="android:buttonBarButtonStyle">@style/ModernAppleDialogButton</item>
+        
+        <!-- Calendar specific -->
+        <item name="android:calendarViewStyle">@style/AppleCalendarViewStyle</item>
+        <item name="android:datePickerStyle">@style/AppleDatePickerStyle</item>
+    </style>
+
+    <!-- Modern Material3 TimePicker Theme -->
+    <style name="AppCompatTimePickerTheme" parent="Theme.Material3.Light.Dialog">
+        <!-- Window properties -->
+        <item name="android:windowBackground">@drawable/picker_bg_rounded</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        
+        <!-- Material3 Colors -->
+        <item name="colorPrimary">#007AFF</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#1D1D1F</item>
+        <item name="colorOutline">#8E8E93</item>
+        <item name="colorSurfaceVariant">#F8F9FA</item>
+        <item name="colorOnSurfaceVariant">#8E8E93</item>
+        
+        <!-- Button styling -->
+        <item name="android:buttonBarStyle">@style/ModernAppleDialogButtonBar</item>
+        <item name="android:buttonBarButtonStyle">@style/ModernAppleDialogButton</item>
+        
+        <!-- TimePicker specific -->
+        <item name="android:timePickerStyle">@style/AppleTimePickerStyle</item>
+    </style>
+
+    <!-- Simplified Calendar View Style -->
+    <style name="AppleCalendarViewStyle">
+        <item name="android:background">#FFFFFF</item>
+    </style>
+
+    <!-- Simplified DatePicker Style -->
+    <style name="AppleDatePickerStyle">
+        <item name="android:background">#FFFFFF</item>
+    </style>
+
+    <!-- Simplified TimePicker Style -->
+    <style name="AppleTimePickerStyle">
+        <item name="android:background">#FFFFFF</item>
+    </style>
+</resources>

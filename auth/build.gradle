@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.evcharging.auth'
+    namespace = 'com.example.evcharging.auth'
     compileSdk 36
 
     defaultConfig {

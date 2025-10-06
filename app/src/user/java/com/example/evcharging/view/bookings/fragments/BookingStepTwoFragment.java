@@ -14,8 +14,11 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class BookingStepTwoFragment extends Fragment {
@@ -28,7 +31,8 @@ public class BookingStepTwoFragment extends Fragment {
     private String stationName;
     private String selectedDate;
     private String selectedTime;
-    private Calendar calendar = Calendar.getInstance();
+    private LocalDate selectedLocalDate;
+    private LocalTime selectedLocalTime;
 
     public static BookingStepTwoFragment newInstance(String stationId, String stationName) {
         BookingStepTwoFragment fragment = new BookingStepTwoFragment();
@@ -74,8 +78,8 @@ public class BookingStepTwoFragment extends Fragment {
     }
 
     private void setupListeners() {
-        binding.selectDateBtn.setOnClickListener(v -> showDatePicker());
-        binding.selectTimeBtn.setOnClickListener(v -> showTimePicker());
+        binding.dateCard.setOnClickListener(v -> showDatePicker());
+        binding.timeCard.setOnClickListener(v -> showTimePicker());
 
         binding.nextBtn.setOnClickListener(v -> {
             if (selectedDate != null && selectedTime != null) {
@@ -95,10 +99,12 @@ public class BookingStepTwoFragment extends Fragment {
                 .build();
 
         datePicker.addOnPositiveButtonClickListener(selection -> {
-            calendar.setTimeInMillis(selection);
+            selectedLocalDate = Instant.ofEpochMilli(selection)
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
-            selectedDate = dateFormat.format(calendar.getTime());
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.getDefault());
+            selectedDate = selectedLocalDate.format(dateFormatter);
             binding.selectedDateText.setText(selectedDate);
             binding.selectedDateText.setVisibility(View.VISIBLE);
 
@@ -109,19 +115,19 @@ public class BookingStepTwoFragment extends Fragment {
     }
 
     private void showTimePicker() {
+        LocalTime currentTime = LocalTime.now();
         MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
                 .setTitleText("Select time")
                 .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(calendar.get(Calendar.HOUR_OF_DAY))
-                .setMinute(calendar.get(Calendar.MINUTE))
+                .setHour(currentTime.getHour())
+                .setMinute(currentTime.getMinute())
                 .build();
 
         timePicker.addOnPositiveButtonClickListener(v -> {
-            calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour());
-            calendar.set(Calendar.MINUTE, timePicker.getMinute());
+            selectedLocalTime = LocalTime.of(timePicker.getHour(), timePicker.getMinute());
 
-            SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
-            selectedTime = timeFormat.format(calendar.getTime());
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a", Locale.getDefault());
+            selectedTime = selectedLocalTime.format(timeFormatter);
             binding.selectedTimeText.setText(selectedTime);
             binding.selectedTimeText.setVisibility(View.VISIBLE);
 
