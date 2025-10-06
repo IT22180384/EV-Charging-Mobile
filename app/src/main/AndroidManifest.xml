@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Location permissions for Google Maps -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".application.MyApplication"
         android:allowBackup="true"
@@ -41,12 +46,6 @@
             android:exported="false"
             android:theme="@style/Theme.EVChargingMobile" />
 
-        <!-- Dashboard Activity -->
-        <activity
-            android:name=".view.dashboard.DashboardActivity"
-            android:exported="false"
-            android:theme="@style/Theme.EVChargingMobile" />
-
         <!-- Bookings Activity -->
         <activity
             android:name=".view.bookings.BookingsActivity"
@@ -64,6 +63,18 @@
             android:name=".view.profile.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.EVChargingMobile" />
+
+        <!-- Stations Activity -->
+        <activity
+            android:name=".view.stations.StationsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EVChargingMobile" />
+
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
     </application>
 
 </manifest>

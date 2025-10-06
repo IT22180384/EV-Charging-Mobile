@@ -434,46 +434,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <!-- Map placeholder with minimalist design -->
-                    <View
+                    <!-- Google Maps Fragment -->
+                    <fragment
+                        android:id="@+id/map_fragment"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#F5F5F7" />
-
-                    <!-- Clean center placeholder -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:src="@drawable/ic_map_marker"
-                            android:tint="#8E8E93"
-                            android:layout_marginBottom="12dp"
-                            android:contentDescription="Map" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Map View"
-                            android:textSize="18sp"
-                            android:textColor="#1D1D1F"
-                            android:fontFamily="sans-serif"
-                            android:layout_marginBottom="4dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tap to view stations"
-                            android:textSize="14sp"
-                            android:textColor="#8E8E93"
-                            android:fontFamily="sans-serif" />
-
-                    </LinearLayout>
+                        android:layout_height="match_parent" />
 
                 </FrameLayout>
 
