@@ -54,6 +54,7 @@
     <string name="contact_support">Contact Support</string>
     <string name="about_app">About App</string>
     <string name="version_1_0_0">Version 1.0.0</string>
+    <string name="scan_booking_qr">Scan Booking QR</string>
 
 
 </resources>
