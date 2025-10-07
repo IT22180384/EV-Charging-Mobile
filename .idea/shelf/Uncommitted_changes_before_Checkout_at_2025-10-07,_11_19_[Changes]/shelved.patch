@@ -1,0 +1,19 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    alias(libs.plugins.android.application)\n}\n\nandroid {\n    namespace = 'com.example.evcharging'\n    compileSdk 36\n\n    defaultConfig {\n        applicationId \"com.example.evcharging\"\n        minSdk 24\n        targetSdk 36\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n        \n        // Read API key from local.properties\n        Properties properties = new Properties()\n        properties.load(project.rootProject.file('local.properties').newDataInputStream())\n        manifestPlaceholders = [MAPS_API_KEY: properties.getProperty('MAPS_API_KEY', '')]\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n    buildFeatures {\n        viewBinding = true\n    }\n    \n    flavorDimensions \"app_type\"\n    productFlavors {\n        user {\n            dimension \"app_type\"\n            applicationIdSuffix \".user\"\n            versionNameSuffix \"-user\"\n        }\n        operator {\n            dimension \"app_type\"\n            applicationIdSuffix \".operator\"\n            versionNameSuffix \"-operator\"\n        }\n    }\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_11\n        targetCompatibility JavaVersion.VERSION_11\n    }\n}\n\ndependencies {\n    implementation project(\":auth\")\n    implementation libs.appcompat\n    implementation libs.material\n    implementation libs.activity\n    implementation libs.constraintlayout\n    \n    // Additional dependencies for bottom navigation and UI\n    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'\n    implementation 'androidx.fragment:fragment:1.6.2'\n    implementation 'androidx.viewpager2:viewpager2:1.0.0'\n    implementation 'androidx.room:room-runtime:2.6.1'\n    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.7.0'\n    implementation 'androidx.lifecycle:lifecycle-livedata:2.7.0'\n    implementation 'com.squareup.retrofit2:retrofit:2.9.0'\n    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'\n    \n    // Google Maps\n    implementation libs.play.services.maps\n    implementation libs.play.services.location\n    \n    testImplementation libs.junit\n    androidTestImplementation libs.ext.junit\n    androidTestImplementation libs.espresso.core\n}\n\ntasks.register(\"assembleDebugUnitTest\") {\n    dependsOn(\n        \"assembleOperatorDebugUnitTest\",\n        \"assembleUserDebugUnitTest\"\n    )\n}\n\ntasks.register(\"assembleDebugAndroidTest\") {\n    dependsOn(\n        \"assembleOperatorDebugAndroidTest\",\n        \"assembleUserDebugAndroidTest\"\n    )\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 8f23e8f4481525da98c0d03d54ff4496a64706b7)
++++ b/app/build.gradle	(date 1759814165885)
+@@ -19,6 +19,8 @@
+         Properties properties = new Properties()
+         properties.load(project.rootProject.file('local.properties').newDataInputStream())
+         manifestPlaceholders = [MAPS_API_KEY: properties.getProperty('MAPS_API_KEY', '')]
++        buildConfigField "String", "BASE_URL", "\"http://127.0.0.1/\""
++
+     }
+ 
+     buildTypes {
