@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header with Status and ID -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Status Badge -->
+            <LinearLayout
+                android:id="@+id/containerStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_status_pending"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:gravity="center_vertical"
+                android:minHeight="28dp">
+
+                <View
+                    android:id="@+id/viewStatusDot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/bg_status_dot_pending" />
+
+                <TextView
+                    android:id="@+id/textStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PENDING"
+                    android:textAllCaps="true"
+                    android:textColor="@color/apple_warning"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textReservationId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#RSV001234"
+                android:textColor="@color/apple_gray_medium"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Customer and Vehicle Info -->
+        <TextView
+            android:id="@+id/textCustomerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="John Doe"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="4dp">
+
+            <TextView
+                android:id="@+id/textVehicleModel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tesla Model 3"
+                android:textColor="@color/apple_gray_medium"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textVehicleNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ABC-1234"
+                android:textColor="@color/apple_gray_medium"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Station and Slot Info -->
+        <TextView
+            android:id="@+id/textStationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Downtown Charging Station"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:paddingTop="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="8dp">
+
+            <!-- Date -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_calendar"
+                    android:tint="@color/apple_secondary" />
+
+                <TextView
+                    android:id="@+id/textDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Dec 15, 2024"
+                    android:textColor="@color/apple_gray_medium"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Time -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_clock"
+                    android:tint="@color/apple_secondary" />
+
+                <TextView
+                    android:id="@+id/textTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="2:00 PM - 4:00 PM"
+                    android:textColor="@color/apple_gray_medium"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Slot and Charger Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="8dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_ev_plug"
+                android:tint="@color/apple_secondary" />
+
+            <TextView
+                android:id="@+id/textSlotInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="Slot A2 - DC Fast Charger"
+                android:textColor="@color/apple_secondary"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Progress for Active Sessions -->
+            <LinearLayout
+                android:id="@+id/containerProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:id="@+id/progressCharging"
+                    android:layout_width="40dp"
+                    android:layout_height="8dp"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:progress="65"
+                    android:progressTint="@color/apple_success" />
+
+                <TextView
+                    android:id="@+id/textProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="65%"
+                    android:textColor="@color/apple_success"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:id="@+id/containerActions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="16dp">
+
+            <!-- For Pending: Approve/Reject -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnApprove"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Approve"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:backgroundTint="@color/apple_success"
+                app:cornerRadius="8dp"
+                style="@style/AppButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReject"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Reject"
+                android:textColor="@color/apple_error"
+                android:textSize="12sp"
+                app:backgroundTint="@color/semantic_error_light"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/apple_error"
+                app:strokeWidth="1dp"
+                style="@style/AppButton.Outlined" />
+
+            <!-- For Active: Finish Charging -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFinish"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:text="Finish Charging"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:backgroundTint="@color/apple_success"
+                app:cornerRadius="8dp"
+                app:icon="@drawable/ic_check_circle"
+                app:iconGravity="textStart"
+                app:iconPadding="4dp"
+                app:iconSize="16dp"
+                app:iconTint="@color/white"
+                style="@style/AppButton" />
+
+            <!-- For Completed: View Details -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnViewDetails"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:text="View Details"
+                android:textColor="@color/apple_secondary"
+                android:textSize="12sp"
+                app:backgroundTint="@color/white"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/apple_secondary"
+                app:strokeWidth="1dp"
+                style="@style/AppButton.Outlined" />
+
+            <TextView
+                android:id="@+id/textReservationId2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#RSV001234"
+                android:textColor="@color/apple_gray_medium"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- End Operation Button (Only for Active) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEndOperation"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:text="End Operation an Generate Bill"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:backgroundTint="@color/apple_secondary"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_receipt"
+            app:iconGravity="textStart"
+            app:iconPadding="4dp"
+            app:iconSize="16dp"
+            app:iconTint="@color/white"
+            style="@style/AppButton"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

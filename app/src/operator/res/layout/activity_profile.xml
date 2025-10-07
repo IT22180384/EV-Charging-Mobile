@@ -20,8 +20,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="24dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:background="@color/profile_header_bg">
+
 
             <!-- Profile Avatar -->
             <FrameLayout
