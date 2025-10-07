@@ -5,20 +5,17 @@
     android:id="@+id/scanQrLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA"
+    android:background="@color/apple_ash_extra_light"
     tools:context=".ui.operator.ScanQrActivity">
 
     <!-- Header -->
-
-    <!-- Animated scanner area -->
-
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:text="Scan Booking QR"
-        android:textColor="#2D3436"
+        android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,14 +26,14 @@
         android:id="@+id/qrFrame"
         android:layout_width="280dp"
         android:layout_height="280dp"
-        app:cardCornerRadius="20dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@android:color/transparent"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:cardCornerRadius="20dp"
         app:cardElevation="10dp"
-        android:backgroundTint="@android:color/transparent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
 
         <ImageView
             android:id="@+id/qrScannerView"
@@ -44,28 +41,61 @@
             android:layout_height="match_parent"
             android:alpha="0.9"
             android:animation="@anim/pulse_animation"
-            android:background="#DBD8D8"
+            android:background="@color/apple_gray_light"
             android:contentDescription="QR scanner frame"
             android:scaleType="fitXY"
             android:src="@drawable/ic_qr_code_scanner" />
     </androidx.cardview.widget.CardView>
 
+    <!-- Instructions -->
+    <TextView
+        android:id="@+id/tvInstructions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="Position the QR code within the frame to scan"
+        android:textColor="@color/apple_gray_medium"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qrFrame" />
+
     <!-- Scan Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnScan"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="208dp"
-        android:backgroundTint="#0A74DA"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
         android:text="Scan Now"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        app:cornerRadius="12dp"
-        app:icon="@drawable/ic_qr_code_scanner"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@color/apple_secondary"
+        app:cornerRadius="16dp"
+        app:icon="@drawable/ic_qr_code"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
         app:iconTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/qrFrame" />
+        app:layout_constraintTop_toBottomOf="@id/tvInstructions"
+        style="@style/AppButton" />
+
+    <!-- Manual Entry Option -->
+    <TextView
+        android:id="@+id/tvManualEntry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Enter code manually"
+        android:textColor="@color/apple_secondary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnScan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
