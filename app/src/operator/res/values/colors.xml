@@ -9,4 +9,18 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="apple_ash_light">#F5F5F5</color>
+
+    <!-- Profile & Settings specific colors -->
+    <color name="profile_header_bg">@color/apple_bg_secondary</color>
+    <color name="profile_avatar_bg">@color/apple_secondary</color>
+    <color name="profile_edit_button_bg">@color/apple_secondary</color>
+    <color name="settings_item_bg">@color/white</color>
+    <color name="settings_section_bg">@color/white</color>
+    <color name="settings_icon_tint">@color/apple_text_secondary</color>
+    <color name="profile_name_text">@color/apple_text_primary</color>
+    <color name="profile_email_text">@color/apple_text_secondary</color>
+    <color name="settings_item_text">@color/apple_text_primary</color>
+    <color name="settings_description_text">@color/apple_text_secondary</color>
+    <color name="logout_text_color">@color/apple_error</color>
+    <color name="delete_account_color">@color/apple_error</color>
 </resources>
