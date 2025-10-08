@@ -293,6 +293,30 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/charging_station"
+                            android:textSize="14sp"
+                            android:textColor="@color/settings_description_text" />
+
+                        <TextView
+                            android:id="@+id/charging_station"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colombo_central_charging_station"
+                            android:textSize="16sp"
+                            android:textColor="@color/settings_item_text"
+                            android:layout_marginTop="4dp" />
+
+                    </LinearLayout>ß
+
                 </LinearLayout>
 
             </LinearLayout>

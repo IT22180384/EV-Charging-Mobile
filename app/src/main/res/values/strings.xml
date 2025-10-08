@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- Settings Page -->
     <string name="operator_settings">Operator Settings</string>
     <string name="manage_your_station_preferences_and_app_settings">Manage your station preferences and app settings</string>
@@ -55,6 +56,45 @@
     <string name="about_app">About App</string>
     <string name="version_1_0_0">Version 1.0.0</string>
     <string name="scan_booking_qr">Scan Booking QR</string>
+    <string name="charging_station">Charging Station</string>
+
+
+    <!-- Home Page -->
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="station_operator">Station Operator</string>
+    <string name="colombo_central_charging_station">Colombo Central Charging Station</string>
+    <string name="_2_30_pm">2:30 PM</string>
+    <string name="today_s_overview">Today\'s Overview</string>
+    <string name="_5">5</string>
+    <string name="pending">Pending</string>
+    <string name="_3">3</string>
+    <string name="active">Active</string>
+    <string name="quick_actions">Quick Actions</string>
+    <string name="verify_customer_bookings">Verify customer bookings</string>
+    <string name="view_reservations">View Reservations</string>
+    <string name="manage_current_bookings">Manage current bookings</string>
+    <string name="_8_slots_available">8 slots available</string>
+    <string name="recent_activity">Recent Activity</string>
+    <string name="charging_completed">Charging completed</string>
+    <string name="slot_a1_tesla_model_3">Slot A1 - Tesla Model 3</string>
+    <string name="_2_15_pm">2:15 PM</string>
+    <string name="qr_code_scanned">QR code scanned</string>
+    <string name="booking_rsv00123_verified">Booking #RSV00123 verified</string>
+    <string name="_1_45_pm">1:45 PM</string>
+    <string name="charging_started">Charging started</string>
+    <string name="slot_b2_nissan_leaf">Slot B2 - Nissan Leaf</string>
+    <string name="_1_20_pm">1:20 PM</string>
+
+
+    <!-- QR scanning Page -->
+    <string name="position_the_qr_code_within_the_frame_to_scan">Position the QR code within the frame to scan</string>
+    <string name="scan_now">Scan Now</string>
+    <string name="enter_code_manually">Enter code manually</string>
+
+    <!-- Reservations Page -->
+    <string name="reservations">Reservations</string>
+    <string name="manage_all_charging_station_bookings">Manage all charging station bookings</string>
+    <string name="completed">Completed</string>
 
 
 </resources>

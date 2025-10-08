@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
         <!-- Welcome Header -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="20dp"
             app:cardElevation="4dp">
@@ -31,7 +31,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Welcome Back!"
+                    android:text="@string/welcome_back"
                     android:textColor="@color/apple_gray_medium"
                     android:textSize="16sp" />
 
@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="4dp"
-                    android:text="Station Operator"
+                    android:text="@string/station_operator"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
-                    android:text="Colombo Central Charging Station"
+                    android:text="@string/colombo_central_charging_station"
                     android:textColor="@color/apple_secondary"
                     android:textSize="14sp" />
 
@@ -85,7 +85,7 @@
                         android:id="@+id/tvCurrentTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2:30 PM"
+                        android:text="@string/_2_30_pm"
                         android:textColor="@color/apple_gray_medium"
                         android:textSize="12sp" />
 
@@ -98,36 +98,36 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Today's Overview"
+            android:paddingBottom="12dp"
+            android:text="@string/today_s_overview"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingBottom="12dp" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginBottom="24dp">
+            android:weightSum="2">
 
             <!-- Pending Reservations Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_weight="1"
                 android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="134dp"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="16dp">
 
                     <ImageView
@@ -140,19 +140,19 @@
                         android:id="@+id/tvPendingCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5"
+                        android:paddingTop="0dp"
+                        android:text="@string/_5"
                         android:textColor="@color/apple_warning"
-                        android:textSize="28sp"
-                        android:textStyle="bold"
-                        android:paddingTop="8dp" />
+                        android:textSize="27sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pending"
-                        android:textColor="@color/apple_gray_medium"
-                        android:textSize="12sp"
-                        android:paddingTop="4dp" />
+                        android:paddingTop="0dp"
+                        android:text="@string/pending"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -161,19 +161,19 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="120dp"
-                android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:foreground="?android:attr/selectableItemBackground"
+                android:layout_weight="1"
                 android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="132dp"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="16dp">
 
                     <ImageView
@@ -186,19 +186,19 @@
                         android:id="@+id/tvActiveSessions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="3"
+                        android:paddingTop="0dp"
+                        android:text="@string/_3"
                         android:textColor="@color/apple_success"
-                        android:textSize="28sp"
-                        android:textStyle="bold"
-                        android:paddingTop="8dp" />
+                        android:textSize="27sp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Active"
-                        android:textColor="@color/apple_gray_medium"
-                        android:textSize="12sp"
-                        android:paddingTop="4dp" />
+                        android:layout_width="49dp"
+                        android:layout_height="29dp"
+                        android:paddingTop="0dp"
+                        android:text="@string/active"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -209,19 +209,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quick Actions"
+            android:paddingBottom="12dp"
+            android:text="@string/quick_actions"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingBottom="12dp" />
+            android:textStyle="bold" />
 
         <!-- Scan QR Code Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="12dp"
-            android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp">
@@ -229,8 +229,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <ImageView
@@ -257,7 +257,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Verify customer bookings"
+                        android:text="@string/verify_customer_bookings"
                         android:textColor="@color/apple_gray_medium"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -275,8 +275,8 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="12dp"
-            android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp">
@@ -284,8 +284,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <ImageView
@@ -304,7 +304,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="View Reservations"
+                        android:text="@string/view_reservations"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -312,7 +312,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Manage current bookings"
+                        android:text="@string/manage_current_bookings"
                         android:textColor="@color/apple_gray_medium"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -330,8 +330,8 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="24dp"
-            android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp">
@@ -339,8 +339,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <ImageView
@@ -367,7 +367,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="8 slots available"
+                        android:text="@string/_8_slots_available"
                         android:textColor="@color/apple_gray_medium"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -384,11 +384,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recent Activity"
+            android:paddingBottom="12dp"
+            android:text="@string/recent_activity"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingBottom="12dp" />
+            android:textStyle="bold" />
 
         <!-- Recent Activity Card -->
         <androidx.cardview.widget.CardView
@@ -427,14 +427,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Charging completed"
+                            android:text="@string/charging_completed"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Slot A1 - Tesla Model 3"
+                            android:text="@string/slot_a1_tesla_model_3"
                             android:textColor="@color/apple_gray_medium"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -442,7 +442,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2:15 PM"
+                        android:text="@string/_2_15_pm"
                         android:textColor="@color/apple_gray_medium"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -475,14 +475,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="QR code scanned"
+                            android:text="@string/qr_code_scanned"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Booking #RSV00123 verified"
+                            android:text="@string/booking_rsv00123_verified"
                             android:textColor="@color/apple_gray_medium"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -490,7 +490,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1:45 PM"
+                        android:text="@string/_1_45_pm"
                         android:textColor="@color/apple_gray_medium"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -523,14 +523,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Charging started"
+                            android:text="@string/charging_started"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Slot B2 - Nissan Leaf"
+                            android:text="@string/slot_b2_nissan_leaf"
                             android:textColor="@color/apple_gray_medium"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -538,7 +538,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1:20 PM"
+                        android:text="@string/_1_20_pm"
                         android:textColor="@color/apple_gray_medium"
                         android:textSize="12sp" />
                 </LinearLayout>
