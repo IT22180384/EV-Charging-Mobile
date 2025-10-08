@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.evcharging.view.bookings.BookingActionListener;
 
-public class BookingStepOneFragment extends Fragment {
+public class BookingStepOneFragment extends Fragment implements StationAdapter.OnStationClickListener {
     private FragmentBookingStepOneBinding binding;
     private BookingActionListener listener;
     private String selectedStationId;
@@ -56,15 +56,20 @@ public class BookingStepOneFragment extends Fragment {
     private void initializeViews() {
         // Setup RecyclerView
         binding.stationRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new StationAdapter(station -> {
-            onStationSelected(station.getId(), station.getName());
-        });
+        adapter = new StationAdapter(this);
         binding.stationRecycler.setAdapter(adapter);
 
         binding.nextBtn.setEnabled(false);
 
         binding.listViewBtn.setTextColor(getResources().getColor(R.color.apple_secondary));
         binding.mapViewBtn.setTextColor(getResources().getColor(R.color.apple_gray_dark));
+    }
+    
+    @Override
+    public void onStationClick(ChargingStation station) {
+        if (station != null) {
+            onStationSelected(station.getId(), station.getName());
+        }
     }
 
     private void loadStations() {
