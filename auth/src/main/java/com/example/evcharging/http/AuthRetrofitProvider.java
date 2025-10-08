@@ -7,12 +7,12 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitProvider {
+public class AuthRetrofitProvider {
 
-    private static volatile RetrofitProvider instance;
+    private static volatile AuthRetrofitProvider instance;
     private final Retrofit retrofit;
 
-    private RetrofitProvider() {
+    private AuthRetrofitProvider() {
         OkHttpClient client = buildClient();
 
         retrofit = new Retrofit.Builder()
@@ -22,11 +22,11 @@ public class RetrofitProvider {
                 .build();
     }
 
-    public static RetrofitProvider getInstance() {
+    public static AuthRetrofitProvider getInstance() {
         if (instance == null) {
-            synchronized (RetrofitProvider.class) {
+            synchronized (AuthRetrofitProvider.class) {
                 if (instance == null) {
-                    instance = new RetrofitProvider();
+                    instance = new AuthRetrofitProvider();
                 }
             }
         }
@@ -67,3 +67,4 @@ public class RetrofitProvider {
         return builder.build();
     }
 }
+
