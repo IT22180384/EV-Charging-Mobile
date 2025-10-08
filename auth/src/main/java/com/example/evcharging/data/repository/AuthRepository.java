@@ -1,8 +1,8 @@
 package com.example.evcharging.data.repository;
 
-import com.example.evcharging.http.Api;
+import com.example.evcharging.http.AuthApi;
 import com.example.evcharging.http.HttpCallback;
-import com.example.evcharging.http.RetrofitProvider;
+import com.example.evcharging.http.AuthRetrofitProvider;
 import com.example.evcharging.model.LoginSuccessDTO;
 import com.google.gson.JsonObject;
 
@@ -12,10 +12,10 @@ import retrofit2.Call;
 
 public class AuthRepository {
 
-    private final Api api;
+    private final AuthApi api;
 
     public AuthRepository() {
-        api = RetrofitProvider.getInstance().create(Api.class);
+        api = AuthRetrofitProvider.getInstance().create(AuthApi.class);
     }
 
     public interface LoginCallback {

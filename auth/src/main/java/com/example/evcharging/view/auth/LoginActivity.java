@@ -98,8 +98,29 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onLoginSuccess(LoginSuccessDTO loginResponse) {
                 hideLoadingState();
+                // Persist auth for user app (shared prefs used by TokenManager)
+                try {
+                    android.content.SharedPreferences sp = getApplicationContext()
+                            .getSharedPreferences("auth_prefs", MODE_PRIVATE);
+                    android.content.SharedPreferences.Editor ed = sp.edit();
+                    if (loginResponse != null) {
+                        if (loginResponse.getToken() != null) {
+                            ed.putString("token", loginResponse.getToken());
+                        }
+                        if (loginResponse.getEvOwner() != null) {
+                            if (loginResponse.getEvOwner().getId() != null) {
+                                ed.putString("user_id", loginResponse.getEvOwner().getId());
+                            }
+                            if (loginResponse.getEvOwner().getNic() != null) {
+                                ed.putString("nic", loginResponse.getEvOwner().getNic());
+                            }
+                        }
+                    }
+                    ed.apply();
+                } catch (Exception ignored) {}
+
                 Toast.makeText(LoginActivity.this,
-                        "Login successful: " + loginResponse.getMessage(),
+                        "Login successful: " + (loginResponse != null ? loginResponse.getMessage() : ""),
                         Toast.LENGTH_SHORT).show();
                 navigateToHome();
             }

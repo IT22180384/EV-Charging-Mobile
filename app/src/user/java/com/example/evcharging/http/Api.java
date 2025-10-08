@@ -4,6 +4,8 @@ import com.example.evcharging.model.Booking;
 import com.example.evcharging.model.ChargingStation;
 import com.example.evcharging.http.ApiResponse;
 import com.example.evcharging.model.LoginSuccessDTO;
+import com.example.evcharging.http.dto.ReservationCreateRequest;
+import com.example.evcharging.http.dto.ReservationResponse;
 
 import java.util.List;
 
@@ -36,8 +38,15 @@ public interface Api {
     @GET("/api/bookings/user/{userId}")
     Call<ApiResponse<List<Booking>>> getUserBookings(@Path("userId") String userId);
 
-    @POST("/api/bookings")
-    Call<ApiResponse<Booking>> createBooking(@Body RequestBody bookingData);
+    // Reservation APIs (backend: ReservationController)
+    @POST("/api/Reservation")
+    Call<ReservationResponse> createReservation(@Body ReservationCreateRequest request);
+
+    @GET("/api/Reservation/{id}")
+    Call<ReservationResponse> getReservation(@Path("id") String id);
+
+    @GET("/api/Reservation/history/{nic}")
+    Call<java.util.List<ReservationResponse>> getReservationHistory(@Path("nic") String nic);
 
     @POST("/api/bookings/{bookingId}/cancel")
     Call<ApiResponse<Void>> cancelBooking(@Path("bookingId") String bookingId);

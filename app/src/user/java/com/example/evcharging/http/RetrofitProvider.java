@@ -3,7 +3,10 @@ package com.example.evcharging.http;
 import com.example.evcharging.BuildConfig;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -42,6 +45,26 @@ public class RetrofitProvider {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS);
+
+        // Attach Authorization header if token exists
+        builder.addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws java.io.IOException {
+                Request original = chain.request();
+                // Lazy access to app context via reflection-free path is not available here;
+                // rely on a process-wide static provider on Application.
+                String token = com.example.evcharging.data.TokenManager.getToken(
+                        com.example.evcharging.application.MyApplication.getAppContext()
+                );
+                if (token != null && !token.isEmpty()) {
+                    Request authed = original.newBuilder()
+                            .addHeader("Authorization", "Bearer " + token)
+                            .build();
+                    return chain.proceed(authed);
+                }
+                return chain.proceed(original);
+            }
+        });
 
         if (BuildConfig.DEBUG) {
             // Debug-only self-signed HTTPS support (use only for local dev)
