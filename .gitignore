@@ -13,3 +13,24 @@
 .externalNativeBuild
 .cxx
 local.properties
+## Android/Gradle build artifacts
+**/build/
+**/intermediates/
+**/generated/
+**/outputs/
+
+## Android Studio project files
+.idea/
+
+## Packages and logs
+*.apk
+*.aab
+*.log
+
+## Keystores (do not commit real keys)
+*.jks
+*.keystore
+*.keystore.properties
+
+## Additional captures in modules
+**/captures/

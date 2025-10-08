@@ -1,1 +1,6 @@
-
+*** Begin Patch
+*** Update File: .gitignore
+@@
++## Android/Gradle build artifacts
++**/build/
+*** End Patch
