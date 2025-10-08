@@ -15,8 +15,8 @@ import com.example.evcharging.R;
 import com.example.evcharging.databinding.FragmentBookingStepOneBinding;
 import com.example.evcharging.http.ApiResponse;
 import com.example.evcharging.http.HttpCallback;
-import com.example.evcharging.user.http.Api;
-import com.example.evcharging.user.http.RetrofitProvider;
+import com.example.evcharging.http.Api;
+import com.example.evcharging.http.RetrofitProvider;
 import com.example.evcharging.model.ChargingStation;
 import com.example.evcharging.view.bookings.adapters.StationAdapter;
 
