@@ -26,6 +26,7 @@
                 android:layout_height="80dp"
                 android:background="@drawable/circle_background_primary"
                 android:padding="20dp"
+                android:layout_marginTop="20dp"
                 android:src="@drawable/ic_settings"
                 app:tint="@color/white" />
 
@@ -33,26 +34,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
-                android:text="Operator Settings"
+                android:text="@string/operator_settings"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="8dp"
-                android:text="Manage your station preferences and app settings"
-                android:textColor="#666666"
-                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Station Settings Section -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Station Settings"
+            android:text="@string/station_settings"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -97,7 +90,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Station Status"
+                            android:text="@string/station_status"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
@@ -105,7 +98,7 @@
                             android:id="@+id/tvStationStatus"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Online - Accepting Bookings"
+                            android:text="@string/online_accepting_bookings"
                             android:textSize="14sp"
                             android:textColor="@color/apple_success" />
                     </LinearLayout>
@@ -148,7 +141,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Operating Hours"
+                            android:text="@string/operating_hours"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
@@ -156,7 +149,7 @@
                             android:id="@+id/tvOperatingHours"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="24/7 Available"
+                            android:text="@string/_24_7_available"
                             android:textSize="14sp"
                             android:textColor="#666666" />
                     </LinearLayout>
@@ -199,7 +192,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Slot Management"
+                            android:text="@string/slot_management"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
@@ -207,7 +200,7 @@
                             android:id="@+id/tvAvailableSlots"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="8 AC, 4 DC slots available"
+                            android:text="@string/_8_ac_4_dc_slots_available"
                             android:textSize="14sp"
                             android:textColor="#666666" />
                     </LinearLayout>
@@ -226,7 +219,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Notifications"
+            android:text="@string/notifications"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -269,14 +262,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="New Booking Alerts"
+                            android:text="@string/new_booking_alerts"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Get notified for new reservations"
+                            android:text="@string/get_notified_for_new_reservations"
                             android:textSize="14sp"
                             android:textColor="#666666" />
                     </LinearLayout>
@@ -316,14 +309,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Reminder Notifications"
+                            android:text="@string/reminder_notifications"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Reminders for upcoming bookings"
+                            android:text="@string/reminders_for_upcoming_bookings"
                             android:textSize="14sp"
                             android:textColor="#666666" />
                     </LinearLayout>
@@ -363,14 +356,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Sound Vibration"
+                            android:text="@string/sound_vibration"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Play sound for important alerts"
+                            android:text="@string/play_sound_for_important_alerts"
                             android:textSize="14sp"
                             android:textColor="#666666" />
                     </LinearLayout>
@@ -389,7 +382,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="App Preferences"
+            android:text="@string/app_preferences"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -432,14 +425,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Auto-sync Data"
+                            android:text="@string/auto_sync_data"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Sync data automatically every 15 minutes"
+                            android:text="@string/sync_data_automatically_every_15_minutes"
                             android:textSize="14sp"
                             android:textColor="#666666" />
                     </LinearLayout>
@@ -482,7 +475,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="App Theme"
+                            android:text="@string/app_theme"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
@@ -490,7 +483,7 @@
                             android:id="@+id/tvCurrentTheme"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Light Mode"
+                            android:text="@string/light_mode"
                             android:textSize="14sp"
                             android:textColor="#666666" />
                     </LinearLayout>
@@ -533,7 +526,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Language"
+                            android:text="@string/language"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
@@ -541,7 +534,7 @@
                             android:id="@+id/tvCurrentLanguage"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="English (US)"
+                            android:text="@string/english_us"
                             android:textSize="14sp"
                             android:textColor="#666666" />
                     </LinearLayout>
@@ -560,7 +553,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Support"
+            android:text="@string/support"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -600,7 +593,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Help Center"
+                        android:text="@string/help_center"
                         android:textSize="16sp"
                         android:textColor="@color/black"
                         android:paddingStart="16dp" />
@@ -637,7 +630,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Contact Support"
+                        android:text="@string/contact_support"
                         android:textSize="16sp"
                         android:textColor="@color/black"
                         android:paddingStart="16dp" />
@@ -680,7 +673,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="About App"
+                            android:text="@string/about_app"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
 
@@ -688,7 +681,7 @@
                             android:id="@+id/tvAppVersion"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Version 1.0.0"
+                            android:text="@string/version_1_0_0"
                             android:textSize="14sp"
                             android:textColor="#666666" />
                     </LinearLayout>

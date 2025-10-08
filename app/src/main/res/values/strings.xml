@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings Page -->
+    <string name="operator_settings">Operator Settings</string>
+    <string name="manage_your_station_preferences_and_app_settings">Manage your station preferences and app settings</string>
+    <string name="station_settings">Station Settings</string>
+    <string name="station_status">Station Status</string>
+    <string name="online_accepting_bookings">Online - Accepting Bookings</string>
+    <string name="operating_hours">Operating Hours</string>
+
+
+
+    <!-- Profile Page -->
+    <string name="profile_title">Profile</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="member_since">Member Since</string>
+    <string name="account_actions">Account Actions</string>
+    <string name="change_password">Change Password</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="stats_bookings">Bookings</string>
+    <string name="stats_sessions">Sessions</string>
+    <string name="stats_saved">Saved</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="edit_avatar">Edit Avatar</string>
+    <string name="profile_avatar">Profile Avatar</string>
+    <string name="sample_name">John Doe</string>
+    <string name="sample_email">john.doe@example.com</string>
+    <string name="sample_phone">+1 (555) 123-4567</string>
+    <string name="sample_join_date">January 15, 2024</string>
+    <string name="navigate">Navigate</string>
+    <string name="logout">Logout</string>
+    <string name="_24_7_available">24/7 Available</string>
+    <string name="slot_management">Slot Management</string>
+    <string name="_8_ac_4_dc_slots_available">8 AC, 4 DC slots available</string>
+    <string name="notifications">Notifications</string>
+    <string name="new_booking_alerts">New Booking Alerts</string>
+    <string name="get_notified_for_new_reservations">Get notified for new reservations</string>
+    <string name="reminder_notifications">Reminder Notifications</string>
+    <string name="reminders_for_upcoming_bookings">Reminders for upcoming bookings</string>
+    <string name="sound_vibration">Sound Vibration</string>
+    <string name="play_sound_for_important_alerts">Play sound for important alerts</string>
+    <string name="app_preferences">App Preferences</string>
+    <string name="auto_sync_data">Auto-sync Data</string>
+    <string name="sync_data_automatically_every_15_minutes">Sync data automatically every 15 minutes</string>
+    <string name="app_theme">App Theme</string>
+    <string name="light_mode">Light Mode</string>
+    <string name="language">Language</string>
+    <string name="english_us">English (US)</string>
+    <string name="support">Support</string>
+    <string name="help_center">Help Center</string>
+    <string name="contact_support">Contact Support</string>
+    <string name="about_app">About App</string>
+    <string name="version_1_0_0">Version 1.0.0</string>
+    <string name="scan_booking_qr">Scan Booking QR</string>
+
+
+</resources>

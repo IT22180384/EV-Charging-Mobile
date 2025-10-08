@@ -6,7 +6,172 @@
     <color name="apple_success">#388E3C</color>
     <color name="apple_warning">#F57C00</color>
     <color name="apple_error">#C62828</color>
+
+    <!-- Primary Brand Colors -->
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="apple_ash_light">#F5F5F5</color>
+
+    <!-- Profile & Settings specific colors -->
+    <color name="profile_header_bg">@color/apple_bg_secondary</color>
+    <color name="profile_avatar_bg">@color/apple_secondary</color>
+    <color name="profile_edit_button_bg">@color/apple_secondary</color>
+    <color name="settings_item_bg">@color/white</color>
+    <color name="settings_section_bg">@color/white</color>
+    <color name="settings_icon_tint">@color/apple_text_secondary</color>
+    <color name="profile_name_text">@color/apple_text_primary</color>
+    <color name="profile_email_text">@color/apple_text_secondary</color>
+    <color name="settings_item_text">@color/apple_text_primary</color>
+    <color name="settings_description_text">@color/apple_text_secondary</color>
+    <color name="logout_text_color">@color/apple_error</color>
+    <color name="delete_account_color">@color/apple_error</color>
+
+
+
+    <!-- QR code confirmation page colors -->
+
+
+
+        <!-- Gray Scale -->
+        <color name="apple_gray_light">#F5F5F5</color>
+        <color name="apple_gray_medium">#9E9E9E</color>
+        <color name="apple_gray_dark">#424242</color>
+
+        <!-- Basic Colors -->
+
+        <color name="gray_300">#E0E0E0</color>
+        <color name="gray_600">#757575</color>
+
+        <!-- Background Colors -->
+        <color name="apple_ash_extra_light">#F8F9FA</color>
+
+        <color name="apple_divider">#E9ECEF</color>
+        <color name="apple_ripple">#1E88E510</color>
+
+        <!-- Semantic Colors -->
+        <color name="semantic_info">#17A2B8</color>
+        <color name="semantic_warning_light">#FFF3CD</color>
+        <color name="semantic_success_light">#D4EDDA</color>
+        <color name="semantic_error_light">#F8D7DA</color>
+        <color name="semantic_info_light">#D1ECF1</color>
+
+        <!-- Gradient colors -->
+        <color name="gradient_primary_start">#1E88E5</color>
+        <color name="gradient_primary_end">#1976D2</color>
+        <color name="gradient_success_start">#4CAF50</color>
+        <color name="gradient_success_end">#388E3C</color>
+
+        <!-- Text Colors -->
+        <color name="apple_text_primary">#212121</color>
+        <color name="apple_text_secondary">#757575</color>
+        <color name="apple_text_disabled">#BDBDBD</color>
+        <color name="apple_text_success">#43A047</color>
+        <color name="apple_text_warning">#FB8C00</color>
+        <color name="apple_text_error">#D32F2F</color>
+
+        <!-- Card & Surface Colors -->
+        <color name="apple_card_bg">#FFFFFF</color>
+        <color name="apple_card_border">#E0E0E0</color>
+        <color name="apple_surface">#FFFFFF</color>
+        <color name="apple_surface_variant">#F5F5F5</color>
+
+        <!-- Status Colors -->
+        <color name="status_pending">#FB8C00</color>
+        <color name="status_confirmed">#43A047</color>
+        <color name="status_cancelled">#D32F2F</color>
+        <color name="status_in_progress">#1E88E5</color>
+        <color name="status_completed">#757575</color>
+
+        <!-- Status Background Colors -->
+        <color name="status_bg_pending">#FFF3E0</color>
+        <color name="status_bg_confirmed">#E8F5E8</color>
+        <color name="status_bg_cancelled">#FFEBEE</color>
+        <color name="status_bg_in_progress">#E3F2FD</color>
+        <color name="status_bg_completed">#F5F5F5</color>
+
+        <!-- Charging Specific Colors -->
+        <color name="charging_active">#4CAF50</color>
+        <color name="charging_paused">#FF9800</color>
+        <color name="charging_stopped">#F44336</color>
+        <color name="charging_ready">#2196F3</color>
+
+        <!-- Progress Bar Colors -->
+        <color name="progress_background">#E0E0E0</color>
+        <color name="progress_primary">#1E88E5</color>
+        <color name="progress_success">#43A047</color>
+        <color name="progress_warning">#FB8C00</color>
+
+        <!-- Button State Colors -->
+        <color name="button_pressed">#1976D2</color>
+        <color name="button_focused">#1E88E5</color>
+        <color name="button_disabled">#BDBDBD</color>
+
+        <!-- Icon Tint Colors -->
+        <color name="icon_primary">#1E88E5</color>
+        <color name="icon_secondary">#757575</color>
+        <color name="icon_success">#43A047</color>
+        <color name="icon_error">#D32F2F</color>
+        <color name="icon_warning">#FB8C00</color>
+        <color name="icon_disabled">#BDBDBD</color>
+
+        <!-- Border & Divider Colors -->
+        <color name="apple_border">#E0E0E0</color>
+        <color name="border_light">#F5F5F5</color>
+        <color name="border_dark">#BDBDBD</color>
+
+        <!-- Shadow Colors -->
+        <color name="shadow_light">#1A000000</color>
+        <color name="shadow_medium">#33000000</color>
+        <color name="shadow_dark">#4D000000</color>
+
+        <!-- Home Page Specific Colors -->
+        <color name="home_stat_pending_bg">#FFF3E0</color>
+        <color name="home_stat_approved_bg">#E8F5E8</color>
+        <color name="home_purple">#9C27B0</color>
+        <color name="home_purple_light">#E1BEE7</color>
+        <color name="home_activity_confirmed">#4CAF50</color>
+        <color name="home_activity_pending">#FF9800</color>
+        <color name="home_map_overlay">#80000000</color>
+        <color name="home_pending_bg">#FF9800</color>
+
+
+        <!-- QR Scanner Specific Colors -->
+        <color name="qr_overlay">#CC000000</color>
+        <color name="qr_frame">#1E88E5</color>
+        <color name="qr_success">#43A047</color>
+        <color name="qr_error">#D32F2F</color>
+
+        <!-- Booking Confirmation Specific Colors -->
+        <color name="confirmation_success_bg">#E8F5E8</color>
+        <color name="confirmation_warning_bg">#FFF3E0</color>
+        <color name="confirmation_error_bg">#FFEBEE</color>
+        <color name="confirmation_text_highlight">#1E88E5</color>
+
+        <!-- Charging Session Colors -->
+        <color name="charging_progress_bg">#E0E0E0</color>
+        <color name="charging_progress_fill">#4CAF50</color>
+        <color name="charging_time_remaining">#757575</color>
+        <color name="charging_power_level">#1E88E5</color>
+
+        <!-- Vehicle Type Colors -->
+        <color name="vehicle_tesla">#E82127</color>
+        <color name="vehicle_nissan">#C3002F</color>
+        <color name="vehicle_bmw">#0066B1</color>
+        <color name="vehicle_audi">#FF0000</color>
+        <color name="vehicle_hyundai">#002C5F</color>
+
+        <!-- Charger Type Colors -->
+        <color name="charger_dc_fast">#FF5722</color>
+        <color name="charger_ac_standard">#2196F3</color>
+        <color name="charger_supercharger">#E82127</color>
+
+        <!-- Notification Colors -->
+        <color name="notification_success">#43A047</color>
+        <color name="notification_warning">#FB8C00</color>
+        <color name="notification_error">#D32F2F</color>
+        <color name="notification_info">#1E88E5</color>
+
+
+
+
 </resources>
