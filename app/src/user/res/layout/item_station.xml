@@ -3,88 +3,41 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
+    android:layout_margin="8dp"
     card_view:cardCornerRadius="12dp"
-    card_view:cardElevation="4dp">
+    card_view:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/stationName"
-            android:layout_width="wrap_content"
+            android:id="@+id/textTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Downtown Charging Hub"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:textColor="@color/apple_gray_dark"/>
+            android:textStyle="bold"
+            android:textColor="@color/apple_gray_dark" />
 
         <TextView
-            android:id="@+id/stationAddress"
-            android:layout_width="wrap_content"
+            android:id="@+id/textSubtitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="123 Main Street, Downtown"
-            android:textColor="@color/apple_gray_medium"
-            android:textSize="14sp"/>
+            android:layout_marginTop="4dp"
+            android:textSize="14sp"
+            android:textColor="@color/apple_gray_medium" />
 
         <TextView
-            android:id="@+id/stationDistance"
+            android:id="@+id/textSlots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0.5 miles away"
-            android:textSize="13sp"
-            android:textColor="@color/apple_gray_medium"
-            android:paddingTop="2dp"/>
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:textColor="@color/apple_secondary" />
 
-        <!-- Row with details -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="8dp">
-
-            <TextView
-                android:id="@+id/stationType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⚡ Fast Charge"
-                android:textSize="14sp"
-                android:textColor="@color/apple_gray_dark"/>
-
-            <TextView
-                android:id="@+id/stationRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⭐ 4.8"
-                android:textSize="14sp"
-                android:textColor="@color/apple_gray_dark"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="4dp">
-
-            <TextView
-                android:id="@+id/stationAvailability"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Available"
-                android:textColor="@color/apple_success"
-                android:textSize="14sp"/>
-
-            <TextView
-                android:id="@+id/stationPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="$0.35/kWh"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@color/apple_secondary"/>
-        </LinearLayout>
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
+
