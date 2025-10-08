@@ -8,11 +8,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.evcharging.auth.R;
 import com.example.evcharging.view.onboarding.WelcomeActivity;
 import android.util.Log;
 
+import com.example.evcharging.viewmodel.AuthViewModel;
+import com.example.evcharging.model.LoginSuccessDTO;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
@@ -23,6 +26,7 @@ import com.google.android.material.textview.MaterialTextView;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    private AuthViewModel viewModel;
     private TextInputEditText etEmail;
     private TextInputEditText etPassword;
     private MaterialButton btnLogin;
@@ -32,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         initializeViews();
         setupClickListeners();
         startAnimations();
@@ -74,14 +78,40 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleLogin() {
+        String email = etEmail.getText() != null ? etEmail.getText().toString().trim() : "";
+        String password = etPassword.getText() != null ? etPassword.getText().toString().trim() : "";
+
+        if (email.isEmpty()) {
+            etEmail.setError("Email is required");
+            etEmail.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            etPassword.setError("Password is required");
+            etPassword.requestFocus();
+            return;
+        }
+
         showLoadingState();
-        btnLogin.postDelayed(new Runnable() {
+        viewModel.login(email, password, new AuthViewModel.LoginResultCallback() {
             @Override
-            public void run() {
+            public void onLoginSuccess(LoginSuccessDTO loginResponse) {
                 hideLoadingState();
+                Toast.makeText(LoginActivity.this,
+                        "Login successful: " + loginResponse.getMessage(),
+                        Toast.LENGTH_SHORT).show();
                 navigateToHome();
             }
-        }, 300);
+
+            @Override
+            public void onLoginError(String errorMessage) {
+                hideLoadingState();
+                Toast.makeText(LoginActivity.this,
+                        "Login failed: " + errorMessage,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void showLoadingState() {

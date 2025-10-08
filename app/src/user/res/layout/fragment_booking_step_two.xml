@@ -27,13 +27,13 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             android:gravity="center">
-            
+
             <View
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/bg_status_dot"
                 android:backgroundTint="#34C759" />
-            
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,13 +54,13 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             android:gravity="center">
-            
+
             <View
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/bg_status_dot"
                 android:backgroundTint="#007AFF" />
-            
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,13 +82,13 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             android:gravity="center">
-            
+
             <View
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@drawable/bg_status_dot"
                 android:backgroundTint="#8E8E93" />
-            
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -344,24 +344,82 @@
                                 android:contentDescription="Time" />
                         </LinearLayout>
 
-                        <!-- Selection Area -->
-                        <LinearLayout
+                        <!-- Time Slot Chips -->
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupTimeSlots"
                             android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:orientation="horizontal"
-                            android:background="#F8F9FA"
-                            android:gravity="center"
-                            android:clickable="true"
-                            android:focusable="true">
+                            android:layout_height="wrap_content"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            app:singleSelection="true"
+                            app:selectionRequired="true"
+                            app:singleLine="false">
 
-                            <TextView
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip_time_9_10"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tap to select time"
-                                android:textSize="16sp"
-                                android:textColor="#8E8E93"
-                                android:fontFamily="sans-serif"/>
-                        </LinearLayout>
+                                android:checkable="true"
+                                android:text="9 - 10" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip_time_10_11"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:text="10 - 11" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip_time_11_12"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:text="11 - 12" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip_time_1_2"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:text="1 - 2" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip_time_2_3"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:text="2 - 3" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip_time_3_4"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:text="3 - 4" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip_time_4_5"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:text="4 - 5" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chip_time_5_6"
+                                style="@style/Widget.MaterialComponents.Chip.Choice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checkable="true"
+                                android:text="5 - 6" />
+
+                        </com.google.android.material.chip.ChipGroup>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

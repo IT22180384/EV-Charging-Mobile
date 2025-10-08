@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <!-- Apple-inspired Bottom Navigation Style -->
     <style name="AppleBottomNavigation" parent="Widget.Material3.BottomNavigationView">
         <item name="android:background">@drawable/nav_background</item>
@@ -14,7 +14,7 @@
         <item name="android:paddingStart">@dimen/nav_item_padding</item>
         <item name="android:paddingEnd">@dimen/nav_item_padding</item>
     </style>
-    
+
     <!-- Tablet version with larger spacing -->
     <style name="AppleBottomNavigation.Tablet" parent="AppleBottomNavigation">
         <item name="android:elevation">@dimen/nav_elevation_tablet</item>
@@ -24,7 +24,7 @@
         <item name="android:paddingStart">@dimen/nav_item_padding_tablet</item>
         <item name="android:paddingEnd">@dimen/nav_item_padding_tablet</item>
     </style>
-    
+
     <!-- Apple-inspired container style -->
     <style name="AppleNavContainer">
         <item name="android:background">@android:color/transparent</item>
@@ -32,14 +32,14 @@
         <item name="android:layout_marginEnd">@dimen/nav_margin_horizontal</item>
         <item name="android:layout_marginBottom">@dimen/nav_margin_bottom</item>
     </style>
-    
+
     <!-- Tablet container style -->
     <style name="AppleNavContainer.Tablet">
         <item name="android:layout_marginStart">@dimen/nav_margin_horizontal_tablet</item>
         <item name="android:layout_marginEnd">@dimen/nav_margin_horizontal_tablet</item>
         <item name="android:layout_marginBottom">@dimen/nav_margin_bottom_tablet</item>
     </style>
-    
+
     <!-- Apple-inspired active indicator style -->
     <style name="AppleNavItemIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/nav_item_selected_bg</item>
@@ -47,149 +47,143 @@
         <item name="android:height">32dp</item>
         <item name="shapeAppearance">@style/AppleNavIndicatorShape</item>
     </style>
-    
+
     <!-- Rounded indicator shape -->
     <style name="AppleNavIndicatorShape" parent="ShapeAppearance.Material3.Corner.Full">
         <item name="cornerSize">16dp</item>
     </style>
-    
+
     <!-- ===== FONT SYSTEM ===== -->
     <!-- Base font family for all text -->
     <style name="BaseText">
         <item name="android:fontFamily">@font/font_family</item>
     </style>
-    
+
     <!-- SF Pro Light weight styles -->
     <style name="TextLight">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">300</item>
     </style>
-    
+
     <style name="TextLight.Large">
         <item name="android:textSize">20sp</item>
     </style>
-    
+
     <style name="TextLight.Medium">
         <item name="android:textSize">16sp</item>
     </style>
-    
+
     <style name="TextLight.Small">
         <item name="android:textSize">14sp</item>
     </style>
-    
+
     <!-- SF Pro Regular weight styles -->
     <style name="TextRegular">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">400</item>
     </style>
-    
+
     <style name="TextRegular.Large">
         <item name="android:textSize">20sp</item>
     </style>
-    
+
     <style name="TextRegular.Medium">
         <item name="android:textSize">16sp</item>
     </style>
-    
+
     <style name="TextRegular.Small">
         <item name="android:textSize">14sp</item>
     </style>
-    
+
     <!-- SF Pro Medium weight styles -->
     <style name="TextMedium">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">500</item>
     </style>
-    
+
     <style name="TextMedium.Large">
         <item name="android:textSize">20sp</item>
     </style>
-    
+
     <style name="TextMedium.Medium">
         <item name="android:textSize">16sp</item>
     </style>
-    
+
     <style name="TextMedium.Small">
         <item name="android:textSize">14sp</item>
     </style>
-    
+
     <!-- SF Pro Semibold weight styles -->
     <style name="TextSemibold">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">600</item>
     </style>
-    
+
     <style name="TextSemibold.Large">
         <item name="android:textSize">20sp</item>
     </style>
-    
+
     <style name="TextSemibold.Medium">
         <item name="android:textSize">16sp</item>
     </style>
-    
+
     <style name="TextSemibold.Small">
         <item name="android:textSize">14sp</item>
     </style>
-    
+
     <!-- SF Pro Bold weight styles -->
     <style name="TextBold">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">700</item>
     </style>
-    
+
     <style name="TextBold.Large">
         <item name="android:textSize">24sp</item>
     </style>
-    
+
     <style name="TextBold.Medium">
         <item name="android:textSize">18sp</item>
     </style>
-    
+
     <style name="TextBold.Small">
         <item name="android:textSize">16sp</item>
     </style>
-    
+
     <!-- SF Pro Heavy weight styles -->
     <style name="TextHeavy">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">800</item>
     </style>
-    
+
     <style name="TextHeavy.Large">
         <item name="android:textSize">24sp</item>
     </style>
-    
+
     <style name="TextHeavy.Medium">
         <item name="android:textSize">18sp</item>
     </style>
-    
+
     <style name="TextHeavy.Small">
         <item name="android:textSize">16sp</item>
     </style>
-    
+
     <!-- Specific component styles -->
     <style name="Heading1" parent="TextBold.Large">
         <item name="android:textColor">@color/apple_text_primary</item>
     </style>
-    
+
     <style name="Heading2" parent="TextBold.Medium">
         <item name="android:textColor">@color/apple_text_primary</item>
     </style>
-    
+
     <style name="BodyText" parent="TextRegular.Medium">
         <item name="android:textColor">@color/apple_text_primary</item>
     </style>
-    
+
     <style name="CaptionText" parent="TextRegular.Small">
         <item name="android:textColor">@color/apple_text_secondary</item>
     </style>
-    
+
     <style name="ButtonText" parent="TextMedium.Medium">
         <item name="android:textColor">@color/white</item>
     </style>
-    
+
     <style name="LinkText" parent="TextMedium.Medium">
         <item name="android:textColor">@color/apple_secondary</item>
     </style>
-    
+
 </resources>

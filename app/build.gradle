@@ -14,11 +14,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        
+
         // Read API key from local.properties
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        manifestPlaceholders = [MAPS_API_KEY: properties.getProperty('MAPS_API_KEY', '')]
+        manifestPlaceholders = [
+                MAPS_API_KEY: properties.getProperty('MAPS_API_KEY', ''),
+                BASE_URL    : properties.getProperty('BASE_URL', 'https://10.0.2.2/')
+        ]
     }
 
     buildTypes {
@@ -30,7 +33,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    
+
     flavorDimensions "app_type"
     productFlavors {
         user {
@@ -56,7 +59,7 @@ dependencies {
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
-    
+
     // Additional dependencies for bottom navigation and UI
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
     implementation 'androidx.fragment:fragment:1.6.2'
@@ -66,11 +69,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata:2.7.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    
+
     // Google Maps
     implementation libs.play.services.maps
     implementation libs.play.services.location
-    
+
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
@@ -78,14 +81,14 @@ dependencies {
 
 tasks.register("assembleDebugUnitTest") {
     dependsOn(
-        "assembleOperatorDebugUnitTest",
-        "assembleUserDebugUnitTest"
+            "assembleOperatorDebugUnitTest",
+            "assembleUserDebugUnitTest"
     )
 }
 
 tasks.register("assembleDebugAndroidTest") {
     dependsOn(
-        "assembleOperatorDebugAndroidTest",
-        "assembleUserDebugAndroidTest"
+            "assembleOperatorDebugAndroidTest",
+            "assembleUserDebugAndroidTest"
     )
 }
