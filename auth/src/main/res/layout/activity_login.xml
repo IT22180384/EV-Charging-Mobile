@@ -145,14 +145,14 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Don't have an account? "
                 android:textColor="@color/apple_text_secondary"
                 style="@style/CaptionText" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_signup_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

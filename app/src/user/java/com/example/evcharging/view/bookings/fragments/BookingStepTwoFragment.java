@@ -11,6 +11,8 @@ import com.example.evcharging.R;
 import com.example.evcharging.databinding.FragmentBookingStepTwoBinding;
 import com.example.evcharging.view.bookings.BookingActionListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
@@ -79,7 +81,22 @@ public class BookingStepTwoFragment extends Fragment {
 
     private void setupListeners() {
         binding.dateCard.setOnClickListener(v -> showDatePicker());
-        binding.timeCard.setOnClickListener(v -> showTimePicker());
+
+        // Time slot chip selection
+        binding.chipGroupTimeSlots.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(ChipGroup group, int checkedId) {
+                if (checkedId != View.NO_ID) {
+                    Chip chip = group.findViewById(checkedId);
+                    if (chip != null) {
+                        selectedTime = chip.getText().toString();
+                        binding.selectedTimeText.setText(selectedTime);
+                        binding.selectedTimeText.setVisibility(View.VISIBLE);
+                        checkIfCanProceed();
+                    }
+                }
+            }
+        });
 
         binding.nextBtn.setOnClickListener(v -> {
             if (selectedDate != null && selectedTime != null) {
@@ -114,28 +131,7 @@ public class BookingStepTwoFragment extends Fragment {
         datePicker.show(getParentFragmentManager(), "MATERIAL_DATE_PICKER");
     }
 
-    private void showTimePicker() {
-        LocalTime currentTime = LocalTime.now();
-        MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
-                .setTitleText("Select time")
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(currentTime.getHour())
-                .setMinute(currentTime.getMinute())
-                .build();
-
-        timePicker.addOnPositiveButtonClickListener(v -> {
-            selectedLocalTime = LocalTime.of(timePicker.getHour(), timePicker.getMinute());
-
-            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a", Locale.getDefault());
-            selectedTime = selectedLocalTime.format(timeFormatter);
-            binding.selectedTimeText.setText(selectedTime);
-            binding.selectedTimeText.setVisibility(View.VISIBLE);
-
-            checkIfCanProceed();
-        });
-
-        timePicker.show(getParentFragmentManager(), "MATERIAL_TIME_PICKER");
-    }
+    // Time selection now handled by chips; picker retained for reference but unused
 
     private void updateUI() {
         if (stationName != null) {

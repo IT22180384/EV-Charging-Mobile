@@ -62,7 +62,6 @@
     <!-- SF Pro Light weight styles -->
     <style name="TextLight">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">300</item>
     </style>
     
     <style name="TextLight.Large">
@@ -80,7 +79,6 @@
     <!-- SF Pro Regular weight styles -->
     <style name="TextRegular">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">400</item>
     </style>
     
     <style name="TextRegular.Large">
@@ -98,7 +96,6 @@
     <!-- SF Pro Medium weight styles -->
     <style name="TextMedium">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">500</item>
     </style>
     
     <style name="TextMedium.Large">
@@ -116,7 +113,6 @@
     <!-- SF Pro Semibold weight styles -->
     <style name="TextSemibold">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">600</item>
     </style>
     
     <style name="TextSemibold.Large">
@@ -134,7 +130,6 @@
     <!-- SF Pro Bold weight styles -->
     <style name="TextBold">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">700</item>
     </style>
     
     <style name="TextBold.Large">
@@ -152,7 +147,6 @@
     <!-- SF Pro Heavy weight styles -->
     <style name="TextHeavy">
         <item name="android:fontFamily">@font/font_family</item>
-        <item name="android:fontWeight">800</item>
     </style>
     
     <style name="TextHeavy.Large">

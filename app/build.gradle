@@ -18,7 +18,10 @@ android {
         // Read API key from local.properties
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        manifestPlaceholders = [MAPS_API_KEY: properties.getProperty('MAPS_API_KEY', '')]
+        manifestPlaceholders = [
+                MAPS_API_KEY: properties.getProperty('MAPS_API_KEY', ''),
+                BASE_URL    : properties.getProperty('BASE_URL', 'https://10.0.2.2/')
+        ]
     }
 
     buildTypes {
