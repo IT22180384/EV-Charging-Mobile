@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.evcharging.auth.R;
+import com.example.evcharging.utils.SpUtil;
 import com.example.evcharging.view.auth.LoginActivity;
 import com.google.android.material.button.MaterialButton;
 
@@ -23,11 +24,26 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        if (SpUtil.isLoggedIn()) {
+            try {
+                Intent intent = new Intent();
+                intent.setClassName(this, "com.example.evcharging.view.main.MainActivity");
+                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            } catch (Exception e) {
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        } else {
+            setContentView(R.layout.activity_welcome);
 
-        initializeViews();
-        setupClickListeners();
-        startAnimations();
+            initializeViews();
+            setupClickListeners();
+            startAnimations();
+        }
     }
 
     private void initializeViews() {
@@ -35,12 +51,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void setupClickListeners() {
-        btnGetStarted.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigateToMainApp();
-            }
-        });
+        btnGetStarted.setOnClickListener(v -> navigateToMainApp());
     }
 
     private void startAnimations() {

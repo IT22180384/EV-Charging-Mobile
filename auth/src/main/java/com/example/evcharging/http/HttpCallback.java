@@ -2,6 +2,7 @@ package com.example.evcharging.http;
 
 import android.net.ParseException;
 
+import com.example.evcharging.utils.SpUtil;
 import com.google.gson.JsonParseException;
 import com.google.gson.stream.MalformedJsonException;
 
@@ -31,6 +32,10 @@ public abstract class HttpCallback<T> implements Callback<T> {
         if (response.isSuccessful()) {
             onResult(response.body());
         } else {
+            // Handle 401 unauthorized - logout user immediately
+            if (response.code() == UNAUTHORIZED) {
+                handleUnauthorized();
+            }
             handleErrorResponse(response.code(), response.errorBody());
         }
     }
@@ -48,7 +53,7 @@ public abstract class HttpCallback<T> implements Callback<T> {
             ex = new ResponseThrowable(e, httpException.code());
             switch (httpException.code()) {
                 case UNAUTHORIZED:
-                    ex.message = "Unauthorized request";
+                    ex.message = "Session expired. Please login again.";
                     break;
                 case FORBIDDEN:
                     ex.message = "Access forbidden";
@@ -96,6 +101,22 @@ public abstract class HttpCallback<T> implements Callback<T> {
     public abstract void onResult(T result);
 
     public abstract void onError(String errorMessage);
+
+    private void handleUnauthorized() {
+        // Clear all authentication data
+        SpUtil.logout();
+        // Notify about unauthorized access
+        onUnauthorized();
+    }
+
+    /**
+     * Called when a 401 unauthorized response is received.
+     * Override this method to handle logout logic (e.g., redirect to login screen)
+     */
+    protected void onUnauthorized() {
+        // Default implementation - can be overridden by subclasses
+        onError("Session expired. Please login again.");
+    }
 
     private void handleErrorResponse(int code, ResponseBody body) {
         try {

@@ -4,6 +4,7 @@ import com.example.evcharging.http.AuthApi;
 import com.example.evcharging.http.HttpCallback;
 import com.example.evcharging.http.AuthRetrofitProvider;
 import com.example.evcharging.model.LoginSuccessDTO;
+import com.example.evcharging.utils.SpUtil;
 import com.google.gson.JsonObject;
 
 import okhttp3.MediaType;
@@ -29,8 +30,8 @@ public class AuthRepository {
         jsonObject.addProperty("password", password);
 
         RequestBody requestBody = RequestBody.create(
-                MediaType.parse("application/json"),
-                jsonObject.toString()
+                jsonObject.toString(),
+                MediaType.parse("application/json")
         );
 
         Call<LoginSuccessDTO> call = api.login(requestBody);
@@ -38,12 +39,27 @@ public class AuthRepository {
         call.enqueue(new HttpCallback<LoginSuccessDTO>() {
             @Override
             public void onResult(LoginSuccessDTO result) {
+                if (result != null && result.getToken() != null) {
+                    String accessToken = result.getToken();
+                    String userId = result.getEvOwner() != null ? result.getEvOwner().getId() : null;
+                    String email = result.getEvOwner() != null ? result.getEvOwner().getEmail() : null;
+                    String name = result.getEvOwner() != null ? result.getEvOwner().getName() : null;
+                    String nic = result.getEvOwner() != null ? result.getEvOwner().getNic() : null;
+                    String userType = "EVOwner"; // Set based on your app's user types
+
+                    SpUtil.saveUserCredentials(accessToken, null, userId, email, name, nic, userType);
+                }
                 callback.onSuccess(result);
             }
 
             @Override
             public void onError(String errorMessage) {
                 callback.onError(errorMessage);
+            }
+
+            @Override
+            protected void onUnauthorized() {
+                super.onUnauthorized();
             }
         });
     }
@@ -61,8 +77,8 @@ public class AuthRepository {
         jsonObject.addProperty("password", password);
 
         RequestBody requestBody = RequestBody.create(
-                MediaType.parse("application/json"),
-                jsonObject.toString()
+                jsonObject.toString(),
+                MediaType.parse("application/json")
         );
 
         Call<LoginSuccessDTO> call = api.register(requestBody);
@@ -70,6 +86,16 @@ public class AuthRepository {
         call.enqueue(new HttpCallback<LoginSuccessDTO>() {
             @Override
             public void onResult(LoginSuccessDTO result) {
+                if (result != null && result.getToken() != null) {
+                    String accessToken = result.getToken();
+                    String userId = result.getEvOwner() != null ? result.getEvOwner().getId() : null;
+                    String userEmail = result.getEvOwner() != null ? result.getEvOwner().getEmail() : null;
+                    String userName = result.getEvOwner() != null ? result.getEvOwner().getName() : null;
+                    String userNic = result.getEvOwner() != null ? result.getEvOwner().getNic() : null;
+                    String userType = "EVOwner";
+
+                    SpUtil.saveUserCredentials(accessToken, null, userId, userEmail, userName, userNic, userType);
+                }
                 callback.onSuccess(result);
             }
 
