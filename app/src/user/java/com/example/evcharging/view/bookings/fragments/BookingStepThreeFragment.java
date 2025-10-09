@@ -139,17 +139,9 @@ public class BookingStepThreeFragment extends Fragment {
                     binding.confirmBtn.setEnabled(true);
                     if (response.isSuccessful() && response.body() != null) {
                         ReservationResponse res = response.body();
-                        // Navigate to confirmation screen with QR
-                        android.content.Intent i = new android.content.Intent(getContext(), ReservationConfirmationActivity.class);
-                        i.putExtra(ReservationConfirmationActivity.EXTRA_STATION_NAME, stationName);
-                        i.putExtra(ReservationConfirmationActivity.EXTRA_DATE, selectedDate);
-                        i.putExtra(ReservationConfirmationActivity.EXTRA_TIME, selectedTime);
-                        i.putExtra(ReservationConfirmationActivity.EXTRA_RES_ID, res.id);
-                        i.putExtra(ReservationConfirmationActivity.EXTRA_QR, res.qrCode);
-                        i.putExtra(ReservationConfirmationActivity.EXTRA_OPERATOR_ID, res.operatorId);
-                        startActivity(i);
-                        // Complete flow
-                        listener.completeBooking();
+                        // Debug logging to verify we receive complete response
+                        android.util.Log.d("ReservationCreate", "Response: ID=" + res.id + ", OperatorId=" + res.operatorId + ", BookingId=" + res.bookingId);
+                        navigateToConfirmation(res);
                     } else {
                         Toast.makeText(getContext(), "Failed to create reservation", Toast.LENGTH_SHORT).show();
                     }
@@ -162,6 +154,27 @@ public class BookingStepThreeFragment extends Fragment {
         } catch (DateTimeParseException | NumberFormatException ex) {
             Toast.makeText(getContext(), "Invalid date/time selection", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void navigateToConfirmation(ReservationResponse res) {
+        // Verify we have all required data
+        if (res.operatorId == null || res.operatorId.isEmpty() || res.bookingId == null || res.bookingId.isEmpty()) {
+            android.util.Log.w("ReservationCreate", "Missing operatorId or bookingId in response");
+            Toast.makeText(getContext(), "Reservation created but missing some details", Toast.LENGTH_SHORT).show();
+        }
+        
+        // Navigate to confirmation screen with QR and identifiers
+        android.content.Intent i = new android.content.Intent(getContext(), ReservationConfirmationActivity.class);
+        i.putExtra(ReservationConfirmationActivity.EXTRA_STATION_NAME, stationName);
+        i.putExtra(ReservationConfirmationActivity.EXTRA_DATE, selectedDate);
+        i.putExtra(ReservationConfirmationActivity.EXTRA_TIME, selectedTime);
+        i.putExtra(ReservationConfirmationActivity.EXTRA_RES_ID, res.id);
+        i.putExtra(ReservationConfirmationActivity.EXTRA_QR, res.qrCode);
+        i.putExtra(ReservationConfirmationActivity.EXTRA_OPERATOR_ID, res.operatorId != null ? res.operatorId : "");
+        i.putExtra(ReservationConfirmationActivity.EXTRA_BOOKING_ID, res.bookingId != null ? res.bookingId : "");
+        startActivity(i);
+        // Complete flow
+        listener.completeBooking();
     }
 
     @Override
