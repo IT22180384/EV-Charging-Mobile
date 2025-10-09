@@ -28,6 +28,7 @@ public class ReservationConfirmationActivity extends AppCompatActivity {
     public static final String EXTRA_DATE = "date";
     public static final String EXTRA_TIME = "time";
     public static final String EXTRA_RES_ID = "reservation_id";
+    public static final String EXTRA_BOOKING_ID = "booking_id";
     public static final String EXTRA_QR = "qr";
     public static final String EXTRA_OPERATOR_ID = "operator_id";
 
@@ -52,11 +53,12 @@ public class ReservationConfirmationActivity extends AppCompatActivity {
         String id = i.getStringExtra(EXTRA_RES_ID);
         String qr = i.getStringExtra(EXTRA_QR);
         String operatorId = i.getStringExtra(EXTRA_OPERATOR_ID);
+        String bookingIdStr = i.getStringExtra(EXTRA_BOOKING_ID);
 
         title.setText(stationName);
         date.setText(d);
         time.setText(t);
-        bookingId.setText(id);
+        bookingId.setText(bookingIdStr != null && !bookingIdStr.isEmpty() ? bookingIdStr : id);
         if (operatorText != null) {
             operatorText.setText(operatorId != null ? operatorId : "-");
         }
