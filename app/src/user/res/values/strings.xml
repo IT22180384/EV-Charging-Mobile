@@ -46,6 +46,7 @@
     <string name="account_actions">Account Actions</string>
     <string name="change_password">Change Password</string>
     <string name="delete_account">Delete Account</string>
+    <string name="deactivate_account">Deactivate Account</string>
     <string name="stats_bookings">Bookings</string>
     <string name="stats_sessions">Sessions</string>
     <string name="stats_saved">Saved</string>
@@ -110,6 +111,11 @@
     <!-- Dialog messages -->
     <string name="delete_account_title">Delete Account</string>
     <string name="delete_account_message">Are you sure you want to delete your account? This action cannot be undone.</string>
+    <string name="deactivate_account_title">Deactivate Account</string>
+    <string name="deactivate_account_message">Are you sure you want to deactivate your account? You can reactivate it later by contacting support.</string>
+    <string name="btn_deactivate">Deactivate</string>
+    <string name="deactivating_account">Deactivating account...</string>
+    <string name="account_deactivated_success">Account deactivated successfully</string>
     <string name="logout_title">Logout</string>
     <string name="logout_message">Are you sure you want to logout?</string>
     <string name="about_title">About EV Charging App</string>
@@ -117,6 +123,7 @@
     <string name="btn_delete">Delete</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_ok">OK</string>
+    <string name="btn_save">Save</string>
 
     <!-- Home Page -->
     <string name="app_name_display">ChargePoint</string>

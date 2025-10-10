@@ -3,6 +3,12 @@
     <!-- User flavor accent overrides -->
     <color name="apple_primary">@color/white</color>
     <color name="apple_secondary">#1E88E5</color>
+    <color name="apple_blue">#007AFF</color>
+    <color name="apple_bg_secondary">#F2F2F7</color>
+    <color name="apple_disabled_bg">#E5E5EA</color>
+    <color name="apple_ash_light">#C7C7CC</color>
+    <color name="apple_text_primary">#000000</color>
+    <color name="apple_text_secondary">#8E8E93</color>
     <color name="apple_success">#43A047</color>
     <color name="apple_warning">#FB8C00</color>
     <color name="apple_error">#D32F2F</color>

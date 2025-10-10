@@ -81,4 +81,10 @@ public interface Api {
     // EVOwner profile API
     @GET("/api/evowners/{nic}")
     Call<EVOwner> getEVOwnerProfile(@Path("nic") String nic);
+
+    @PUT("/api/evowners/{nic}")
+    Call<EVOwner> updateEVOwnerProfile(@Path("nic") String nic, @Body RequestBody profileData);
+
+    @PATCH("/api/evowners/{nic}/deactivate")
+    Call<Void> deactivateEVOwnerAccount(@Path("nic") String nic);
 }
