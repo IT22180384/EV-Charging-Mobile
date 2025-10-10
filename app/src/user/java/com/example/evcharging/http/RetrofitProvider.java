@@ -12,6 +12,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -71,7 +72,10 @@ public class RetrofitProvider {
             }
         });
 
-        if (BuildConfig.DEBUG) {
+        HttpUrl baseUrl = HttpUrl.parse(BuildConfig.BASE_URL);
+        boolean isLocalDebugHost = baseUrl != null && isLocalHost(baseUrl.host());
+
+        if (BuildConfig.DEBUG && isLocalDebugHost) {
             // Debug-only self-signed HTTPS support (use only for local dev)
             try {
                 TrustManager[] trustAllCerts = new TrustManager[]{
@@ -95,5 +99,14 @@ public class RetrofitProvider {
         }
 
         return builder.build();
+    }
+
+    private boolean isLocalHost(String host) {
+        if (host == null) {
+            return false;
+        }
+        return "10.0.2.2".equals(host) ||
+                "localhost".equals(host) ||
+                host.endsWith(".devtunnels.ms");
     }
 }

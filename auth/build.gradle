@@ -10,7 +10,7 @@ android {
         minSdk 24
         targetSdk 36
         consumerProguardFiles 'consumer-rules.pro'
-        buildConfigField 'String', 'BASE_URL', '"https://jdj01wlz-443.asse.devtunnels.ms/"'
+        buildConfigField 'String', 'BASE_URL', '"https://ev-charging-backend-it22055026.azurewebsites.net/"'
     }
 
     buildFeatures {

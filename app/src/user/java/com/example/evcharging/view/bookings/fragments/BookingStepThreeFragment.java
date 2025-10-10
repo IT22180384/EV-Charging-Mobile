@@ -7,35 +7,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.evcharging.databinding.FragmentBookingStepThreeBinding;
-import com.example.evcharging.http.Api;
-import com.example.evcharging.http.RetrofitProvider;
-import com.example.evcharging.http.dto.ReservationCreateRequest;
 import com.example.evcharging.http.dto.ReservationResponse;
 import com.example.evcharging.data.TokenManager;
 import com.example.evcharging.view.bookings.ReservationConfirmationActivity;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import com.example.evcharging.view.bookings.BookingActionListener;
+import com.example.evcharging.viewmodel.BookingViewModel;
 
-public class BookingStepThreeFragment extends Fragment {
+public class BookingStepThreeFragment extends Fragment implements BookingViewModel.BookingCallback {
     private static final String ARG_STATION_ID = "station_id";
     private static final String ARG_STATION_NAME = "station_name";
     private static final String ARG_DATE = "date";
     private static final String ARG_TIME = "time";
 
     private FragmentBookingStepThreeBinding binding;
+    private BookingViewModel viewModel;
     private BookingActionListener listener;
     private String stationId;
     private String stationName;
@@ -56,6 +53,7 @@ public class BookingStepThreeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel = new ViewModelProvider(requireActivity()).get(BookingViewModel.class);
         if (getArguments() != null) {
             stationId = getArguments().getString(ARG_STATION_ID);
             stationName = getArguments().getString(ARG_STATION_NAME);
@@ -75,7 +73,7 @@ public class BookingStepThreeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentBookingStepThreeBinding.inflate(inflater, container, false);
 
         setupListeners();
@@ -85,13 +83,9 @@ public class BookingStepThreeFragment extends Fragment {
     }
 
     private void setupListeners() {
-        binding.confirmBtn.setOnClickListener(v -> {
-            createReservation();
-        });
+        binding.confirmBtn.setOnClickListener(v -> createReservation());
 
-        binding.backBtn.setOnClickListener(v -> {
-            listener.goBackToStepTwo(stationId, stationName);
-        });
+        binding.backBtn.setOnClickListener(v -> listener.goBackToStepTwo(stationId, stationName));
     }
 
     private void updateSummary() {
@@ -104,7 +98,6 @@ public class BookingStepThreeFragment extends Fragment {
         if (selectedTime != null) {
             binding.summaryTimeText.setText(selectedTime);
         }
-
     }
 
     private void createReservation() {
@@ -113,47 +106,56 @@ public class BookingStepThreeFragment extends Fragment {
             Toast.makeText(getContext(), "Please login first", Toast.LENGTH_SHORT).show();
             return;
         }
+
         try {
             // Parse selectedDate (e.g., "Dec 15, 2024") and selectedTime (e.g., "1 - 2")
-            DateTimeFormatter df = DateTimeFormatter.ofPattern("MMM dd, yyyy");
-            LocalDate date = LocalDate.parse(selectedDate, df);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+            Date date = dateFormat.parse(selectedDate);
+
             String startHourPart = selectedTime.split("-")[0].trim();
             int hour = Integer.parseInt(startHourPart);
             if (hour >= 1 && hour <= 6) hour += 12; // 1..6 -> 13..18
-            LocalTime start = LocalTime.of(hour, 0);
-            LocalTime end = start.plusHours(1);
-            LocalDateTime startLdt = LocalDateTime.of(date, start);
-            LocalDateTime endLdt = LocalDateTime.of(date, end);
 
-            // Convert to UTC ISO strings
-            java.time.ZonedDateTime startUtc = startLdt.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
-            java.time.ZonedDateTime endUtc = endLdt.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
-            String startIso = startUtc.toInstant().toString();
-            String endIso = endUtc.toInstant().toString();
+            Calendar startCal = Calendar.getInstance();
+            startCal.setTime(date);
+            startCal.set(Calendar.HOUR_OF_DAY, hour);
+            startCal.set(Calendar.MINUTE, 0);
+            startCal.set(Calendar.SECOND, 0);
+            startCal.set(Calendar.MILLISECOND, 0);
 
-            ReservationCreateRequest req = new ReservationCreateRequest(uid, stationId, startIso, endIso, null);
-            Api api = RetrofitProvider.getInstance().create(Api.class);
+            Calendar endCal = Calendar.getInstance();
+            endCal.setTime(startCal.getTime());
+            endCal.add(Calendar.HOUR_OF_DAY, 1);
+
+            // Format as ISO 8601 string (without timezone)
+            SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+            String startIso = isoFormat.format(startCal.getTime());
+            String endIso = isoFormat.format(endCal.getTime());
+
             binding.confirmBtn.setEnabled(false);
-            api.createReservation(req).enqueue(new Callback<ReservationResponse>() {
-                @Override public void onResponse(Call<ReservationResponse> call, Response<ReservationResponse> response) {
-                    binding.confirmBtn.setEnabled(true);
-                    if (response.isSuccessful() && response.body() != null) {
-                        ReservationResponse res = response.body();
-                        // Debug logging to verify we receive complete response
-                        android.util.Log.d("ReservationCreate", "Response: ID=" + res.id + ", OperatorId=" + res.operatorId + ", BookingId=" + res.bookingId);
-                        navigateToConfirmation(res);
-                    } else {
-                        Toast.makeText(getContext(), "Failed to create reservation", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                @Override public void onFailure(Call<ReservationResponse> call, Throwable t) {
-                    binding.confirmBtn.setEnabled(true);
-                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        } catch (DateTimeParseException | NumberFormatException ex) {
+            viewModel.createReservation(uid, stationId, startIso, endIso, null, this);
+
+        } catch (ParseException | NumberFormatException ex) {
             Toast.makeText(getContext(), "Invalid date/time selection", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onReservationSuccess(ReservationResponse response) {
+        if (binding != null) {
+            binding.confirmBtn.setEnabled(true);
+        }
+        android.util.Log.d("ReservationCreate",
+                "Response: ID=" + response.id + ", OperatorId=" + response.operatorId + ", BookingId=" + response.bookingId);
+        navigateToConfirmation(response);
+    }
+
+    @Override
+    public void onReservationError(String errorMessage) {
+        if (binding != null) {
+            binding.confirmBtn.setEnabled(true);
+        }
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     private void navigateToConfirmation(ReservationResponse res) {
