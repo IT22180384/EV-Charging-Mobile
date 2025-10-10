@@ -25,18 +25,7 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (SpUtil.isLoggedIn()) {
-            try {
-                Intent intent = new Intent();
-                intent.setClassName(this, "com.example.evcharging.view.main.MainActivity");
-                startActivity(intent);
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            } catch (Exception e) {
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
+            navigateBasedOnRole();
         } else {
             setContentView(R.layout.activity_welcome);
 
@@ -68,5 +57,47 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    private void navigateBasedOnRole() {
+        try {
+            String userRole = SpUtil.getUserType();
+            final String applicationId = getApplicationContext().getPackageName();
+            
+            android.util.Log.d("WelcomeActivity", "Stored user role: " + userRole);
+            android.util.Log.d("WelcomeActivity", "App package: " + applicationId);
+            
+            Class<?> destination = null;
+            
+            // If user is StationOperator, navigate to operator main activity
+            if ("StationOperator".equals(userRole)) {
+                destination = Class.forName("com.example.evcharging.view.main.OperatorMainActivity");
+            }
+            // For EVOwner or other roles, check app variant
+            else if (applicationId.endsWith(".operator")) {
+                // Operator app but user is not StationOperator - redirect to login
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+            else {
+                // Default to regular MainActivity for user app
+                destination = Class.forName("com.example.evcharging.view.main.MainActivity");
+            }
+            
+            if (destination != null) {
+                Intent intent = new Intent(this, destination);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        } catch (Exception e) {
+            // Fallback to login if any error occurs
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }
     }
 }
