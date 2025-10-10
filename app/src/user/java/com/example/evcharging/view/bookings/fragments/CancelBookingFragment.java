@@ -86,13 +86,19 @@ public class CancelBookingFragment extends Fragment {
         // Simulate finding booking by ID - in a real app this would query the repository
         return new Booking(
                 bookingId,
+                "RES-" + bookingId,
+                "STATION-123",
                 "Downtown Charging Station",
                 "123 Liberty Ave, City Center",
                 "Dec 15, 2024",
                 "2:00 PM - 4:00 PM",
                 "Slot A2",
                 Booking.Status.PENDING,
-                "Pending"
+                "Pending",
+                true,
+                true,
+                "2024-12-15T14:00:00",
+                "2024-12-15T15:00:00"
         );
     }
 

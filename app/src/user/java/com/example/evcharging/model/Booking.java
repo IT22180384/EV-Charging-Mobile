@@ -31,42 +31,68 @@ public class Booking {
     }
 
     private final String bookingId;
-    private final String title;
-    private final String location;
+    private final String reservationId;
+    private final String stationId;
+    private final String stationName;
+    private final String stationAddress;
     private final String date;
     private final String timeRange;
     private final String slot;
     private final Status status;
     private final String statusLabel;
+    private final boolean canModify;
+    private final boolean canCancel;
+    private final String startTimeIso;
+    private final String endTimeIso;
 
     public Booking(String bookingId,
-                   String title,
-                   String location,
+                   String reservationId,
+                   String stationId,
+                   String stationName,
+                   String stationAddress,
                    String date,
                    String timeRange,
                    String slot,
                    Status status,
-                   String statusLabel) {
+                   String statusLabel,
+                   boolean canModify,
+                   boolean canCancel,
+                   String startTimeIso,
+                   String endTimeIso) {
         this.bookingId = bookingId;
-        this.title = title;
-        this.location = location;
+        this.reservationId = reservationId;
+        this.stationId = stationId;
+        this.stationName = stationName;
+        this.stationAddress = stationAddress;
         this.date = date;
         this.timeRange = timeRange;
         this.slot = slot;
         this.status = status;
         this.statusLabel = statusLabel;
+        this.canModify = canModify;
+        this.canCancel = canCancel;
+        this.startTimeIso = startTimeIso;
+        this.endTimeIso = endTimeIso;
     }
 
     public String getBookingId() {
         return bookingId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getReservationId() {
+        return reservationId;
     }
 
-    public String getLocation() {
-        return location;
+    public String getStationId() {
+        return stationId;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public String getStationAddress() {
+        return stationAddress;
     }
 
     public String getDate() {
@@ -87,5 +113,21 @@ public class Booking {
 
     public String getStatusLabel() {
         return statusLabel;
+    }
+
+    public boolean canModify() {
+        return canModify;
+    }
+
+    public boolean canCancel() {
+        return canCancel;
+    }
+
+    public String getStartTimeIso() {
+        return startTimeIso;
+    }
+
+    public String getEndTimeIso() {
+        return endTimeIso;
     }
 }

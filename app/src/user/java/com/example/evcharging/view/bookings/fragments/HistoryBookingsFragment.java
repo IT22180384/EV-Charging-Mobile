@@ -5,23 +5,28 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.example.evcharging.R;
+import com.example.evcharging.data.TokenManager;
 import com.example.evcharging.databinding.FragmentBookingsListBinding;
 import com.example.evcharging.model.Booking;
 import com.example.evcharging.view.bookings.BookingActionListener;
 import com.example.evcharging.view.bookings.adapters.BookingsListAdapter;
+import com.example.evcharging.viewmodel.BookingViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoryBookingsFragment extends Fragment {
+public class HistoryBookingsFragment extends Fragment implements BookingViewModel.BookingsCallback {
     private FragmentBookingsListBinding binding;
     private BookingActionListener listener;
+    private BookingViewModel viewModel;
+    private BookingsListAdapter adapter;
 
     @Nullable
     @Override
@@ -33,7 +38,27 @@ public class HistoryBookingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.recyclerBookings.setAdapter(new BookingsListAdapter(createHistoryBookings(), listener));
+        viewModel = new ViewModelProvider(requireActivity()).get(BookingViewModel.class);
+        adapter = new BookingsListAdapter(new ArrayList<>(), new BookingsListAdapter.OnBookingActionListener() {
+            @Override
+            public void onBookingSelected(@NonNull Booking booking) {
+                if (listener != null) {
+                    listener.navigateToBookingDetails();
+                }
+            }
+
+            @Override
+            public void onModify(@NonNull Booking booking) {
+                // History items are not modifiable
+            }
+
+            @Override
+            public void onCancel(@NonNull Booking booking) {
+                // History items cannot be cancelled
+            }
+        });
+        binding.recyclerBookings.setAdapter(adapter);
+        loadHistory();
     }
 
     @Override
@@ -46,29 +71,32 @@ public class HistoryBookingsFragment extends Fragment {
         }
     }
 
-    private List<Booking> createHistoryBookings() {
-        List<Booking> bookings = new ArrayList<>();
-        bookings.add(new Booking(
-                "#BK001201",
-                "Harbor EV Plaza",
-                "7 Seaside Way, Downtown",
-                "Nov 28, 2024",
-                "9:00 AM - 11:00 AM",
-                "Slot D4",
-                Booking.Status.COMPLETED,
-                "Completed"
-        ));
-        bookings.add(new Booking(
-                "#BK001198",
-                "Greenfield Charging Park",
-                "Sunset Blvd, Uptown",
-                "Nov 14, 2024",
-                "3:00 PM - 5:00 PM",
-                "Slot A1",
-                Booking.Status.CANCELLED,
-                "Cancelled"
-        ));
-        return bookings;
+    private void loadHistory() {
+        String userId = TokenManager.getUserId(requireContext().getApplicationContext());
+        if (userId == null || userId.trim().isEmpty()) {
+            Toast.makeText(getContext(), "Please login to view booking history", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        viewModel.getCompletedBookings(userId, this);
+    }
+
+    @Override
+    public void onBookingsLoaded(List<Booking> bookings) {
+        if (binding != null && adapter != null) {
+            adapter.updateBookings(bookings);
+        }
+    }
+
+    @Override
+    public void onError(String errorMessage) {
+        if (getContext() != null) {
+            Toast.makeText(
+                    getContext(),
+                    errorMessage != null ? errorMessage : "Failed to load booking history",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
     }
 
     @Override

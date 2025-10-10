@@ -2,6 +2,7 @@ package com.example.evcharging.view.bookings.adapters;
 
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,18 +12,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.evcharging.databinding.ItemBookingCardBinding;
 import com.example.evcharging.model.Booking;
-import com.example.evcharging.view.bookings.BookingActionListener;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapter.BookingViewHolder> {
 
-    private final List<Booking> bookings;
-    private final BookingActionListener listener;
+    public interface OnBookingActionListener {
+        void onBookingSelected(@NonNull Booking booking);
+        void onModify(@NonNull Booking booking);
+        void onCancel(@NonNull Booking booking);
+    }
 
-    public BookingsListAdapter(@NonNull List<Booking> bookings, BookingActionListener listener) {
-        this.bookings = bookings;
-        this.listener = listener;
+    private final List<Booking> bookings;
+    private final OnBookingActionListener actionListener;
+
+    public BookingsListAdapter(@NonNull List<Booking> bookings, OnBookingActionListener actionListener) {
+        this.bookings = new ArrayList<>(Objects.requireNonNull(bookings));
+        this.actionListener = actionListener;
     }
 
     @NonNull
@@ -35,12 +43,18 @@ public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull BookingViewHolder holder, int position) {
-        holder.bind(bookings.get(position), listener);
+        holder.bind(bookings.get(position), actionListener);
     }
 
     @Override
     public int getItemCount() {
         return bookings.size();
+    }
+
+    public void updateBookings(@NonNull List<Booking> newBookings) {
+        bookings.clear();
+        bookings.addAll(newBookings);
+        notifyDataSetChanged();
     }
 
     static class BookingViewHolder extends RecyclerView.ViewHolder {
@@ -52,11 +66,11 @@ public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapte
             this.binding = binding;
         }
 
-        void bind(Booking booking, BookingActionListener listener) {
+        void bind(Booking booking, OnBookingActionListener actionListener) {
             binding.textStatus.setText(booking.getStatusLabel());
             binding.textBookingId.setText(booking.getBookingId());
-            binding.textTitle.setText(booking.getTitle());
-            binding.textLocation.setText(booking.getLocation());
+            binding.textTitle.setText(booking.getStationName());
+            binding.textLocation.setText(booking.getStationAddress());
             binding.textDate.setText(booking.getDate());
             binding.textTime.setText(booking.getTimeRange());
             binding.textSlot.setText(booking.getSlot());
@@ -72,10 +86,27 @@ public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapte
                 binding.viewStatusDot.setBackground(dotBackground);
             }
 
-            // Set click listener to navigate to booking details
-            itemView.setOnClickListener(v -> {
-                if (listener != null) {
-                    listener.navigateToBookingDetails();
+            binding.getRoot().setOnClickListener(v -> {
+                if (actionListener != null) {
+                    actionListener.onBookingSelected(booking);
+                }
+            });
+
+            boolean showActions = (booking.canModify() || booking.canCancel());
+            binding.containerActions.setVisibility(showActions ? View.VISIBLE : View.GONE);
+
+            binding.buttonModify.setVisibility(booking.canModify() ? View.VISIBLE : View.GONE);
+            binding.buttonCancel.setVisibility(booking.canCancel() ? View.VISIBLE : View.GONE);
+
+            binding.buttonModify.setOnClickListener(v -> {
+                if (actionListener != null) {
+                    actionListener.onModify(booking);
+                }
+            });
+
+            binding.buttonCancel.setOnClickListener(v -> {
+                if (actionListener != null) {
+                    actionListener.onCancel(booking);
                 }
             });
         }

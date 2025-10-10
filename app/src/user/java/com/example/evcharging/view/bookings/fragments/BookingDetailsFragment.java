@@ -93,20 +93,26 @@ public class BookingDetailsFragment extends Fragment {
         // For demonstration, return a sample booking
         return new Booking(
                 bookingId,
+                "RES-" + bookingId,
+                "STATION-123",
                 "Downtown Charging Station",
                 "123 Liberty Ave, City Center",
                 "Dec 15, 2024",
                 "2:00 PM - 4:00 PM",
                 "Slot A2",
                 Booking.Status.PENDING,
-                "Pending"
+                "Pending",
+                true,
+                true,
+                "2024-12-15T14:00:00",
+                "2024-12-15T15:00:00"
         );
     }
 
     private void displayBookingDetails(Booking booking) {
         binding.bookingIdText.setText("Booking ID: " + booking.getBookingId());
-        binding.stationName.setText(booking.getTitle());
-        binding.stationAddress.setText(booking.getLocation());
+        binding.stationName.setText(booking.getStationName());
+        binding.stationAddress.setText(booking.getStationAddress());
         binding.bookingDate.setText(booking.getDate());
 
         // Parse time range (e.g., "2:00 PM - 4:00 PM")
@@ -128,10 +134,8 @@ public class BookingDetailsFragment extends Fragment {
         binding.bookingStatus.setTextColor(color);
 
         // Enable/disable action buttons based on booking status
-        boolean canModifyOrCancel = booking.getStatus() == Booking.Status.PENDING ||
-                                   booking.getStatus() == Booking.Status.APPROVED;
-        binding.modifyBookingBtn.setEnabled(canModifyOrCancel);
-        binding.cancelBookingBtn.setEnabled(canModifyOrCancel);
+        binding.modifyBookingBtn.setEnabled(booking.canModify());
+        binding.cancelBookingBtn.setEnabled(booking.canCancel());
     }
 
     public void setBookingId(String bookingId) {

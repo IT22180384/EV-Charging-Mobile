@@ -4,8 +4,11 @@ import com.example.evcharging.model.Booking;
 import com.example.evcharging.model.ChargingStation;
 import com.example.evcharging.http.ApiResponse;
 import com.example.evcharging.model.LoginSuccessDTO;
+import com.example.evcharging.http.dto.BookingSessionResponse;
 import com.example.evcharging.http.dto.ReservationCreateRequest;
+import com.example.evcharging.http.dto.ReservationUpdateRequest;
 import com.example.evcharging.http.dto.ReservationResponse;
+import com.example.evcharging.http.dto.StationDetailResponse;
 
 import java.util.List;
 
@@ -13,7 +16,9 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -39,14 +44,29 @@ public interface Api {
     Call<ApiResponse<List<Booking>>> getUserBookings(@Path("userId") String userId);
 
     // Reservation APIs (backend: ReservationController)
-    @POST("/api/Reservation")
+    @POST("/api/reservation")
     Call<ReservationResponse> createReservation(@Body ReservationCreateRequest request);
 
-    @GET("/api/Reservation/{id}")
+    @GET("/api/reservation/{id}")
     Call<ReservationResponse> getReservation(@Path("id") String id);
 
-    @GET("/api/Reservation/history/{nic}")
+    @GET("/api/reservation/history/{nic}")
     Call<java.util.List<ReservationResponse>> getReservationHistory(@Path("nic") String nic);
+
+    @PUT("/api/reservation/{id}")
+    Call<ReservationResponse> updateReservation(@Path("id") String id, @Body ReservationUpdateRequest request);
+
+    @PATCH("/api/reservation/{id}/cancel")
+    Call<Void> cancelReservation(@Path("id") String id);
+
+    @GET("/api/reservation/user/{userId}/bookings/pending")
+    Call<java.util.List<BookingSessionResponse>> getUserPendingBookings(@Path("userId") String userId);
+
+    @GET("/api/reservation/user/{userId}/bookings/completed")
+    Call<java.util.List<BookingSessionResponse>> getUserCompletedBookings(@Path("userId") String userId);
+
+    @GET("/api/stations/{id}")
+    Call<ApiResponse<StationDetailResponse>> getStationDetail(@Path("id") String stationId);
 
     @POST("/api/bookings/{bookingId}/cancel")
     Call<ApiResponse<Void>> cancelBooking(@Path("bookingId") String bookingId);
