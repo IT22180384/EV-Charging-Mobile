@@ -56,6 +56,10 @@
     <string name="sample_email">john.doe@example.com</string>
     <string name="sample_phone">+1 (555) 123-4567</string>
     <string name="sample_join_date">January 15, 2024</string>
+    <string name="nic_number">NIC Number</string>
+    <string name="sample_nic">987654321V</string>
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="sample_vehicle_type">Electric Car</string>
     <string name="navigate">Navigate</string>
 
     <!-- Settings Page -->

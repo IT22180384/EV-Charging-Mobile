@@ -2,6 +2,7 @@ package com.example.evcharging.http;
 
 import com.example.evcharging.model.Booking;
 import com.example.evcharging.model.ChargingStation;
+import com.example.evcharging.model.EVOwner;
 import com.example.evcharging.http.ApiResponse;
 import com.example.evcharging.model.LoginSuccessDTO;
 import com.example.evcharging.http.dto.BookingSessionResponse;
@@ -76,4 +77,8 @@ public interface Api {
 
     @POST("/api/bookings/{bookingId}/modify")
     Call<ApiResponse<Booking>> modifyBooking(@Path("bookingId") String bookingId, @Body RequestBody bookingData);
+
+    // EVOwner profile API
+    @GET("/api/evowners/{nic}")
+    Call<EVOwner> getEVOwnerProfile(@Path("nic") String nic);
 }
