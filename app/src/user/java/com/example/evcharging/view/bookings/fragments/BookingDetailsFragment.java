@@ -28,6 +28,14 @@ public class BookingDetailsFragment extends Fragment {
         return fragment;
     }
 
+    public static BookingDetailsFragment newInstance(Booking booking) {
+        BookingDetailsFragment fragment = new BookingDetailsFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("booking", booking);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,7 +50,13 @@ public class BookingDetailsFragment extends Fragment {
         initializeViews();
         setupListeners();
 
-        if (bookingId != null) {
+        // Get booking from arguments if available
+        if (getArguments() != null && getArguments().containsKey("booking")) {
+            booking = (Booking) getArguments().getSerializable("booking");
+            if (booking != null) {
+                displayBookingDetails(booking);
+            }
+        } else if (bookingId != null) {
             loadBookingDetails(bookingId);
         }
     }
@@ -68,7 +82,11 @@ public class BookingDetailsFragment extends Fragment {
         });
 
         binding.cancelBookingBtn.setOnClickListener(v -> {
-            listener.navigateToCancelBooking();
+            if (booking != null) {
+                listener.navigateToCancelBooking(booking);
+            } else {
+                listener.navigateToCancelBooking();
+            }
         });
 
         binding.contactSupportBtn.setOnClickListener(v -> {

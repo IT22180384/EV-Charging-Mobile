@@ -90,18 +90,24 @@ public class UserBookingRepository {
     }
 
     public void cancelReservation(String reservationId, ReservationActionCallback callback) {
+        android.util.Log.d("BookingRepo", "cancelReservation called with ID: " + reservationId);
         api.cancelReservation(reservationId).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                android.util.Log.d("BookingRepo", "Cancel response code: " + response.code());
+                android.util.Log.d("BookingRepo", "Cancel response message: " + response.message());
                 if (response.isSuccessful()) {
+                    android.util.Log.d("BookingRepo", "Cancel successful");
                     callback.onSuccess();
                 } else {
-                    callback.onError("Failed to cancel reservation");
+                    android.util.Log.e("BookingRepo", "Cancel failed with code: " + response.code());
+                    callback.onError("Failed to cancel reservation. Code: " + response.code());
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                android.util.Log.e("BookingRepo", "Cancel request failed", t);
                 callback.onError(t.getMessage() != null ? t.getMessage() : "Network error");
             }
         });

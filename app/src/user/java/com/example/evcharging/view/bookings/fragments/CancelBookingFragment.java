@@ -5,18 +5,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.evcharging.databinding.FragmentCancelBookingBinding;
 import com.example.evcharging.model.Booking;
 import com.example.evcharging.view.bookings.BookingActionListener;
+import com.example.evcharging.viewmodel.BookingViewModel;
 
 public class CancelBookingFragment extends Fragment {
     private FragmentCancelBookingBinding binding;
     private BookingActionListener listener;
     private String bookingId;
+    private com.example.evcharging.model.Booking booking;
+    private BookingViewModel viewModel;
 
     public static CancelBookingFragment newInstance() {
         CancelBookingFragment fragment = new CancelBookingFragment();
@@ -25,9 +30,18 @@ public class CancelBookingFragment extends Fragment {
         return fragment;
     }
 
+    public static CancelBookingFragment newInstance(com.example.evcharging.model.Booking booking) {
+        CancelBookingFragment fragment = new CancelBookingFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("booking", booking);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentCancelBookingBinding.inflate(inflater, container, false);
+        viewModel = new ViewModelProvider(requireActivity()).get(BookingViewModel.class);
 
         // Hide bottom navigation when this fragment is displayed
         hideBottomNavigation();
@@ -49,9 +63,13 @@ public class CancelBookingFragment extends Fragment {
     }
 
     private void initializeViews() {
-
-        // Load booking details if bookingId is provided
-        if (bookingId != null) {
+        // Get booking from arguments if available
+        if (getArguments() != null && getArguments().containsKey("booking")) {
+            booking = (com.example.evcharging.model.Booking) getArguments().getSerializable("booking");
+            if (booking != null) {
+                displayBookingDetails(booking);
+            }
+        } else if (bookingId != null) {
             loadBookingDetails(bookingId);
         }
     }
@@ -103,18 +121,62 @@ public class CancelBookingFragment extends Fragment {
     }
 
     private void displayBookingDetails(Booking booking) {
-        // The layout uses hardcoded text for booking details in this design
-        // In a real implementation, you would find TextViews with IDs and update them
-        // For now, the booking details are displayed in the static layout
+        if (binding == null) return;
+        
+        // Update the booking details in the UI
+        binding.textStationName.setText(booking.getStationName());
+        binding.textBookingDate.setText(booking.getDate());
+        binding.textBookingTime.setText(booking.getTimeRange());
+        binding.textSlot.setText(booking.getSlot());
     }
 
     private void confirmCancellation() {
-        // Handle booking cancellation logic
-        if (listener != null) {
-            listener.onBookingCancelled(bookingId);
+        if (booking == null || booking.getReservationId() == null) {
+            Toast.makeText(getContext(), "Booking information not available", Toast.LENGTH_SHORT).show();
+            return;
         }
-        // Show bottom navigation after cancellation action
-        showBottomNavigation();
+
+        // Debug log to check the reservation ID
+        android.util.Log.d("CancelBooking", "Attempting to cancel reservation ID: " + booking.getReservationId());
+        android.util.Log.d("CancelBooking", "Booking ID: " + booking.getBookingId());
+        android.util.Log.d("CancelBooking", "Station ID: " + booking.getStationId());
+
+        // Disable the cancel button to prevent multiple clicks
+        binding.btnCancelBooking.setEnabled(false);
+        binding.btnCancelBooking.setText("Cancelling...");
+
+        // Call the API to cancel the reservation
+        viewModel.cancelReservation(booking.getReservationId(), new BookingViewModel.ReservationActionCallback() {
+            @Override
+            public void onSuccess() {
+                if (!isAdded()) return;
+                
+                Toast.makeText(getContext(), "Booking cancelled successfully", Toast.LENGTH_SHORT).show();
+                
+                if (listener != null) {
+                    listener.onBookingCancelled(booking.getBookingId());
+                }
+                
+                // Navigate back
+                showBottomNavigation();
+                if (getActivity() != null) {
+                    getActivity().onBackPressed();
+                }
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                if (!isAdded()) return;
+                
+                // Re-enable the button
+                binding.btnCancelBooking.setEnabled(true);
+                binding.btnCancelBooking.setText("Cancel Booking");
+                
+                Toast.makeText(getContext(), 
+                    errorMessage != null ? errorMessage : "Failed to cancel booking", 
+                    Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void setBookingId(String bookingId) {

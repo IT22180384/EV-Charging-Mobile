@@ -214,8 +214,15 @@ public class BookingViewModel extends BaseViewModel {
 
         for (BookingSessionResponse session : sessions) {
             String bookingId = valueOrDefault(session.bookingId, "-");
-            String reservationId = valueOrDefault(session.reservationId, session.bookingId);
+            String reservationId = valueOrDefault(session.reservationId, 
+                    valueOrDefault(session.id, session.bookingId));
             String stationId = valueOrDefault(session.stationId, "");
+
+            // Debug logging to check reservation ID mapping
+            android.util.Log.d("BookingViewModel", "Mapping booking - ID: " + session.id + 
+                    ", ReservationId: " + session.reservationId + 
+                    ", BookingId: " + session.bookingId + 
+                    ", Final ReservationId: " + reservationId);
 
             StationInfo cachedInfo = !TextUtils.isEmpty(stationId) ? stationInfoCache.get(stationId) : null;
             String stationName = cachedInfo != null && !TextUtils.isEmpty(cachedInfo.name)

@@ -21,8 +21,6 @@ public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapte
 
     public interface OnBookingActionListener {
         void onBookingSelected(@NonNull Booking booking);
-        void onModify(@NonNull Booking booking);
-        void onCancel(@NonNull Booking booking);
     }
 
     private final List<Booking> bookings;
@@ -89,24 +87,6 @@ public class BookingsListAdapter extends RecyclerView.Adapter<BookingsListAdapte
             binding.getRoot().setOnClickListener(v -> {
                 if (actionListener != null) {
                     actionListener.onBookingSelected(booking);
-                }
-            });
-
-            boolean showActions = (booking.canModify() || booking.canCancel());
-            binding.containerActions.setVisibility(showActions ? View.VISIBLE : View.GONE);
-
-            binding.buttonModify.setVisibility(booking.canModify() ? View.VISIBLE : View.GONE);
-            binding.buttonCancel.setVisibility(booking.canCancel() ? View.VISIBLE : View.GONE);
-
-            binding.buttonModify.setOnClickListener(v -> {
-                if (actionListener != null) {
-                    actionListener.onModify(booking);
-                }
-            });
-
-            binding.buttonCancel.setOnClickListener(v -> {
-                if (actionListener != null) {
-                    actionListener.onCancel(booking);
                 }
             });
         }

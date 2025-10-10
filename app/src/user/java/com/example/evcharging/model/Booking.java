@@ -5,7 +5,9 @@ import androidx.annotation.DrawableRes;
 
 import com.example.evcharging.R;
 
-public class Booking {
+import java.io.Serializable;
+
+public class Booking implements Serializable {
 
     public enum Status {
         PENDING(R.color.apple_warning, R.drawable.bg_booking_status_pending),

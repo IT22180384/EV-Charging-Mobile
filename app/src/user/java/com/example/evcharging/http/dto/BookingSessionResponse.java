@@ -6,7 +6,7 @@ public class BookingSessionResponse {
     @SerializedName(value = "bookingId", alternate = {"BookingId"})
     public String bookingId;
 
-    @SerializedName(value = "stationId", alternate = {"StationId"})
+    @SerializedName(value = "stationId", alternate = {"StationId", "chargingStationId"})
     public String stationId;
 
     @SerializedName(value = "stationName", alternate = {"StationName"})
@@ -14,6 +14,9 @@ public class BookingSessionResponse {
 
     @SerializedName(value = "stationAddress", alternate = {"StationAddress"})
     public String stationAddress;
+
+    @SerializedName(value = "id")
+    public String id;
 
     @SerializedName(value = "reservationId", alternate = {"ReservationId"})
     public String reservationId;

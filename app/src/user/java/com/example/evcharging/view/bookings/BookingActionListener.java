@@ -12,5 +12,7 @@ public interface BookingActionListener {
     void onBookingModified(String bookingId);
     void navigateToModifyBooking();
     void navigateToCancelBooking();
+    void navigateToCancelBooking(com.example.evcharging.model.Booking booking);
     void navigateToBookingDetails();
+    void navigateToBookingDetails(com.example.evcharging.model.Booking booking);
 }

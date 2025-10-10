@@ -18,7 +18,9 @@ import com.example.evcharging.view.bookings.fragments.BookingStepOneFragment;
 import com.example.evcharging.view.bookings.fragments.BookingStepTwoFragment;
 import com.example.evcharging.view.bookings.fragments.BookingStepThreeFragment;
 import com.example.evcharging.view.bookings.fragments.CancelBookingFragment;
+import com.example.evcharging.view.bookings.fragments.HistoryBookingsFragment;
 import com.example.evcharging.view.bookings.fragments.ModifyBookingFragment;
+import com.example.evcharging.view.bookings.fragments.UpcomingBookingsFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -210,6 +212,15 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
     public void completeBooking() {
         // Handle booking completion
         exitBookingFlow();
+        
+        // Refresh the upcoming bookings tab after creating a new booking
+        if (binding != null && binding.bookingsViewPager != null) {
+            binding.getRoot().postDelayed(() -> {
+                // Switch to upcoming bookings tab (index 0) and refresh
+                binding.bookingsViewPager.setCurrentItem(0);
+                refreshCurrentFragment();
+            }, 200);
+        }
     }
 
     public void cancelBooking() {
@@ -219,7 +230,50 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
 
     @Override
     public void onBookingCancelled(String bookingId) {
+        // Navigate back to the bookings list
+        exitBookingFlow();
+        
+        // Refresh the current fragment after a short delay to ensure it's visible
+        if (binding != null && binding.bookingsViewPager != null) {
+            binding.getRoot().postDelayed(() -> {
+                refreshCurrentFragment();
+            }, 200);
+        }
+    }
 
+    private void refreshCurrentFragment() {
+        if (binding != null && binding.bookingsViewPager != null) {
+            int currentItem = binding.bookingsViewPager.getCurrentItem();
+            
+            // Get the fragment adapter and force refresh
+            BookingsPagerAdapter adapter = (BookingsPagerAdapter) binding.bookingsViewPager.getAdapter();
+            if (adapter != null) {
+                // Try multiple approaches to get the fragment and refresh it
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag("f" + currentItem);
+                
+                if (fragment instanceof UpcomingBookingsFragment) {
+                    ((UpcomingBookingsFragment) fragment).refreshBookings();
+                } else if (fragment instanceof HistoryBookingsFragment) {
+                    ((HistoryBookingsFragment) fragment).refreshBookings();
+                } else {
+                    // Fallback: recreate the adapter to force refresh
+                    binding.bookingsViewPager.setAdapter(new BookingsPagerAdapter(this));
+                    setupTabLayoutMediator();
+                }
+            }
+        }
+    }
+
+    private void setupTabLayoutMediator() {
+        if (binding != null && binding.bookingsViewPager != null && binding.bookingsTabLayout != null) {
+            new TabLayoutMediator(binding.bookingsTabLayout, binding.bookingsViewPager, (tab, position) -> {
+                if (position == 0) {
+                    tab.setText(R.string.label_bookings_upcoming);
+                } else {
+                    tab.setText(R.string.label_bookings_history);
+                }
+            }).attach();
+        }
     }
 
     @Override
@@ -238,8 +292,18 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
     }
 
     @Override
+    public void navigateToCancelBooking(com.example.evcharging.model.Booking booking) {
+        showBookingFragment(CancelBookingFragment.newInstance(booking));
+    }
+
+    @Override
     public void navigateToBookingDetails() {
         showBookingFragment(BookingDetailsFragment.newInstance());
+    }
+
+    @Override
+    public void navigateToBookingDetails(com.example.evcharging.model.Booking booking) {
+        showBookingFragment(BookingDetailsFragment.newInstance(booking));
     }
 
     @Override

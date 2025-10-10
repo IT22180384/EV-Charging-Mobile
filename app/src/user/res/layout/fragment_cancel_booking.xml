@@ -68,6 +68,7 @@
 
                     <!-- Station Name -->
                     <TextView
+                        android:id="@+id/textStationName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Downtown Charging Station"
@@ -97,6 +98,7 @@
                                 android:contentDescription="@null" />
 
                             <TextView
+                                android:id="@+id/textBookingDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -119,6 +121,7 @@
                                 android:contentDescription="@null" />
 
                             <TextView
+                                android:id="@+id/textBookingTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -142,6 +145,7 @@
                             android:contentDescription="@null" />
 
                         <TextView
+                            android:id="@+id/textSlot"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
@@ -278,74 +282,6 @@
                 app:strokeColor="@color/apple_card_border"
                 app:strokeWidth="0dp"
                 android:layout_marginBottom="24dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reason for cancellation (optional)"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/apple_text_primary"
-                        android:layout_marginBottom="16dp" />
-
-                    <!-- Reason Options -->
-                    <RadioGroup
-                        android:id="@+id/rgCancellationReason"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/rbScheduleConflict"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Schedule conflict"
-                            android:textColor="@color/apple_text_primary"
-                            android:textSize="14sp"
-                            android:padding="12dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="?attr/selectableItemBackground" />
-
-                        <RadioButton
-                            android:id="@+id/rbMeetingPostponed"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Charging no longer needed"
-                            android:textColor="@color/apple_text_primary"
-                            android:textSize="14sp"
-                            android:padding="12dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="?attr/selectableItemBackground" />
-
-                        <RadioButton
-                            android:id="@+id/rbNoLongerNeeded"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Vehicle unavailable"
-                            android:textColor="@color/apple_text_primary"
-                            android:textSize="14sp"
-                            android:padding="12dp"
-                            android:layout_marginBottom="8dp"
-                            android:background="?attr/selectableItemBackground" />
-
-                        <RadioButton
-                            android:id="@+id/rbOther"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Other"
-                            android:textColor="@color/apple_text_primary"
-                            android:textSize="14sp"
-                            android:padding="12dp"
-                            android:background="?attr/selectableItemBackground" />
-
-                    </RadioGroup>
-
-                </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>

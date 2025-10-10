@@ -43,18 +43,8 @@ public class HistoryBookingsFragment extends Fragment implements BookingViewMode
             @Override
             public void onBookingSelected(@NonNull Booking booking) {
                 if (listener != null) {
-                    listener.navigateToBookingDetails();
+                    listener.navigateToBookingDetails(booking);
                 }
-            }
-
-            @Override
-            public void onModify(@NonNull Booking booking) {
-                // History items are not modifiable
-            }
-
-            @Override
-            public void onCancel(@NonNull Booking booking) {
-                // History items cannot be cancelled
             }
         });
         binding.recyclerBookings.setAdapter(adapter);
@@ -97,6 +87,17 @@ public class HistoryBookingsFragment extends Fragment implements BookingViewMode
                     Toast.LENGTH_SHORT
             ).show();
         }
+    }
+
+    public void refreshBookings() {
+        loadHistory();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Refresh bookings when returning to this fragment
+        refreshBookings();
     }
 
     @Override
