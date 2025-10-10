@@ -25,8 +25,11 @@ import retrofit2.http.Query;
 
 public interface Api {
     // Auth APIs must return concrete DTOs for Gson to deserialize correctly
+    @POST("/api/auth/login")
+    Call<LoginSuccessDTO> operatorLogin(@Body RequestBody body);
+
     @POST("/api/evowners/login")
-    Call<LoginSuccessDTO> login(@Body RequestBody body);
+    Call<LoginSuccessDTO> evOwnerLogin(@Body RequestBody body);
 
     @POST("/api/evowners/register")
     Call<LoginSuccessDTO> register(@Body RequestBody body);

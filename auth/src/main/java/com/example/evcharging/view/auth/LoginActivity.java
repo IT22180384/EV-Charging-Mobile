@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this,
                         "Login successful: " + (loginResponse != null ? loginResponse.getMessage() : ""),
                         Toast.LENGTH_SHORT).show();
-                navigateToHome();
+                navigateToHome(loginResponse);
             }
 
             @Override
@@ -151,8 +151,8 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
-    private void navigateToHome() {
-        Class<?> destination = resolveDestinationActivity();
+    private void navigateToHome(LoginSuccessDTO loginResponse) {
+        Class<?> destination = resolveDestinationActivity(loginResponse);
         if (destination == null) {
             Toast.makeText(this, "Unable to determine destination screen", Toast.LENGTH_SHORT).show();
             return;
@@ -165,14 +165,49 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
-    private Class<?> resolveDestinationActivity() {
+    private Class<?> resolveDestinationActivity(LoginSuccessDTO loginResponse) {
         final String applicationId = getApplicationContext().getPackageName();
-
+        
+        // Check user type from the login response
+        String userType = null;
+        if (loginResponse != null) {
+            // Check if we have explicit userType field
+            if (loginResponse.getUserType() != null) {
+                userType = loginResponse.getUserType();
+            }
+            // Otherwise, determine from response structure
+            else if (loginResponse.getOperator() != null) {
+                userType = "StationOperator";
+            } else if (loginResponse.getEvOwner() != null) {
+                userType = "EVOwner";
+            }
+        }
+        
+        Log.d("LoginActivity", "User type from API: " + userType);
+        Log.d("LoginActivity", "App package: " + applicationId);
+        
         try {
-            if (applicationId.endsWith(".operator")) {
+            // If user is StationOperator, always navigate to operator app
+            if ("StationOperator".equals(userType)) {
                 return Class.forName("com.example.evcharging.view.main.OperatorMainActivity");
             }
+            
+            // For EVOwner type or no type specified, check the app variant
+            if (applicationId.endsWith(".operator")) {
+                // If this is operator app but user is not StationOperator, show error
+                if (userType != null && !"StationOperator".equals(userType)) {
+                    Toast.makeText(this, "Access denied. This app is for station operators only.", Toast.LENGTH_LONG).show();
+                    return null;
+                }
+                return Class.forName("com.example.evcharging.view.main.OperatorMainActivity");
+            }
+            
             if (applicationId.endsWith(".user")) {
+                // If this is user app but user is StationOperator, suggest using operator app
+                if ("StationOperator".equals(userType)) {
+                    Toast.makeText(this, "You are a station operator. Please use the operator app.", Toast.LENGTH_LONG).show();
+                    return null;
+                }
                 return Class.forName("com.example.evcharging.view.main.MainActivity");
             }
         } catch (ClassNotFoundException exception) {
