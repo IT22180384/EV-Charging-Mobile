@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -127,7 +128,14 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
         
         // Station info card actions
         findViewById(R.id.btn_directions).setOnClickListener(v -> {
-            Toast.makeText(this, "Opening directions", Toast.LENGTH_SHORT).show();
+            if (selectedMarker != null) {
+                ChargingStation station = markerStationMap.get(selectedMarker);
+                if (station != null) {
+                    String uri = "geo:" + station.getLatitude() + "," + station.getLongitude() + "?q=" + station.getLatitude() + "," + station.getLongitude();
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                }
+            }
         });
         
         findViewById(R.id.btn_reserve).setOnClickListener(v -> {
