@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.evcharging.R;
 import com.example.evcharging.model.ChargingStation;
+import com.example.evcharging.view.bookings.BookingsActivity;
 import com.example.evcharging.view.main.MainActivity;
 import com.example.evcharging.viewmodel.StationViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -130,7 +131,15 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
         });
         
         findViewById(R.id.btn_reserve).setOnClickListener(v -> {
-            Toast.makeText(this, "Reserving station", Toast.LENGTH_SHORT).show();
+            if (selectedMarker != null) {
+                ChargingStation station = markerStationMap.get(selectedMarker);
+                if (station != null) {
+                    Intent intent = new Intent(this, BookingsActivity.class);
+                    intent.putExtra("station_id", station.getId());
+                    intent.putExtra("station_name", station.getName());
+                    startActivity(intent);
+                }
+            }
         });
     }
 

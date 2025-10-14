@@ -1,5 +1,6 @@
 package com.example.evcharging.view.bookings;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -42,6 +43,14 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
         showNavMenu(); // Show navigation for this activity
         initViews();
         setupBackPressedCallback();
+
+        // Check for direct navigation to step two
+        Intent intent = getIntent();
+        if (intent.hasExtra("station_id")) {
+            String stationId = intent.getStringExtra("station_id");
+            String stationName = intent.getStringExtra("station_name");
+            startBookingAtStepTwo(stationId, stationName);
+        }
     }
     
     private void setupBackPressedCallback() {
@@ -312,5 +321,22 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
             backPressedCallback.remove();
         }
         super.onDestroy();
+    }
+
+    private void startBookingAtStepTwo(String stationId, String stationName) {
+        // Hide the navigation menu
+        hideNavMenu();
+
+        // Hide the current bookings content
+        if (binding != null) {
+            binding.getRoot().setVisibility(View.GONE);
+        }
+
+        // Start directly at step 2 of the booking process
+        currentStep = 2;
+        navigateToStepTwo(stationId, stationName);
+
+        isShowingNewBooking = true;
+        backPressedCallback.setEnabled(true);
     }
 }
