@@ -16,11 +16,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // Read API key from local.properties
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def localProperties = new Properties()
+        def localPropertiesFile = rootProject.file('local.properties')
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.withInputStream { stream ->
+                localProperties.load(stream)
+            }
+        }
+
+        def mapsApiKey = localProperties.getProperty('MAPS_API_KEY', 'YOUR_GOOGLE_MAPS_API_KEY_HERE')
+
         manifestPlaceholders = [
-                MAPS_API_KEY: properties.getProperty('MAPS_API_KEY', ''),
-                BASE_URL    : properties.getProperty('BASE_URL', 'https://ev-charging-backend-it22055026.azurewebsites.net/')
+                MAPS_API_KEY: mapsApiKey,
+                BASE_URL    : 'https://ev-charging-backend-it22055026.azurewebsites.net/'
         ]
 
         buildConfigField 'String', 'BASE_URL', '"https://ev-charging-backend-it22055026.azurewebsites.net/"'

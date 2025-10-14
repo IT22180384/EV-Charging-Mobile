@@ -1,6 +1,7 @@
 package com.example.evcharging.view.stations;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -12,11 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.evcharging.R;
+import com.example.evcharging.model.ChargingStation;
+import com.example.evcharging.view.main.MainActivity;
+import com.example.evcharging.viewmodel.StationViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,7 +37,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StationsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -44,62 +52,9 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
     private View stationInfoCard;
     private List<Marker> allMarkers = new ArrayList<>();
     private Marker selectedMarker;
-
-    // Expanded list of EV charging stations in Sri Lanka
-    private final LatLng[] chargingStations = {
-        // Colombo area
-        new LatLng(6.9271, 79.8612), // Colombo City Center
-        new LatLng(6.9319, 79.8478), // Kollupitiya Station
-        new LatLng(6.8649, 79.8997), // Rajagiriya
-        new LatLng(6.9023, 79.8607), // Bambalapitiya
-        new LatLng(6.9147, 79.9729), // Kotte
-        new LatLng(6.9534, 79.8606), // Pettah
-        new LatLng(6.8782, 79.8792), // Nugegoda
-        new LatLng(6.9497, 79.8500), // Fort
-        new LatLng(6.8905, 79.8569), // Wellawatte
-        new LatLng(6.8623, 79.9200), // Maharagama
-        new LatLng(6.9148, 79.8731), // Dehiwala
-        new LatLng(6.9388, 79.8542), // Cinnamon Gardens
-        new LatLng(6.8448, 79.9553), // Boralesgamuwa
-        new LatLng(6.9695, 79.9220), // Kotahena
-        new LatLng(6.8293, 79.9720), // Homagama
-        
-        // Gampaha area
-        new LatLng(7.0906, 79.9999), // Gampaha
-        new LatLng(7.1554, 79.8987), // Negombo
-        new LatLng(7.0732, 80.0074), // Kiribathgoda
-        new LatLng(7.1667, 79.8833), // Katunayake
-        new LatLng(7.2167, 79.8833), // Minuwangoda
-        
-        // Kalutara area
-        new LatLng(6.5854, 79.9607), // Kalutara
-        new LatLng(6.6431, 79.9969), // Panadura
-        new LatLng(6.7279, 79.8912), // Moratuwa
-        
-        // Kandy area
-        new LatLng(7.2906, 80.6337), // Kandy
-        new LatLng(7.3319, 80.6350), // Peradeniya
-        
-        // Galle area
-        new LatLng(6.0329, 80.2168), // Galle
-        new LatLng(5.9549, 80.5550), // Matara
-        
-        // Other major cities
-        new LatLng(8.3114, 80.4037), // Anuradhapura
-        new LatLng(7.9520, 81.0306), // Polonnaruwa
-        new LatLng(6.0535, 81.2152)  // Hambantota
-    };
-
-    private final String[] stationNames = {
-        "Colombo City Center", "Kollupitiya Station", "Rajagiriya Hub", "Bambalapitiya Point", 
-        "Kotte Super Charger", "Pettah Express", "Nugegoda Fast Charge", "Fort Main Station",
-        "Wellawatte Quick Charge", "Maharagama Central", "Dehiwala Station", "Cinnamon Gardens Hub",
-        "Boralesgamuwa Point", "Kotahena Express", "Homagama Station", "Gampaha Hub",
-        "Negombo Airport Station", "Kiribathgoda Point", "Katunayake Express", "Minuwangoda Station",
-        "Kalutara South", "Panadura Central", "Moratuwa Tech Hub", "Kandy Central",
-        "Peradeniya University", "Galle Heritage", "Matara South", "Anuradhapura Ancient",
-        "Polonnaruwa Historic", "Hambantota Port"
-    };
+    private List<ChargingStation> chargingStations = new ArrayList<>();
+    private Map<Marker, ChargingStation> markerStationMap = new HashMap<>();
+    private StationViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +66,9 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
             getSupportActionBar().hide();
         }
         
+        // Initialize ViewModel
+        viewModel = new ViewModelProvider(this).get(StationViewModel.class);
+
         // Initialize views
         initializeViews();
         
@@ -126,6 +84,16 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
         
         setupClickListeners();
         setupSearch();
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                navigateToMainActivity();
+            }
+        });
+
+        // Load charging stations from API via ViewModel
+        loadChargingStations();
     }
 
     private void initializeViews() {
@@ -137,10 +105,8 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
 
     private void setupClickListeners() {
         // Back button
-        findViewById(R.id.btn_back).setOnClickListener(v -> {
-            onBackPressed();
-        });
-        
+        findViewById(R.id.btn_back).setOnClickListener(v -> navigateToMainActivity());
+
         // My location button
         findViewById(R.id.btn_my_location).setOnClickListener(v -> {
             if (mMap != null) {
@@ -149,9 +115,7 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
         });
         
         // Search container click
-        findViewById(R.id.search_container).setOnClickListener(v -> {
-            searchEditText.requestFocus();
-        });
+        findViewById(R.id.search_container).setOnClickListener(v -> searchEditText.requestFocus());
         
         // Clear search button
         btnClearSearch.setOnClickListener(v -> {
@@ -212,9 +176,6 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
         mMap.getUiSettings().setCompassEnabled(false);
         mMap.getUiSettings().setMapToolbarEnabled(false);
         
-        // Add charging station markers
-        addChargingStationMarkers();
-        
         // Set default location to Colombo, Sri Lanka
         LatLng colombo = new LatLng(6.9271, 79.8612);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(colombo, 10));
@@ -235,20 +196,59 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
         mMap.setOnMapClickListener(latLng -> {
             hideStationInfo();
         });
+
+        // Add markers if stations are already loaded
+        if (!chargingStations.isEmpty()) {
+            addChargingStationMarkers();
+        }
+    }
+
+    private void loadChargingStations() {
+        viewModel.loadChargingStations(true, new StationViewModel.StationsCallback() {
+            @Override
+            public void onStationsLoaded(List<ChargingStation> stations) {
+                chargingStations.clear();
+                chargingStations.addAll(stations);
+
+                // Add markers to map if it's ready
+                if (mMap != null) {
+                    addChargingStationMarkers();
+                }
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Toast.makeText(StationsActivity.this,
+                    "Failed to load stations: " + errorMessage,
+                    Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void addChargingStationMarkers() {
         allMarkers.clear();
-        for (int i = 0; i < chargingStations.length; i++) {
+        markerStationMap.clear();
+
+        for (ChargingStation station : chargingStations) {
+            LatLng position = new LatLng(station.getLatitude(), station.getLongitude());
+
+            // Create snippet with availability info
+            String snippet = (station.getAvailableSlots() > 0 ? "Available" : "Full") +
+                           " • " + station.getStationType() + " Charging";
+
             MarkerOptions markerOptions = new MarkerOptions()
-                    .position(chargingStations[i])
-                    .title(stationNames[i])
-                    .snippet("Available • Fast Charging")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-            
+                    .position(position)
+                    .title(station.getName())
+                    .snippet(snippet)
+                    .icon(BitmapDescriptorFactory.defaultMarker(
+                        station.getAvailableSlots() > 0 ?
+                        BitmapDescriptorFactory.HUE_GREEN :
+                        BitmapDescriptorFactory.HUE_RED));
+
             Marker marker = mMap.addMarker(markerOptions);
             if (marker != null) {
                 allMarkers.add(marker);
+                markerStationMap.put(marker, station);
             }
         }
         updateStationCount();
@@ -346,15 +346,19 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
 
     private void showStationInfo(Marker marker) {
         if (stationInfoCard != null) {
+            ChargingStation station = markerStationMap.get(marker);
+
             // Update station info
             TextView stationName = findViewById(R.id.text_station_name);
             TextView stationDistance = findViewById(R.id.text_station_distance);
             
-            if (stationName != null) {
-                stationName.setText(marker.getTitle());
+            if (stationName != null && station != null) {
+                stationName.setText(station.getName());
             }
-            if (stationDistance != null) {
-                stationDistance.setText("Available • Fast Charging");
+            if (stationDistance != null && station != null) {
+                String info = (station.getAvailableSlots() > 0 ? "Available" : "Full") +
+                            " • " + station.getStationType() + " Charging";
+                stationDistance.setText(info);
             }
             
             // Show the card
@@ -369,9 +373,10 @@ public class StationsActivity extends AppCompatActivity implements OnMapReadyCal
         selectedMarker = null;
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    private void navigateToMainActivity() {
+        Intent intent = new Intent(StationsActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
         finish();
     }
 }
