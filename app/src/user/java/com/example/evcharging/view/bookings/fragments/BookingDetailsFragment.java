@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -78,7 +79,11 @@ public class BookingDetailsFragment extends Fragment {
     private void setupListeners() {
 
         binding.modifyBookingBtn.setOnClickListener(v -> {
-            listener.navigateToModifyBooking();
+            if (booking != null) {
+                listener.navigateToModifyBooking(booking);
+            } else {
+                Toast.makeText(getContext(), "Booking details not available", Toast.LENGTH_SHORT).show();
+            }
         });
 
         binding.cancelBookingBtn.setOnClickListener(v -> {
@@ -98,33 +103,14 @@ public class BookingDetailsFragment extends Fragment {
         });
     }
 
-    private void loadBookingDetails(String bookingId) {
-        // Simulate loading booking details - in a real app this would come from a repository
-        booking = findBookingById(bookingId);
-        if (booking != null) {
-            displayBookingDetails(booking);
+    private void loadBookingDetails(String id) {
+        // Booking should be loaded from arguments - no need to simulate
+        if (booking == null) {
+            Toast.makeText(getContext(), "Unable to load booking details", Toast.LENGTH_SHORT).show();
+            if (getActivity() != null) {
+                getActivity().onBackPressed();
+            }
         }
-    }
-
-    private Booking findBookingById(String bookingId) {
-        // Simulate finding booking by ID - in a real app this would query the repository
-        // For demonstration, return a sample booking
-        return new Booking(
-                bookingId,
-                "RES-" + bookingId,
-                "STATION-123",
-                "Downtown Charging Station",
-                "123 Liberty Ave, City Center",
-                "Dec 15, 2024",
-                "2:00 PM - 4:00 PM",
-                "Slot A2",
-                Booking.Status.PENDING,
-                "Pending",
-                true,
-                true,
-                "2024-12-15T14:00:00",
-                "2024-12-15T15:00:00"
-        );
     }
 
     private void displayBookingDetails(Booking booking) {

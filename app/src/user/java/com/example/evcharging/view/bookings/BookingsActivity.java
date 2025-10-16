@@ -52,7 +52,7 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
             startBookingAtStepTwo(stationId, stationName);
         }
     }
-    
+
     private void setupBackPressedCallback() {
         backPressedCallback = new OnBackPressedCallback(false) {
             @Override
@@ -124,7 +124,7 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
             setupViewPager();
         }
     }
-    
+
     private void loadBookingsContent() {
         // Load bookings content into the base activity's content container
         FrameLayout contentContainer = findViewById(R.id.content_container);
@@ -221,7 +221,7 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
     public void completeBooking() {
         // Handle booking completion
         exitBookingFlow();
-        
+
         // Refresh the upcoming bookings tab after creating a new booking
         if (binding != null && binding.bookingsViewPager != null) {
             binding.getRoot().postDelayed(() -> {
@@ -241,7 +241,7 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
     public void onBookingCancelled(String bookingId) {
         // Navigate back to the bookings list
         exitBookingFlow();
-        
+
         // Refresh the current fragment after a short delay to ensure it's visible
         if (binding != null && binding.bookingsViewPager != null) {
             binding.getRoot().postDelayed(() -> {
@@ -253,13 +253,13 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
     private void refreshCurrentFragment() {
         if (binding != null && binding.bookingsViewPager != null) {
             int currentItem = binding.bookingsViewPager.getCurrentItem();
-            
+
             // Get the fragment adapter and force refresh
             BookingsPagerAdapter adapter = (BookingsPagerAdapter) binding.bookingsViewPager.getAdapter();
             if (adapter != null) {
                 // Try multiple approaches to get the fragment and refresh it
                 Fragment fragment = getSupportFragmentManager().findFragmentByTag("f" + currentItem);
-                
+
                 if (fragment instanceof UpcomingBookingsFragment) {
                     ((UpcomingBookingsFragment) fragment).refreshBookings();
                 } else if (fragment instanceof HistoryBookingsFragment) {
@@ -287,12 +287,17 @@ public class BookingsActivity extends BaseActivity implements BookingActionListe
 
     @Override
     public void onBookingModified(String bookingId) {
-
+        // Refresh the current fragment after a short delay to ensure it's visible
+        if (binding != null && binding.bookingsViewPager != null) {
+            binding.getRoot().postDelayed(() -> {
+                refreshCurrentFragment();
+            }, 200);
+        }
     }
 
     @Override
-    public void navigateToModifyBooking() {
-        showBookingFragment(ModifyBookingFragment.newInstance());
+    public void navigateToModifyBooking(com.example.evcharging.model.Booking booking) {
+        showBookingFragment(ModifyBookingFragment.newInstance(booking));
     }
 
     @Override

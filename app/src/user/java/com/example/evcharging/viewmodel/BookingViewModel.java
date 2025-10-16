@@ -86,8 +86,8 @@ public class BookingViewModel extends BaseViewModel {
     }
 
     public void updateReservation(String reservationId, String startTime, String endTime,
-                                  String status, String notes, ReservationUpdateCallback callback) {
-        ReservationUpdateRequest request = new ReservationUpdateRequest(startTime, endTime, status, notes);
+                                  String status, String notes, String chargingStationId, ReservationUpdateCallback callback) {
+        ReservationUpdateRequest request = new ReservationUpdateRequest(startTime, endTime, status, notes, chargingStationId);
         repository.updateReservation(reservationId, request, new UserBookingRepository.ReservationCallback() {
             @Override
             public void onSuccess(ReservationResponse response) {
@@ -213,16 +213,17 @@ public class BookingViewModel extends BaseViewModel {
         }
 
         for (BookingSessionResponse session : sessions) {
+            String id = valueOrDefault(session.id,
+                    valueOrDefault(session.reservationId, session.bookingId));
             String bookingId = valueOrDefault(session.bookingId, "-");
-            String reservationId = valueOrDefault(session.reservationId, 
+            String reservationId = valueOrDefault(session.reservationId,
                     valueOrDefault(session.id, session.bookingId));
             String stationId = valueOrDefault(session.stationId, "");
 
-            // Debug logging to check reservation ID mapping
-            android.util.Log.d("BookingViewModel", "Mapping booking - ID: " + session.id + 
-                    ", ReservationId: " + session.reservationId + 
-                    ", BookingId: " + session.bookingId + 
-                    ", Final ReservationId: " + reservationId);
+            Log.d("BookingViewModel", "Mapping booking - ID: " + session.id +
+                    ", ReservationId: " + session.reservationId +
+                    ", BookingId: " + session.bookingId +
+                    ", Final ID for API calls: " + id);
 
             StationInfo cachedInfo = !TextUtils.isEmpty(stationId) ? stationInfoCache.get(stationId) : null;
             String stationName = cachedInfo != null && !TextUtils.isEmpty(cachedInfo.name)
@@ -247,6 +248,7 @@ public class BookingViewModel extends BaseViewModel {
             boolean canCancel = status == Booking.Status.PENDING || status == Booking.Status.APPROVED;
 
             bookings.add(new Booking(
+                    id,
                     formatBookingId(bookingId),
                     reservationId,
                     stationId,

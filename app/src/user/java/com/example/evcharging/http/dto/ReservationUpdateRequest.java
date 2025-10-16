@@ -15,10 +15,14 @@ public class ReservationUpdateRequest {
     @SerializedName(value = "notes", alternate = {"Notes"})
     public String notes;
 
-    public ReservationUpdateRequest(String startTime, String endTime, String status, String notes) {
+    @SerializedName(value = "chargingStationId", alternate = {"ChargingStationId"})
+    public String chargingStationId;
+
+    public ReservationUpdateRequest(String startTime, String endTime, String status, String notes, String chargingStationId) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.status = status;
         this.notes = notes;
+        this.chargingStationId = chargingStationId;
     }
 }

@@ -54,13 +54,13 @@ public interface Api {
     @GET("/api/reservation/{id}")
     Call<ReservationResponse> getReservation(@Path("id") String id);
 
-   @GET("/api/reservation/history/{nic}")
+    @GET("/api/reservation/history/{nic}")
     Call<List<ReservationResponse>> getReservationHistory(@Path("nic") String nic);
 
-    @PUT("/api/reservation/{id}")
+    @PUT("/api/reservation/booking/{id}")
     Call<ReservationResponse> updateReservation(@Path("id") String id, @Body ReservationUpdateRequest request);
 
-    @PATCH("/api/reservation/cancel/{id}")
+    @PATCH("/api/reservation/booking/cancel/{id}")
     Call<Void> cancelReservation(@Path("id") String id);
 
     @GET("/api/reservation/user/{userId}/bookings/pending")

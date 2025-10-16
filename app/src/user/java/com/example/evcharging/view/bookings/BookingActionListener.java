@@ -1,5 +1,7 @@
 package com.example.evcharging.view.bookings;
 
+import com.example.evcharging.model.Booking;
+
 public interface BookingActionListener {
     void goBackToStepOne();
     void navigateToStepTwo(String stationId, String stationName);
@@ -10,9 +12,9 @@ public interface BookingActionListener {
 
     void onBookingCancelled(String bookingId);
     void onBookingModified(String bookingId);
-    void navigateToModifyBooking();
+    void navigateToModifyBooking(Booking booking);
     void navigateToCancelBooking();
-    void navigateToCancelBooking(com.example.evcharging.model.Booking booking);
+    void navigateToCancelBooking(Booking booking);
     void navigateToBookingDetails();
-    void navigateToBookingDetails(com.example.evcharging.model.Booking booking);
+    void navigateToBookingDetails(Booking booking);
 }

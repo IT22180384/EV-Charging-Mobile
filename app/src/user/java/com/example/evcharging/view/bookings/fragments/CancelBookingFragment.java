@@ -92,37 +92,19 @@ public class CancelBookingFragment extends Fragment {
         });
     }
 
-    private void loadBookingDetails(String bookingId) {
-        // Simulate loading booking details - in a real app this would come from a repository
-        Booking booking = findBookingById(bookingId);
-        if (booking != null) {
-            displayBookingDetails(booking);
+    private void loadBookingDetails(String id) {
+        // Booking should be loaded from arguments - no need to simulate
+        if (booking == null) {
+            Toast.makeText(getContext(), "Unable to load booking details", Toast.LENGTH_SHORT).show();
+            if (getActivity() != null) {
+                getActivity().onBackPressed();
+            }
         }
-    }
-
-    private Booking findBookingById(String bookingId) {
-        // Simulate finding booking by ID - in a real app this would query the repository
-        return new Booking(
-                bookingId,
-                "RES-" + bookingId,
-                "STATION-123",
-                "Downtown Charging Station",
-                "123 Liberty Ave, City Center",
-                "Dec 15, 2024",
-                "2:00 PM - 4:00 PM",
-                "Slot A2",
-                Booking.Status.PENDING,
-                "Pending",
-                true,
-                true,
-                "2024-12-15T14:00:00",
-                "2024-12-15T15:00:00"
-        );
     }
 
     private void displayBookingDetails(Booking booking) {
         if (binding == null) return;
-        
+
         // Update the booking details in the UI
         binding.textStationName.setText(booking.getStationName());
         binding.textBookingDate.setText(booking.getDate());
@@ -131,13 +113,13 @@ public class CancelBookingFragment extends Fragment {
     }
 
     private void confirmCancellation() {
-        if (booking == null || booking.getReservationId() == null) {
+        if (booking == null || booking.getId() == null) {
             Toast.makeText(getContext(), "Booking information not available", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Debug log to check the reservation ID
-        android.util.Log.d("CancelBooking", "Attempting to cancel reservation ID: " + booking.getReservationId());
+        // Debug log to check the ID being used
+        android.util.Log.d("CancelBooking", "Attempting to cancel with ID: " + booking.getId());
         android.util.Log.d("CancelBooking", "Booking ID: " + booking.getBookingId());
         android.util.Log.d("CancelBooking", "Station ID: " + booking.getStationId());
 
@@ -146,17 +128,17 @@ public class CancelBookingFragment extends Fragment {
         binding.btnCancelBooking.setText("Cancelling...");
 
         // Call the API to cancel the reservation
-        viewModel.cancelReservation(booking.getReservationId(), new BookingViewModel.ReservationActionCallback() {
+        viewModel.cancelReservation(booking.getId(), new BookingViewModel.ReservationActionCallback() {
             @Override
             public void onSuccess() {
                 if (!isAdded()) return;
-                
+
                 Toast.makeText(getContext(), "Booking cancelled successfully", Toast.LENGTH_SHORT).show();
-                
+
                 if (listener != null) {
                     listener.onBookingCancelled(booking.getBookingId());
                 }
-                
+
                 // Navigate back
                 showBottomNavigation();
                 if (getActivity() != null) {
@@ -167,14 +149,14 @@ public class CancelBookingFragment extends Fragment {
             @Override
             public void onError(String errorMessage) {
                 if (!isAdded()) return;
-                
+
                 // Re-enable the button
                 binding.btnCancelBooking.setEnabled(true);
                 binding.btnCancelBooking.setText("Cancel Booking");
-                
-                Toast.makeText(getContext(), 
-                    errorMessage != null ? errorMessage : "Failed to cancel booking", 
-                    Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getContext(),
+                        errorMessage != null ? errorMessage : "Failed to cancel booking",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

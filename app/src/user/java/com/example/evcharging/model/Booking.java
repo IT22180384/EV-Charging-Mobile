@@ -32,6 +32,7 @@ public class Booking implements Serializable {
         }
     }
 
+    private final String id;
     private final String bookingId;
     private final String reservationId;
     private final String stationId;
@@ -47,7 +48,8 @@ public class Booking implements Serializable {
     private final String startTimeIso;
     private final String endTimeIso;
 
-    public Booking(String bookingId,
+    public Booking(String id,
+                   String bookingId,
                    String reservationId,
                    String stationId,
                    String stationName,
@@ -61,6 +63,7 @@ public class Booking implements Serializable {
                    boolean canCancel,
                    String startTimeIso,
                    String endTimeIso) {
+        this.id = id;
         this.bookingId = bookingId;
         this.reservationId = reservationId;
         this.stationId = stationId;
@@ -75,6 +78,10 @@ public class Booking implements Serializable {
         this.canCancel = canCancel;
         this.startTimeIso = startTimeIso;
         this.endTimeIso = endTimeIso;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getBookingId() {
