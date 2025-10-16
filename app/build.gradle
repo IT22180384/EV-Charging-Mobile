@@ -28,10 +28,10 @@ android {
 
         manifestPlaceholders = [
                 MAPS_API_KEY: mapsApiKey,
-                BASE_URL    : 'https://ev-charging-backend-it22055026.azurewebsites.net/'
+                BASE_URL    : 'https://prystinegroup.com/'
         ]
 
-        buildConfigField 'String', 'BASE_URL', '"https://ev-charging-backend-it22055026.azurewebsites.net/"'
+        buildConfigField 'String', 'BASE_URL', '"https://prystinegroup.com/"'
     }
 
     buildTypes {
